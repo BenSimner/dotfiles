@@ -117,7 +117,10 @@ map <c-space> ?
 " good for Python usage
 map 0 ^
 
+" bundle maps
 map <F2> :NERDTreeToggle<CR>
+" binds f11 to fullscreen dll mode
+map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 
 """"""""""""""""""""""""""
 " BINDS: FILE

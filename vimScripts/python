@@ -1,0 +1,45 @@
+noremap <F5> :py3file %<CR>
+
+augroup python_files
+	autocmd!
+	autocmd BufNewFile * :call InsertCopyright()
+augroup END
+
+" Inserts the copyright above a .py file
+function! InsertCopyright()
+	set noai
+	set nosi
+		
+	let copyrightText = "# \r
+	\# \r
+	\# file: ". bufname("%") . " \r
+	\# This file is licenced under the terms of the MIT License \r
+	\# Author: Ben Simner \r
+	\# Date: " . strftime("%a, %d %b %Y") . "\r\r"
+	execute "normal! \<ESC>a" . copyrightText
+	
+	set ai
+	set si
+endfunction
+
+map <c-d> :call ReplaceSentenceWithDef()<ENTER>
+
+" Replaces a sentence with a function definition
+function ReplaceSentenceWithDef()
+	execute "normal! 0idef \<esc>ea(\<esc>lxv$"
+	call ReplaceWhitespaceWithCommasVISUALMODE()
+	execute "normal! \<esc>$a):\<esc>o  "
+	execute "normal a"
+endfunction
+
+" Replaces all whitespace in selected text with , [COMMA SPACE]
+"	returns 0 if no whitespace in selection (or no selection)
+function ReplaceWhitespaceWithCommasVISUALMODE()
+	try
+		s:\%V\s:, :g
+	catch
+		return 0
+	endtry
+	
+	return 1
+endfunction

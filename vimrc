@@ -4,6 +4,17 @@
 " Creation files
 so $HOME/vimfiles/vimScripts/python
 
+" Unmap arrow keys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" unmap home row keys to force motion use
+noremap h <NOP>
+noremap j <NOP>
+noremap k <NOP>
+noremap l <NOP>
 """"""""""""""""""""""""""
 " VUNDLE
 """"""""""""""""""""""""""

@@ -5,6 +5,7 @@
 autocmd! bufwritepost vimrc source %
 " auto-reload when changed
 autocmd! bufwritepost *.vim source %
+au! GUIEnter * simalt ~x
 
 " Creation files
 so $HOME/vimfiles/vimScripts/python.vim

@@ -1,9 +1,25 @@
-noremap <F5> :py3file %<CR>
+if !has("python")
+    call confirm("You must have vim compiled with Python in order to use python", 'OK')
+    finish
+endif
+
+noremap <F3> :pyfile %<CR>
+noremap <A-F3> :py3file %<CR>
+noremap <c-space> <c-n>
+noremap <F4> :call CreatePyFile()<CR>
 
 augroup python_files
 	autocmd!
 	autocmd BufNewFile * :call InsertCopyright()
+	autocmd BufWritePre *.py :normal gg=G
 augroup END
+
+" Creates a new python file
+"	and opens a new tab
+function CreatePyFile()
+	let fname = input("Script Name: ")
+    execute "vnew " . fname . ".py"
+endfunction
 
 " Inserts the copyright above a .py file
 function! InsertCopyright()
@@ -15,7 +31,7 @@ function! InsertCopyright()
 	\# file: ". bufname("%") . " \r
 	\# This file is licenced under the terms of the MIT License \r
 	\# Author: Ben Simner \r
-	\# Date: " . strftime("%a, %d %b %Y") . "\r\r"
+	\# Date: " . strftime("%a, %d %b %Y") . "\r# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4\r\r\r#for testing\rif (__name__ == \"__main__\"):\r	pass\r"
 	execute "normal! \<ESC>a" . copyrightText
 	
 	set ai

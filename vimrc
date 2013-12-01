@@ -1,8 +1,13 @@
 """"""""""""""""""""""""""
 " MY FUNCTIONS
 """"""""""""""""""""""""""
+" auto-reload vimrc when changed
+autocmd! bufwritepost vimrc source %
+" auto-reload when changed
+autocmd! bufwritepost *.vim source %
+
 " Creation files
-so $HOME/vimfiles/vimScripts/python
+so $HOME/vimfiles/vimScripts/python.vim
 
 " Unmap arrow keys
 noremap <Up> <NOP>
@@ -15,31 +20,12 @@ noremap h <NOP>
 noremap j <NOP>
 noremap k <NOP>
 noremap l <NOP>
-""""""""""""""""""""""""""
-" VUNDLE
-""""""""""""""""""""""""""
-set nocompatible
-filetype off
 
-set rtp+=~/vimfiles/bundle/vundle/
-call vundle#rc('$HOME/vimfiles/bundle')
+noremap j Gzz
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
 
-" The bundles you install will be listed here
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
-Bundle 'vim-scripts/pep8'
-
-" Powerline setup
-set guifont=DejaVu+Sans+Mono+for+Powerline
-
-filetype off
-syntax on
-filetype plugin indent on
 """"""""""""""""""""""""""
 " GENERAL
 """"""""""""""""""""""""""
@@ -109,9 +95,9 @@ map <c-space> ?
 map 0 ^
 
 " bundle maps
-map <F2> :NERDTreeToggler
+map <F2> :call NERDTreeToggler()
 " binds f11 to fullscreen dll mode
-map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)r
+map <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0) <ENTER>
 
 """"""""""""""""""""""""""
 " BINDS: FILE
@@ -128,6 +114,7 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set smarttab
+
 """"""""""""""""""""""""""
 " DEFAULT
 """"""""""""""""""""""""""

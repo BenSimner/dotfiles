@@ -2,9 +2,10 @@
 " MY FUNCTIONS
 """"""""""""""""""""""""""
 " auto-reload vimrc when changed
-autocmd! bufwritepost vimrc source %
+autocmd! bufwritepost vimrc source! %
 " auto-reload when changed
-autocmd! bufwritepost *.vim source %
+autocmd! bufwritepost *.vim source! %
+" Fullscreen auto
 au! GUIEnter * simalt ~x
 
 " Creation files
@@ -23,6 +24,7 @@ noremap k <NOP>
 noremap l <NOP>
 
 noremap j Gzz
+noremap k Gzt
 
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>

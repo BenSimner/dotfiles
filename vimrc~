@@ -1,6 +1,13 @@
 """"""""""""""""""""""""""
 " MY FUNCTIONS
 """"""""""""""""""""""""""
+" auto-reload vimrc when changed
+autocmd! bufwritepost vimrc source! %
+" auto-reload when changed
+autocmd! bufwritepost *.vim source! %
+" Fullscreen auto
+au! GUIEnter * simalt ~x
+
 " Creation files
 so $HOME/vimfiles/vimScripts/python.vim
 
@@ -17,35 +24,11 @@ noremap k <NOP>
 noremap l <NOP>
 
 noremap j Gzz
+noremap k Gzt
 
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 
-""""""""""""""""""""""""""
-" VUNDLE
-""""""""""""""""""""""""""
-set nocompatible
-filetype off
-
-set rtp+=~/vimfiles/bundle/vundle/
-call vundle#rc('$HOME/vimfiles/bundle')
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" The bundles you install will be listed here
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
-Bundle 'vim-scripts/pep8'
-
-" Powerline setup
-set guifont=DejaVu+Sans+Mono+for+Powerline
-
-filetype off
-syntax on
-filetype plugin indent on
 """"""""""""""""""""""""""
 " GENERAL
 """"""""""""""""""""""""""
@@ -66,7 +49,7 @@ set mat=2
 set showmatch
 
 " Show line numbers
-" set nu
+set nu
 
 " remember info about buffers on close
 set viminfo^=%
@@ -174,7 +157,4 @@ augroup vimrc_autocmds
     autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
     autocmd FileType python match Excess /\%120v.*/
     autocmd FileType python set nowrap
-	
-	" auto-reload vimrc when changed
-	autocmd bufwritepost vimrc source %
 augroup END

@@ -1,16 +1,10 @@
-if !has("python")
-    call confirm("You must have vim compiled with Python in order to use python", 'OK')
-    finish
-endif
-
-noremap <F3> :pyfile %<CR>
-noremap <A-F3> :py3file %<CR>
+noremap <F3> :!python %<CR>
 noremap <c-space> <c-n>
 noremap <F4> :call CreatePyFile()<CR>
 
 augroup python_files
 	autocmd!
-	autocmd BufNewFile * :call InsertCopyright()
+	autocmd BufNewFile *.py :call InsertCopyright()
 	autocmd BufWritePre *.py :normal gg=G
 augroup END
 

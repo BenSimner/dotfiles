@@ -9,23 +9,22 @@ autocmd! bufwritepost *.vim source! %
 au! GUIEnter * simalt ~x
 
 " Creation files
-so $HOME/vimfiles/vimScripts/python.vim
+so $HOME/vimfiles/vimScripts/functions.vim
+
 
 " Unmap arrow keys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+ "noremap <Up> <NOP>
+" noremap <Down> <NOP>
+" noremap <Left> <NOP>
+" noremap <Right> <NOP>
 
 " unmap home row keys to force motion use
-noremap h <NOP>
-noremap j <NOP>
-noremap k <NOP>
-noremap l <NOP>
+"noremap h <NOP>
+"noremap j <NOP>
+"noremap k <NOP>
+"noremap l <NOP>
 
-noremap j Gzz
-noremap k Gzt
-
+noremap g Gzz
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 
@@ -97,11 +96,6 @@ map <c-space> ?
 " good for Python usage
 map 0 ^
 
-" bundle maps
-map <F2> :call NERDTreeToggler()
-" binds f11 to fullscreen dll mode
-map <F11> :call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0) <ENTER>
-
 """"""""""""""""""""""""""
 " BINDS: FILE
 """"""""""""""""""""""""""
@@ -122,7 +116,6 @@ set smarttab
 " DEFAULT
 """"""""""""""""""""""""""
 
-source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 

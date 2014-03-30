@@ -1,12 +1,29 @@
 noremap <F3> :!python %<CR>
 noremap <c-space> <c-n>
 noremap <F4> :call CreatePyFile()<CR>
+noremap f :call JumpToNextFunction()<CR>
 
 augroup python_files
 	autocmd!
-	autocmd BufNewFile * :call InsertCopyright()
+	autocmd BufNewFile *.py :call InsertCopyright()
 	autocmd BufWritePre *.py :normal gg=G
 augroup END
+
+" Jumps to the next function definition
+function JumpToNextFunction()
+	call JumpToNextDefJava()
+endfunction
+
+" PYTHON function definition
+function JumpToNextDef()
+	execute "normal! " . "/def" . "\<CR>zz"
+endfunction
+
+" JAVA function definition
+function JumpToNextDefJava()
+	" jumps to next block
+	execute "normal! " . '/{' . "\<CR>zz"
+endfunction
 
 " Creates a new python file
 "	and opens a new tab

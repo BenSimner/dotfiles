@@ -10,24 +10,24 @@ augroup python_files
 augroup END
 
 " Jumps to the next function definition
-function JumpToNextFunction()
+function! JumpToNextFunction()
 	call JumpToNextDefJava()
 endfunction
 
 " PYTHON function definition
-function JumpToNextDef()
+function! JumpToNextDef()
 	execute "normal! " . "/def" . "\<CR>zz"
 endfunction
 
 " JAVA function definition
-function JumpToNextDefJava()
+function! JumpToNextDefJava()
 	" jumps to next block
 	execute "normal! " . '/{' . "\<CR>zz"
 endfunction
 
 " Creates a new python file
 "	and opens a new tab
-function CreatePyFile()
+function! CreatePyFile()
 	let fname = input("Script Name: ")
     execute "vnew " . fname . ".py"
 endfunction
@@ -44,7 +44,9 @@ function! InsertCopyright()
 	\# Author: Ben Simner \r
 	\# Date: " . strftime("%a, %d %b %Y") . "\r# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4\r\r\r#for testing\rif (__name__ == \"__main__\"):\r	pass\r"
 	execute "normal! \<ESC>a" . copyrightText
-	
+	execute "normal! 8Go"
+    startinsert!
+
 	set ai
 	set si
 endfunction
@@ -52,7 +54,7 @@ endfunction
 map <c-d> :call ReplaceSentenceWithDef()<ENTER>
 
 " Replaces a sentence with a function definition
-function ReplaceSentenceWithDef()
+function! ReplaceSentenceWithDef()
 	execute "normal! 0idef \<esc>ea(\<esc>lxv$"
 	call ReplaceWhitespaceWithCommasVISUALMODE()
 	execute "normal! \<esc>$a):\<esc>o  "
@@ -61,7 +63,7 @@ endfunction
 
 " Replaces all whitespace in selected text with , [COMMA SPACE]
 "	returns 0 if no whitespace in selection (or no selection)
-function ReplaceWhitespaceWithCommasVISUALMODE()
+function! ReplaceWhitespaceWithCommasVISUALMODE()
 	try
 		s:\%V\s:, :g
 	catch
@@ -70,3 +72,4 @@ function ReplaceWhitespaceWithCommasVISUALMODE()
 	
 	return 1
 endfunction
+

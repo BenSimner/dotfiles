@@ -1,10 +1,6 @@
 """"""""""""""""""""""""""
 " MY FUNCTIONS
 """"""""""""""""""""""""""
-" auto-reload vimrc when changed
-autocmd! bufwritepost vimrc source! %
-" auto-reload when changed
-autocmd! bufwritepost *.vim source! %
 " Fullscreen auto
 au! GUIEnter * simalt ~x
 
@@ -34,6 +30,9 @@ inoremap <c-w> <c-g>u<c-w>
 set autoread
 let mapleader=","
 let g:mapleader=","
+
+" Mapping leader keys
+nnoremap <leader>v :tabedit $VIMRC<CR>
 
 " always show statusbar, even if no buffer loaded
 set laststatus=2
@@ -65,6 +64,7 @@ set wrap
 if has("gui_running")
     set guioptions-=T
     set guioptions+=e
+    set guifont=Consolas:h11
     set t_Co=256
     set guitablabel=%M\ %t
 endif
@@ -150,4 +150,10 @@ augroup vimrc_autocmds
     autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
     autocmd FileType python match Excess /\%120v.*/
     autocmd FileType python set nowrap
+
+    " auto-reload vimrc when changed
+    autocmd! bufwritepost vimrc source $MYVIMRC 
+    " auto-reload when changed
+    autocmd! bufwritepost *.vim source %
+    
 augroup END

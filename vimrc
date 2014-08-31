@@ -4,15 +4,21 @@
 " Fullscreen auto
 au! GUIEnter * simalt ~x
 
+set modeline
+filetype indent plugin on
+
+if has('win32')
+	execute 'cd C:\Users\Ben'
+endif
+
 " Creation files
 so $HOME/vimfiles/vimScripts/functions.vim
 
-
 " Unmap arrow keys
- "noremap <Up> <NOP>
-" noremap <Down> <NOP>
-" noremap <Left> <NOP>
-" noremap <Right> <NOP>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " unmap home row keys to force motion use
 "noremap h <NOP>
@@ -27,6 +33,7 @@ inoremap <c-w> <c-g>u<c-w>
 """"""""""""""""""""""""""
 " GENERAL
 """"""""""""""""""""""""""
+set backspace=2 " ensure backspace works as it does in all other programs
 set autoread
 let mapleader=","
 let g:mapleader=","
@@ -49,15 +56,13 @@ set showmatch
 " Show line numbers
 set nu
 
-" remember info about buffers on close
-set viminfo^=%
-
-" smart indent
-set si
 " auto indent
 set ai
+" smart indent
+set si
 " wrap lines
 set wrap
+
 """"""""""""""""""""""""""
 " GUI
 """"""""""""""""""""""""""
@@ -72,9 +77,6 @@ endif
 """"""""""""""""""""""""""
 " COLOURS
 """"""""""""""""""""""""""
-" enable syntax highlighting
-syntax enable
-
 " dark background
 colors koehler
 
@@ -86,63 +88,28 @@ set ffs=unix,dos,mac
 " BINDS: INTERFACE
 """"""""""""""""""""""""""
 
-" maps space to search
-map <space> /
-
-" Maps ctrl-space to backwards-search
-map <c-space> ?
+" maps CtrlF to search
+map <c-f> /
 
 " Maps go-to-line-beginning to go to the first non-whitespace character
 " good for Python usage
 map 0 ^
 
+" Maps leader " to wrap current word in quotations
+:nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+:noremap <leader>sv :source $MYVIMRC<CR>
+
 """"""""""""""""""""""""""
 " BINDS: FILE
 """"""""""""""""""""""""""
 
-map <c-s> <ESC>:w!
-
-""""""""""""""""""""""""""
-" PYTHON
-""""""""""""""""""""""""""
-
-set tabstop=4
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set smarttab
+" Bind Control-S to saving the file
+" as in every other program
+nnoremap <c-s> <ESC>:w!<CR>
 
 """"""""""""""""""""""""""
 " DEFAULT
 """"""""""""""""""""""""""
-
-source $VIMRUNTIME/mswin.vim
-behave mswin
-
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
 
 augroup vimrc_autocmds
     autocmd!
@@ -152,8 +119,27 @@ augroup vimrc_autocmds
     autocmd FileType python set nowrap
 
     " auto-reload vimrc when changed
-    autocmd! bufwritepost vimrc source $MYVIMRC 
+    " autocmd! bufwritepost vimrc source $MYVIMRC 
     " auto-reload when changed
-    autocmd! bufwritepost *.vim source %
+    " autocmd! bufwritepost *.vim source %
+	
+	autocmd BufReadPre * syntax on
+	
+	autocmd VimLeavePre * :call SaveSession()
+	autocmd VimEnter * :call LoadSession()
     
 augroup END
+
+function! SaveSession()
+	let b:filename = $HOME . '\vim_session.vim'
+	execute 'mksession! ' . b:filename
+endfunction
+
+function! LoadSession()
+	let b:filename = $HOME . '\vim_session.vim'
+	if (filereadable(b:filename))
+		execute 'source ' . b:filename
+	else
+		echo 'No session loaded.'
+	endif
+endfunction

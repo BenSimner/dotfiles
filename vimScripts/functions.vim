@@ -86,7 +86,7 @@ endfunction
 
 " PYTHON function definition
 function! JumpToNextDef_Python()
-	execute 'normal! /def' . "\<CR>zz"
+	execute 'normal! /def ' . "\<CR>zz"
 endfunction
 
 " JAVA function definition

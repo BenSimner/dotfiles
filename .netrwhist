@@ -1,9 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='C:/Users/Ben/Dropbox/workspace'
-let g:netrw_dirhist_2='C:/Users/Ben/Dropbox/workspace/York_BattlePi20'
-let g:netrw_dirhist_3='C:/Users/Ben/Dropbox/workspace/York_BattlePi20/ConsolePlayer'
-let g:netrw_dirhist_4='C:/Users/Ben'
-let g:netrw_dirhist_5='C:/Users/Ben/Dropbox'
-let g:netrw_dirhist_6='C:/Users/Ben/Dropbox/workspace'
-let g:netrw_dirhist_7='C:/Users/Ben/Dropbox/workspace/sum of digits'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='C:/Users/Ben/Dropbox/workspace/York_BattlePi20'
+let g:netrw_dirhist_2='C:/Users/Ben/Dropbox/workspace/York_BattlePi20/ConsolePlayer'
+let g:netrw_dirhist_3='C:/Users/Ben/Dropbox/workspace/York_BattlePi20'
+let g:netrw_dirhist_4='C:/Users/Ben/Dropbox/workspace/York_BattlePi20/ConsolePlayer'

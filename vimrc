@@ -8,7 +8,7 @@ set modeline
 filetype indent plugin on
 
 if has('win32')
-	execute 'cd C:\Users\Ben'
+	execute 'cd ' . $HOME
 endif
 
 " Creation files
@@ -40,7 +40,7 @@ let g:mapleader=","
 
 " Mapping leader keys
 nnoremap <leader>v :tabedit $VIMRC<CR>
-
+ 
 " always show statusbar, even if no buffer loaded
 set laststatus=2
 
@@ -66,7 +66,7 @@ set wrap
 """"""""""""""""""""""""""
 " GUI
 """"""""""""""""""""""""""
-if has("gui_running")
+if has("gui_running") 
     set guioptions-=T
     set guioptions+=e
     set guifont=Consolas:h11
@@ -99,6 +99,9 @@ map 0 ^
 :nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 :noremap <leader>sv :source $MYVIMRC<CR>
 
+" Maps leader cd to set current directory to the one of this file
+:noremap <leader>cd execute 'cd ' . expand("%:h")
+
 """"""""""""""""""""""""""
 " BINDS: FILE
 """"""""""""""""""""""""""
@@ -124,22 +127,44 @@ augroup vimrc_autocmds
     " autocmd! bufwritepost *.vim source %
 	
 	autocmd BufReadPre * syntax on
-	
-	autocmd VimLeavePre * :call SaveSession()
-	autocmd VimEnter * :call LoadSession()
-    
 augroup END
 
-function! SaveSession()
+""
+"" Sessions
+"" 	pressing <leader> s, will save the current session to the drive, and create a global session file
+""  pressing <leader> l, will load the current session if it exists, otherwise it loads the global session file.
+"" 		which will be the one created by the last save command
+""
+
+function! SaveGlobalSession()
 	let b:filename = $HOME . '\vim_session.vim'
 	execute 'mksession! ' . b:filename
 endfunction
 
-function! LoadSession()
+function! LoadGlobalSession()
 	let b:filename = $HOME . '\vim_session.vim'
 	if (filereadable(b:filename))
 		execute 'source ' . b:filename
 	else
-		echo 'No session loaded.'
+		echo 'Cannot load global session.'
+	endif
+endfunction
+
+noremap <leader>s :call SaveCurrentSession()<CR>
+noremap <leader>l :call LoadCurrentSession()<CR>
+
+function! SaveCurrentSession()
+	let b:filename = expand("%:h") . '\_vim_session.vim'
+	execute 'mksession! ' . b:filename
+	call SaveGlobalSession()
+endfunction
+
+function! LoadCurrentSession()
+	let b:filename = expand("%:h") . '\_vim_session.vim'
+	if (filereadable(b:filename))
+		execute 'source ' . b:filename
+	else
+		echom 'Cannot load current session'
+		call LoadGlobalSession()
 	endif
 endfunction

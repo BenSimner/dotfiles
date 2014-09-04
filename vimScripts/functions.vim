@@ -93,3 +93,43 @@ endfunction
 function! JumpToNextDef_Java()
 	execute "normal! " . '/{' . "\<CR>zz"
 endfunction
+
+""
+"" Sessions
+"" 	pressing <leader>s will save the current session to the drive, and create a global session file
+""  pressing <leader>l will load the current session if it exists, otherwise it loads the global session file.
+"" 		which will be the one created by the last save command
+""
+
+noremap <leader>s :call SaveCurrentSession()<CR>
+noremap <leader>l :call LoadCurrentSession()<CR>
+
+function! SaveGlobalSession()
+	let b:filename = $HOME . '\vim_session.vim'
+	execute 'mksession! ' . b:filename
+endfunction
+
+function! LoadGlobalSession()
+	let b:filename = $HOME . '\vim_session.vim'
+	if (filereadable(b:filename))
+		execute 'source ' . b:filename
+	else
+		echo 'Cannot load global session.'
+	endif
+endfunction
+
+function! SaveCurrentSession()
+	let b:filename = expand("%:h") . '\_vim_session.vim'
+	execute 'mksession! ' . b:filename
+	call SaveGlobalSession()
+endfunction
+
+function! LoadCurrentSession()
+	let b:filename = expand("%:h") . '\_vim_session.vim'
+	if (filereadable(b:filename))
+		execute 'source ' . b:filename
+	else
+		echom 'Cannot load current session'
+		call LoadGlobalSession()
+	endif
+endfunction

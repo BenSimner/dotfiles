@@ -1,18 +1,35 @@
 """"""""""""""""""""""""""
 " MY FUNCTIONS
 """"""""""""""""""""""""""
+
+execute 'cd ' . $HOME
+
+" setup vundle
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+" Other installed bundles
+Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'scrooloose/nerdtree'
+
+filetype plugin indent on
+
+map <F2> :NERDTreeToggle<CR>
+
+" for powerline
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+set laststatus=2
+
 " Fullscreen auto
 au! GUIEnter * simalt ~x
 
 set modeline
 filetype indent plugin on
-
-if has('win32')
-	execute 'cd ' . $HOME
-endif
-
-" Creation files
-so $HOME/vimfiles/vimScripts/functions.vim
 
 " Unmap arrow keys
 noremap <Up> <NOP>
@@ -129,3 +146,5 @@ augroup vimrc_autocmds
 	autocmd BufReadPre * syntax on
 augroup END
 
+" Creation files
+so ~/.vim/vimscripts/functions.vim

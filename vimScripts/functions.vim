@@ -96,8 +96,8 @@ endfunction
 
 ""
 "" Sessions
-"" 	pressing <leader>s will save the current session to the drive, and create a global session file
-""  pressing <leader>l will load the current session if it exists, otherwise it loads the global session file.
+"" 	pressing <leader> s will save the current session to the drive, and create a global session file
+""  pressing <leader> l will load the current session if it exists, otherwise it loads the global session file.
 "" 		which will be the one created by the last save command
 ""
 
@@ -114,7 +114,7 @@ function! LoadGlobalSession()
 	if (filereadable(b:filename))
 		execute 'source ' . b:filename
 	else
-		echo 'Cannot load global session.'
+		echom 'Cannot load global session.'
 	endif
 endfunction
 

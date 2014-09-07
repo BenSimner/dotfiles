@@ -47,18 +47,17 @@ function! InsertBoilerplate_Python()
 	"" Inserts boilerplate code in a new python file.
 	""
 	
-	let text = "# \r
-	\# \r
+	let text = "# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 \r
 	\# file: ". bufname("%") . " \r
 	\# Author: Ben Simner \r
-	\# Date: " . strftime("%a, %d %b %Y") . "\r# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4\r\r\r#for testing\rif (__name__ == \"__main__\"):\r	pass\r"
+	\# Date: " . strftime("%a, %d %b %Y") . "\r#\r#\r\r\r\r\r#for testing\rif (__name__ == \"__main__\"):\r	pass\r"
 	execute "normal! \<ESC>a" . text
 	execute "normal! 8Go"
     startinsert!
 endfunction
 
 function! InsertBoilerplate_Java()
-	call append(line('$'), ['/**','* Author: Ben Simner','* Date: ' . strftime("%a, %d %b %Y"),'* vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4','*/', ''])
+	call append(line('$'), ['/**','* vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4','* Author: Ben Simner','* Date: ' . strftime("%a, %d %b %Y"),'*/', ''])
 	call append(line('$'), ['public class ' . expand("%:r"), '{'])
 	call append(line('$'), ['}'])
 	

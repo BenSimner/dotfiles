@@ -30,7 +30,6 @@ call vundle#end()
 filetype plugin indent on
 
 map <F2> :NERDTreeToggle<CR>
-nnoremap Q n.
 
 " Config for UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -115,6 +114,7 @@ augroup vimrc_autocmds
     autocmd bufwritepost *.vim source %	
 	autocmd BufReadPre * syntax on
 	
+	" automatically enter NERDTree on startup
 	autocmd StdinReadPre * let s:std_in=1
 	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 augroup END

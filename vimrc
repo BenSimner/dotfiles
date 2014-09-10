@@ -95,6 +95,7 @@ endif
 " dark background
 colors koehler
 syntax on
+set showcmd
 
 set encoding=utf8
 set ffs=unix,dos,mac
@@ -120,5 +121,6 @@ augroup vimrc_autocmds
 augroup END
 
 " Creation files
-so ~/.vim/vimscripts/functions.vim
 so ~/.vim/vimscripts/mappings.vim
+so ~/.vim/vimscripts/functions.vim
+

@@ -104,12 +104,12 @@ noremap <leader>s :call SaveCurrentSession()<CR>
 noremap <leader>l :call LoadCurrentSession()<CR>
 
 function! SaveGlobalSession()
-	let b:filename = $HOME . '\vim_session.vim'
+	let b:filename = $HOME . '\.vim\vim_session.vim'
 	execute 'mksession! ' . b:filename
 endfunction
 
 function! LoadGlobalSession()
-	let b:filename = $HOME . '\vim_session.vim'
+	let b:filename = $HOME . '\.vim\vim_session.vim'
 	if (filereadable(b:filename))
 		execute 'source ' . b:filename
 	else

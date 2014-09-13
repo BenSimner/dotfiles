@@ -93,12 +93,18 @@ endif
 " COLOURS
 """"""""""""""""""""""""""
 " dark background
-colors koehler
+if has("gui_running")
+	colors koehler
+endif
+
 syntax on
 set showcmd
 
 set encoding=utf8
 set ffs=unix,dos,mac
+
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
 
 """"""""""""""""""""""""""
 " DEFAULT

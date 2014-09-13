@@ -62,12 +62,35 @@ nnoremap <C-W><C-V> :vnew<CR>
 
 " Map Control-S to saving the file
 " as in every other program
-nnoremap <c-s> <ESC>:w!<CR>
+nnoremap <c-s> <ESC>:w<CR>
 
-:noremap <leader>sv :source $MYVIMRC<CR>
+noremap <leader>sv :source $MYVIMRC<CR>
 
 " Maps leader " to wrap current word in quotations
-:nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+""""""""""""""""""""""""""""""
+"" Leader Mappings
+""
+
+" Swap colon semicolon functionality in normal mode
+nnoremap ; :
+nnoremap : ;
+
+" Swap visual and block visual mode mappings about.
+nnoremap    v   <C-V>
+nnoremap <C-V>     v
+
+vnoremap    v   <C-V>
+vnoremap <C-V>     v
+
+" Tabularise
+nnoremap <leader>tt :Tab /
+nnoremap <leader>te :Tab /=<CR>
+nnoremap <leader>tv :Tab /¦<CR>
+
+
+
 
 
 

@@ -24,7 +24,7 @@ nnoremap f /
 nnoremap Q :normal n.<CR>
 
 " Maps go-to-line-beginning to go to the first non-whitespace character
-" good for Python usage
+" good for Python usage where strict indents are required.
 noremap 0 ^
 
 " Unmap arrow keys
@@ -33,10 +33,10 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Remap g to jump to line
+" Remap jump to line
 " i.e. 50g will jump to line 50
 " and centre on that line
-noremap g Gzz
+noremap m Gzz
 
 
 """"""""""""""""""""""""""""""
@@ -68,12 +68,12 @@ noremap <leader>sv :source $MYVIMRC<CR>
 
 " Maps leader " to wrap current word in quotations
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
 """"""""""""""""""""""""""""""
 "" Leader Mappings
 ""
 
-" Swap colon semicolon functionality in normal mode
 nnoremap ; :
 nnoremap : ;
 
@@ -88,9 +88,19 @@ vnoremap <C-V>     v
 nnoremap <leader>tt :Tab /
 nnoremap <leader>te :Tab /=<CR>
 nnoremap <leader>tv :Tab /¦<CR>
+nnoremap <leader>t, :Tab /,<CR>
 
+nnoremap <leader>ev edit ~/.vim/vimrc
 
-
+" Show syntax highlighting groups for word under cursor
+" from http://vimcasts.org/episodes/creating-colorschemes-for-vim/
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 
 

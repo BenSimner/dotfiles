@@ -541,8 +541,8 @@ if version >= 508 || !exists("did_python_syn_inits")
 
   HiLink pythonBoolean          Boolean
 
+  HiLink pythonBuiltinFunc      BuiltInFunction
   HiLink pythonBuiltinObj       Structure
-  HiLink pythonBuiltinFunc      Function
 
   HiLink pythonExClass          Structure
 

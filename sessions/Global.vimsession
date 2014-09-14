@@ -1,0 +1,243 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+map! <C-End> <C-End>
+map! <C-Home> <C-Home>
+inoremap <silent> <C-Tab> =UltiSnips#ListSnippets()
+map! <S-Insert> *
+snoremap <silent>  c
+nnoremap  h
+xnoremap <silent> 	 :call UltiSnips#SaveLastVisualSelection()gvs
+snoremap <silent> 	 :call UltiSnips#ExpandSnippet()
+nnoremap <NL> j
+nnoremap  k
+nnoremap  l
+nnoremap  :w
+vnoremap  v
+nnoremap  v
+nnoremap  :vnew
+vmap  "*d
+noremap   :call JumpToNextFunction()
+nnoremap ,ev :vspl ~/.vim/vimrc
+nnoremap ,t, :Tab /,
+nnoremap ,tv :Tab /Â¦
+nnoremap ,te :Tab /=
+nnoremap ,tt :Tab /
+nnoremap ,' viwa'hbi'lel
+nnoremap ," viwa"hbi"lel
+noremap ,sv :source $MYVIMRC
+noremap 0 ^
+nnoremap : ;
+nnoremap ; :
+imap ÎÔ *
+nnoremap Q :normal n.
+nnoremap f /
+nmap gx <Plug>NetrwBrowseX
+noremap m Gzz
+vnoremap v 
+nnoremap v 
+vmap <C-End> <C-End>
+vmap <C-Home> <C-Home>
+nmap <C-End> <C-End>
+nmap <C-Home> <C-Home>
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
+snoremap <silent> <Del> c
+snoremap <silent> <BS> c
+snoremap <silent> <C-Tab> :call UltiSnips#ListSnippets()
+noremap <F4> :call CreateNewFile()
+noremap <F3> :call CompileAndRun()
+noremap <Right> <Nop>
+noremap <Left> <Nop>
+noremap <Down> <Nop>
+noremap <Up> <Nop>
+noremap <F2> :NERDTreeToggle
+vmap <C-Del> "*d
+vmap <S-Del> "*d
+vmap <C-Insert> "*y
+vmap <S-Insert> "-d"*P
+nmap <S-Insert> "*P
+inoremap <silent> 	 =UltiSnips#ExpandSnippet()
+vmap ÎØ "*d
+vmap Î× "*d
+vmap ÎÕ "*y
+vmap ÎÔ "-d"*P
+nmap ÎÔ "*P
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set autochdir
+set autoindent
+set autoread
+set background=dark
+set backspace=2
+set encoding=utf-8
+set expandtab
+set fileencodings=ucs-bom,utf-8,default,latin1
+set fileformats=unix,dos,mac
+set guifont=Consolas:h11
+set guioptions=gmrLte
+set guitablabel=%M\ %t
+set helplang=de
+set hlsearch
+set iminsert=0
+set imsearch=0
+set incsearch
+set laststatus=2
+set listchars=tab:Â»Â»,trail:Â·,nbsp:~
+set matchtime=2
+set ruler
+set runtimepath=~/vimfiles,~\\.vim\\bundle\\Vundle.vim,~\\.vim\\bundle\\powerline\\powerline\\bindings\\vim,~\\.vim\\bundle\\nerdtree,~\\.vim\\bundle\\tabular,~\\.vim\\bundle\\vim-markdown,~\\.vim\\bundle\\gundo.vim,~\\.vim\\bundle\\vim-repeat,~\\.vim\\bundle\\ultisnips,~\\.vim\\bundle\\vim-snippets,C:\\Program\ Files\ (x86)\\Vim/vimfiles,C:\\Program\ Files\ (x86)\\Vim\\vim74,C:\\Program\ Files\ (x86)\\Vim/vimfiles/after,~/vimfiles/after,~/.vim/bundle/Vundle.vim/,~\\.vim\\bundle\\Vundle.vim/after,~\\.vim\\bundle\\powerline\\powerline\\bindings\\vim/after,~\\.vim\\bundle\\nerdtree/after,~\\.vim\\bundle\\tabular/after,~\\.vim\\bundle\\vim-markdown/after,~\\.vim\\bundle\\gundo.vim/after,~\\.vim\\bundle\\vim-repeat/after,~\\.vim\\bundle\\ultisnips/after,~\\.vim\\bundle\\vim-snippets/after
+set shiftwidth=4
+set showmatch
+set smartindent
+set softtabstop=4
+set splitbelow
+set splitright
+set statusline=%!pyeval('powerline.new_window()')
+set tabline=%!pyeval('powerline.tabline()')
+set tabstop=4
+set visualbell
+set wildignore=*.pyc
+set window=51
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~\Dropbox\workspace\PyDataDisplay
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +20 ~\Dropbox\workspace\PyDataDisplay\async.py
+badd +44 ~\.vim\vimrc
+badd +48 ~\.vim\colors\luna.vim
+badd +0 ~\Dropbox\workspace\PyDataDisplay\wx_display.py
+silent! argdel *
+edit ~\Dropbox\workspace\PyDataDisplay\wx_display.py
+set splitbelow splitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:XCOMM,n:>,fb:-
+setlocal commentstring=#%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'python'
+setlocal filetype=python
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=PythonFold()
+setlocal foldignore=#
+setlocal foldlevel=1
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=expr
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=s*\\(from\\|import\\)
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+setlocal indentexpr=GetPythonIndent(v:lnum)
+setlocal indentkeys=0{,0},:,!^F,o,O,e,<:>,=elif,=except
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal list
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=pythoncomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal smartindent
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!pyeval('powerline.statusline(1)')
+setlocal suffixesadd=.py
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'python'
+setlocal syntax=python
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+let s:l = 81 - ((11 * winheight(0) + 25) / 50)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+81
+normal! 048|
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

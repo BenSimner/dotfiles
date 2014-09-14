@@ -4,7 +4,11 @@
 "" Install Location: ~/.vim/
 "" Author: Ben Simner
 
-exe 'cd ' . $HOME
+exe 'cd ' . expand('~')
+
+" dark background
+" colorscheme koehler
+colorscheme luna
 
 " setup vundle
 set nocompatible
@@ -29,7 +33,7 @@ Plugin 'honza/vim-snippets'
 call vundle#end()
 filetype plugin indent on
 
-map <F2> :NERDTreeToggle<CR>
+noremap <F2> :NERDTreeToggle<CR>
 
 " Config for UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -38,8 +42,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 " for powerline
-"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
-set guifont=DejaVu\ Sans\ Mono
 set laststatus=2
 
 " Fullscreen auto
@@ -55,6 +57,7 @@ set splitright
 set backspace=2 " ensure backspace works as it does in all other programs
 set autoread
 
+let python_highlight_builtin_funcs = 1
 """"""""""""""""""""""""""
 " UI
 """"""""""""""""""""""""""
@@ -63,6 +66,7 @@ set incsearch
 set hlsearch
 set mat=2
 set showmatch
+set cursorline
 
 " automatically change window's cwd to file's dir
 set autochdir
@@ -92,11 +96,6 @@ endif
 """"""""""""""""""""""""""
 " COLOURS
 """"""""""""""""""""""""""
-" dark background
-if has("gui_running")
-	colors koehler
-endif
-
 syntax on
 set showcmd
 
@@ -112,21 +111,22 @@ set list
 
 augroup vimrc_autocmds
     autocmd!
-	
-    " highlight characters past column 120
-    autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
-    autocmd FileType python match Excess /\%120v.*/
-    autocmd FileType python set nowrap
 
     autocmd bufwritepost *.vim source %	
-	autocmd BufReadPre * syntax on
-	
-	" automatically enter NERDTree on startup
-	autocmd StdinReadPre * let s:std_in=1
-	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    autocmd BufReadPre * syntax on
 augroup END
 
 " Creation files
 so ~/.vim/vimscripts/mappings.vim
 so ~/.vim/vimscripts/functions.vim
+so ~/.vim/vimscripts/sessions.vim
 
+augroup nerdtree_start
+    autocmd!
+
+    autocmd VimLeave * if (winnr('$') > 1) | NERDTreeClose | endif
+    autocmd VimLeave * SaveSession! Global
+
+    autocmd VimEnter * LoadSession Global
+    autocmd VimEnter * NERDTree
+augroup END

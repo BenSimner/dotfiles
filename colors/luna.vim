@@ -47,40 +47,44 @@ endfunction
 "" Color palette {{{
 ""
 
-"" Each color is a list with [rgb, cterm] colour formats for xterm-256
-"" let s:white        = ['ffffff', '15']
-"" let s:black        = ['000000', '0']
-"" let s:gravel       = ['f8f8f2', '252']
-"" let s:darkgravel   = ['272822', '234']
-"" let s:blackgravel  = ['1c1b1a', '232']
-"" let s:limegreen    = ['00ff00', '46']
-"" let s:darkgreen    = ['00ba00', '34']
-"" let s:darkgray     = ['3e3d32', '236']
-"" let s:lightgray    = ['bcbcbc', '247']
-"" let s:mediumgray   = ['9b9b9b', '241']
-"" let s:darkred      = ['8D0303', '52']
-"" let s:palered      = ['A85656', '167']
-"" let s:heavygravel  = ['857f78', '239']
-"" let s:mediumblue   = ['00AAEE', '32']
-"" let s:lightblue    = ['8FBFDF', '74']
-"" let s:mediumgold   = ['dcdc4b', '178']
-"" let s:mediumpurple = ['bc55aa', '57']
-"" let s:lightpurple  = ['c969b9', '164']
+"" Each color is a list with [rgb, cterm] colour formats 
+if (has("win32"))
+	" Colorschemes for personal ConEmu setup.
+	let s:white        = ['ffffff', '1']
+	let s:black        = ['000000', '0']
+	let s:gravel       = ['f8f8f2', '2']
+	let s:darkgravel   = ['272822', '3']
+	let s:blackgravel  = ['1c1b1a', '4']
+	let s:darkgreen    = ['00ba00', '14']
+	let s:darkgray     = ['3e3d32', '6']
+	let s:lightgray    = ['bcbcbc', '7']
+	let s:palered      = ['A85656', '8']
+	let s:heavygravel  = ['857f78', '9']
+	let s:lightblue    = ['8FBFDF', '15']
+	let s:mediumgold   = ['dcdc4b', '12']
+	let s:lightpurple  = ['c969b9', '13']
+else
+	" for xterm 256
+	let s:white        = ['ffffff', '15']
+	let s:black        = ['000000', '0']
+	let s:gravel       = ['f8f8f2', '252']
+	let s:darkgravel   = ['272822', '234']
+	let s:blackgravel  = ['1c1b1a', '232']
+	let s:limegreen    = ['00ff00', '46']
+	let s:darkgreen    = ['00ba00', '34']
+	let s:darkgray     = ['3e3d32', '236']
+	let s:lightgray    = ['bcbcbc', '247']
+	let s:mediumgray   = ['9b9b9b', '241']
+	let s:darkred      = ['8D0303', '52']
+	let s:palered      = ['A85656', '167']
+	let s:heavygravel  = ['857f78', '239']
+	let s:mediumblue   = ['00AAEE', '32']
+	let s:lightblue    = ['8FBFDF', '74']
+	let s:mediumgold   = ['dcdc4b', '178']
+	let s:mediumpurple = ['bc55aa', '57']
+	let s:lightpurple  = ['c969b9', '164']
+endif
 
-" Colorschemes for personal ConEmu setup.
-let s:white        = ['ffffff', '1']
-let s:black        = ['000000', '0']
-let s:gravel       = ['f8f8f2', '2']
-let s:darkgravel   = ['272822', '3']
-let s:blackgravel  = ['1c1b1a', '4']
-let s:darkgreen    = ['00ba00', '14']
-let s:darkgray     = ['3e3d32', '6']
-let s:lightgray    = ['bcbcbc', '7']
-let s:palered      = ['A85656', '8']
-let s:heavygravel  = ['857f78', '9']
-let s:lightblue    = ['8FBFDF', '15']
-let s:mediumgold   = ['dcdc4b', '12']
-let s:lightpurple  = ['c969b9', '13']
 "" }}}
 """"""""""""""""""""""""""""""
 "" Colorscheme {{{

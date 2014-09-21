@@ -136,8 +136,8 @@ augroup nerdtree_start
     autocmd!
 
     autocmd VimLeave * if (winnr('$') > 1) | NERDTreeClose | endif
-    autocmd VimLeave * call Sessions#ExitVim()
+    autocmd VimLeave * call Sessions_ExitVim()
 
-    autocmd VimEnter * call Sessions#EnterVim()
+    autocmd VimEnter * call Sessions_EnterVim()
     autocmd VimEnter * NERDTree
 augroup END

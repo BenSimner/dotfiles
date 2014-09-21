@@ -4,6 +4,14 @@
 "" Install Location: ~/.vim/
 "" Author: Ben Simner
 
+" Vim without +python cannot run
+" so just exit with warning
+" allowing default vim config.
+if (!has('python'))
+    put! = 'Python Not Detected!'
+    finish
+endif
+
 exe 'cd ' . expand('~')
 
 " dark background
@@ -112,7 +120,8 @@ set list
 augroup vimrc_autocmds
     autocmd!
 
-    autocmd bufwritepost *.vim source %	
+    " Automatically source any viml files when saved
+    autocmd bufwritepost *.vim source %
     autocmd BufReadPre * syntax on
 augroup END
 
@@ -120,13 +129,15 @@ augroup END
 so ~/.vim/vimscripts/mappings.vim
 so ~/.vim/vimscripts/functions.vim
 so ~/.vim/vimscripts/sessions.vim
+so ~/.vim/vimscripts/swapfile_management.vim
+so ~/.vim/vimscripts/testing.vim
 
 augroup nerdtree_start
     autocmd!
 
     autocmd VimLeave * if (winnr('$') > 1) | NERDTreeClose | endif
-    autocmd VimLeave * SaveSession! Global
+    autocmd VimLeave * call Sessions#ExitVim()
 
-    autocmd VimEnter * LoadSession Global
+    autocmd VimEnter * call Sessions#EnterVim()
     autocmd VimEnter * NERDTree
 augroup END

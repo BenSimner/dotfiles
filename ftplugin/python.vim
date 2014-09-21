@@ -31,5 +31,5 @@ endfunction
 " Enable folding on classes
 setlocal foldmethod=expr
 setlocal foldexpr=PythonFold()
-
+ 
 normal zR

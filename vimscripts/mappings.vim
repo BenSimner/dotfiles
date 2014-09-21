@@ -27,11 +27,14 @@ nnoremap Q :normal n.<CR>
 " good for Python usage where strict indents are required.
 noremap 0 ^
 
-" Unmap arrow keys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" Remap arrow keys
+nnoremap <Up> ddkP
+nnoremap <Down> ddp
+
+" Visual mode mappings to move visually selected text up/down
+" from 
+vnoremap <Up> xkP`[V`]
+vnoremap <Down> xp`[V`]
 
 " Remap jump to line
 " i.e. 50g will jump to line 50
@@ -44,10 +47,9 @@ noremap m Gzz
 ""
 
 " Better split navigation
-nnoremap <C-J> <C-W><C-W>j
-nnoremap <C-K> <C-W><C-W>k
-nnoremap <C-L> <C-W><C-W>l
-nnoremap <C-H> <C-W><C-W>h
+" use cj and ck to move to other buffers
+noremap <C-J> <C-W><C-W>
+noremap <C-K> <C-W><C-P>
 
 """"""""""""""""""""""""""""""
 "" Buffer Operations
@@ -90,7 +92,7 @@ nnoremap <leader>te :Tab /=<CR>
 nnoremap <leader>tv :Tab /¦<CR>
 nnoremap <leader>t, :Tab /,<CR>
 
-nnoremap <leader>ev edit ~/.vim/vimrc
+nnoremap <leader>ev :vspl ~/.vim/vimrc<CR>
 
 " Show syntax highlighting groups for word under cursor
 " from http://vimcasts.org/episodes/creating-colorschemes-for-vim/

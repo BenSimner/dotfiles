@@ -50,14 +50,6 @@ function! Sessions_SaveSession(SessionName, Bang)
     echom 'Created Session ' . a:SessionName
 endfunction
 
-
-"" Create our own session file
-"" Our session file saves the state of each buffer in order
-"" and stores it as a vimscript file which can just be sourced
-function! Sessions_CreateSessionFile(SessionFile)
-
-endfunction
-
 function! Sessions_LoadSession(SessionName)
 	let l:fn = Sessions_SessionExists(a:SessionName)
 	if l:fn ==# 'NULL'

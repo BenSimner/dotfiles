@@ -42,6 +42,7 @@ call vundle#end()
 filetype plugin indent on
 
 noremap <F2> :NERDTreeToggle<CR>
+let g:NERDTreeChDirMode = 2
 
 " Config for UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -132,12 +133,22 @@ so ~/.vim/vimscripts/sessions.vim
 so ~/.vim/vimscripts/swapfile_management.vim
 so ~/.vim/vimscripts/testing.vim
 
+function! Vim_Leave()
+	if (winnr('$') > 1)
+		NERDTreeClose
+	endif
+	
+	call Sessions_ExitVim()
+endfunction
+
+function! Vim_Enter()
+	call Sessions_EnterVim()
+	NERDTree
+endfunction
+
 augroup nerdtree_start
     autocmd!
 
-    autocmd VimLeave * if (winnr('$') > 1) | NERDTreeClose | endif
-    autocmd VimLeave * call Sessions_ExitVim()
-
-    autocmd VimEnter * call Sessions_EnterVim()
-    autocmd VimEnter * NERDTree
+    autocmd VimLeave * call Vim_Leave()
+    autocmd VimEnter * call Vim_Enter()
 augroup END

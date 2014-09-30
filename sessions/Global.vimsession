@@ -8,11 +8,11 @@ nnoremap  h
 snoremap <silent>  c
 xnoremap <silent> 	 :call UltiSnips#SaveLastVisualSelection()gvs
 snoremap <silent> 	 :call UltiSnips#ExpandSnippet()
-nnoremap <NL> j
 vnoremap <NL> 
+nnoremap <NL> j
 onoremap <NL> 
-nnoremap  k
 vnoremap  
+nnoremap  k
 onoremap  
 nnoremap  l
 nnoremap  :w
@@ -21,37 +21,38 @@ nnoremap  v
 nnoremap  :vnew
 vmap  "*d
 noremap   :call JumpToNextFunction()
-onoremap ,sv :source $MYVIMRC
-xnoremap ,sv :source $MYVIMRC
+nnoremap ,t, :Tab /,
 nnoremap ,sv :source $MYVIMRC
+xnoremap ,sv :source $MYVIMRC
+onoremap ,sv :source $MYVIMRC
 noremap ,rt :RunTests
 noremap ,ot :OpenTests
 nnoremap ,ev edit ~/.vim/vimrc
-nnoremap ,t, :Tab /,
+nnoremap ,tc :Tab /,
 nnoremap ,tv :Tab /¦
 nnoremap ,te :Tab /=
 nnoremap ,tt :Tab /
 nnoremap ,' viwa'hbi'lel
 nnoremap ," viwa"hbi"lel
 snoremap ,sv :source $MYVIMRC
-onoremap 0 ^
-xnoremap 0 ^
 nnoremap 0 ^
+xnoremap 0 ^
+onoremap 0 ^
 snoremap 0 ^
 nnoremap : ;
 nnoremap ; :
 nnoremap Q :normal n.
 nnoremap f /
 nmap gx <Plug>NetrwBrowseX
-onoremap m Gzz
-xnoremap m Gzz
 nnoremap m Gzz
+xnoremap m Gzz
+onoremap m Gzz
 snoremap m Gzz
 xnoremap v 
 snoremap v 
 nnoremap v 
-noremap <Left> <Nop>
 noremap <Right> <Nop>
+noremap <Left> <Nop>
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
 snoremap <silent> <Del> c
 snoremap <silent> <BS> c
@@ -103,12 +104,12 @@ set window=51
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~\Dropbox\workspace\Py2dDisplay
+cd ~\Dropbox\workspace\Py2dDisplay\tests
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +29 ~\Dropbox\workspace\Py2dDisplay\display.py
+badd +1 ~\Dropbox\workspace\Py2dDisplay\display.py
 badd +1 ~\Dropbox\workspace\Py2dDisplay\tests\test_display.py
 badd +1 ~\.vim\vimscripts\mappings.vim
 badd +37 ~\.vim\vimscripts\testing.vim
@@ -212,7 +213,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!pyeval('powerline.statusline(3)')
+setlocal statusline=%!pyeval('powerline.statusline(1)')
 setlocal suffixesadd=.py
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -229,12 +230,12 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 11 - ((10 * winheight(0) + 25) / 50)
+let s:l = 22 - ((15 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-11
-normal! 012|
+22
+normal! 0
 wincmd w
 argglobal
 edit ~\Dropbox\workspace\Py2dDisplay\tests\test_display.py
@@ -325,7 +326,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!pyeval('powerline.statusline(7)')
+setlocal statusline=%!pyeval('powerline.statusline(2)')
 setlocal suffixesadd=.py
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -342,13 +343,14 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 10 - ((9 * winheight(0) + 25) / 50)
+let s:l = 11 - ((10 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-10
-normal! 0
+11
+normal! 06|
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 117 + 117) / 235)
 exe 'vert 2resize ' . ((&columns * 117 + 117) / 235)
 tabnext 1

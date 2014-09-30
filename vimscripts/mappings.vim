@@ -90,7 +90,7 @@ vnoremap <C-V>     v
 nnoremap <leader>tt :Tab /
 nnoremap <leader>te :Tab /=<CR>
 nnoremap <leader>tv :Tab /¦<CR>
-nnoremap <leader>t, :Tab /,<CR>
+nnoremap <leader>tc :Tab /,<CR>
 
 nnoremap <leader>ev :vspl ~/.vim/vimrc<CR>
 

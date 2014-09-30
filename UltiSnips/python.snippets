@@ -1,4 +1,28 @@
-snippet deft
+snippet test
 def test_$1():
     $0
+endsnippet
+
+snippet def
+def ${1:FunctionName}(${2:`indent('.')?'self':''`}):
+	"""
+	${3:DocString for $1}
+	"""
+
+    $0
+endsnippet
+
+snippet class
+class ${1:ClassName}(${2:object}):
+	"""
+	${3:DocString for $1}
+	"""
+	
+	def __init__(self${4:, *args}):
+		$2.__init__(self, $5)
+		$0
+endsnippet
+
+snippet s
+self.$1 = $0
 endsnippet

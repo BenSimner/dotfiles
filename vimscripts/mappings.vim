@@ -94,6 +94,8 @@ nnoremap <leader>tc :Tab /,<CR>
 
 nnoremap <leader>ev :vspl ~/.vim/vimrc<CR>
 
+nnoremap <leader>ll :LoadSession previous<CR>
+
 " Show syntax highlighting groups for word under cursor
 " from http://vimcasts.org/episodes/creating-colorschemes-for-vim/
 nmap <C-S-P> :call <SID>SynStack()<CR>
@@ -103,6 +105,8 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+inoremap <expr>  <C-K>   BDG_GetDigraph()
 
 
 

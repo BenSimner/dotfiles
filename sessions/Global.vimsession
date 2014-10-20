@@ -4,41 +4,38 @@ let s:cpo_save=&cpo
 set cpo&vim
 inoremap <silent> <C-Tab> =UltiSnips#ListSnippets()
 map! <S-Insert> *
-nnoremap  h
 snoremap <silent>  c
 xnoremap <silent> 	 :call UltiSnips#SaveLastVisualSelection()gvs
 snoremap <silent> 	 :call UltiSnips#ExpandSnippet()
-vnoremap <NL> 
-nnoremap <NL> j
+nnoremap <NL> 
+xnoremap <NL> 
 onoremap <NL> 
-vnoremap  
-nnoremap  k
-onoremap  
-nnoremap  l
+noremap  
 nnoremap  :w
 vnoremap  v
 nnoremap  v
 nnoremap  :vnew
 vmap  "*d
 noremap   :call JumpToNextFunction()
-nnoremap ,t, :Tab /,
-nnoremap ,sv :source $MYVIMRC
-xnoremap ,sv :source $MYVIMRC
-onoremap ,sv :source $MYVIMRC
-noremap ,rt :RunTests
-noremap ,ot :OpenTests
-nnoremap ,ev edit ~/.vim/vimrc
+nnoremap ,rt :RunTests
+xnoremap ,rt :RunTests
+onoremap ,rt :RunTests
+nnoremap ,ot :OpenTests
+xnoremap ,ot :OpenTests
+onoremap ,ot :OpenTests
+nnoremap ,ev :vspl ~/.vim/vimrc
 nnoremap ,tc :Tab /,
 nnoremap ,tv :Tab /¦
 nnoremap ,te :Tab /=
 nnoremap ,tt :Tab /
 nnoremap ,' viwa'hbi'lel
 nnoremap ," viwa"hbi"lel
-snoremap ,sv :source $MYVIMRC
+nnoremap ,sv :source $MYVIMRC
+xnoremap ,sv :source $MYVIMRC
+onoremap ,sv :source $MYVIMRC
 nnoremap 0 ^
 xnoremap 0 ^
 onoremap 0 ^
-snoremap 0 ^
 nnoremap : ;
 nnoremap ; :
 nnoremap Q :normal n.
@@ -47,20 +44,18 @@ nmap gx <Plug>NetrwBrowseX
 nnoremap m Gzz
 xnoremap m Gzz
 onoremap m Gzz
-snoremap m Gzz
 xnoremap v 
-snoremap v 
 nnoremap v 
-noremap <Right> <Nop>
-noremap <Left> <Nop>
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
 snoremap <silent> <Del> c
 snoremap <silent> <BS> c
 snoremap <silent> <C-Tab> :call UltiSnips#ListSnippets()
 noremap <F4> :call CreateNewFile()
 noremap <F3> :call CompileAndRun()
-noremap <Down> <Nop>
-noremap <Up> <Nop>
+vnoremap <Down> xp`[V`]
+vnoremap <Up> xkP`[V`]
+nnoremap <Down> ddp
+nnoremap <Up> ddkP
 noremap <F2> :NERDTreeToggle
 vmap <C-Del> "*d
 vmap <S-Del> "*d
@@ -104,27 +99,34 @@ set window=51
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~\Dropbox\workspace\Py2dDisplay\tests
+cd ~\.vim\vimscripts
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 ~\Dropbox\workspace\Py2dDisplay\display.py
-badd +1 ~\Dropbox\workspace\Py2dDisplay\tests\test_display.py
-badd +1 ~\.vim\vimscripts\mappings.vim
-badd +37 ~\.vim\vimscripts\testing.vim
-badd +33 ~\.vim\vimrc
+badd +109 ~\Dropbox\workspace\York_BattlePi20\ConsolePlayer\bin_tree.py
+badd +42 ~\Dropbox\workspace\York_BattlePi20\ConsolePlayer\tst_turtle.py
+badd +278 ~\Dropbox\workspace\PyBinTree\bin_tree.py
+badd +2 ~\Dropbox\workspace\PyBinTree\async.py
+badd +0 ~\Dropbox\workspace\PyBinTree\new
+badd +0 C:\\Users\\Ben\\vimfiles\\UltiSnips\\python.snippets
+badd +0 ~\.vim\vimscripts\functions.vim
+badd +1 ~\.vim\vimscripts\a.py
 silent! argdel *
-edit ~\Dropbox\workspace\Py2dDisplay\display.py
+edit ~\Dropbox\workspace\PyBinTree\bin_tree.py
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-1wincmd h
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
 wincmd w
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 117 + 117) / 235)
-exe 'vert 2resize ' . ((&columns * 117 + 117) / 235)
+exe 'vert 1resize ' . ((&columns * 78 + 117) / 235)
+exe 'vert 2resize ' . ((&columns * 78 + 117) / 235)
+exe 'vert 3resize ' . ((&columns * 77 + 117) / 235)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -164,7 +166,7 @@ setlocal foldcolumn=0
 setlocal foldenable
 setlocal foldexpr=PythonFold()
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=1
 setlocal foldmarker={{{,}}}
 setlocal foldmethod=expr
 setlocal foldminlines=1
@@ -230,15 +232,15 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 22 - ((15 * winheight(0) + 25) / 50)
+let s:l = 8 - ((7 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-22
+8
 normal! 0
 wincmd w
 argglobal
-edit ~\Dropbox\workspace\Py2dDisplay\tests\test_display.py
+edit C:\\Users\\Ben\\vimfiles\\UltiSnips\\python.snippets
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -248,11 +250,11 @@ setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
 setlocal nocindent
-setlocal cinkeys=0{,0},0),:,!^F,o,O,e
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:XCOMM,n:>,fb:-
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=#%s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
@@ -270,16 +272,16 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'python'
-setlocal filetype=python
+if &filetype != 'snippets'
+setlocal filetype=snippets
 endif
 setlocal foldcolumn=0
 setlocal foldenable
-setlocal foldexpr=PythonFold()
+setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=99
 setlocal foldmarker={{{,}}}
-setlocal foldmethod=expr
+setlocal foldmethod=syntax
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
@@ -289,12 +291,12 @@ setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=2
 setlocal imsearch=2
-setlocal include=s*\\(from\\|import\\)
-setlocal includeexpr=substitute(v:fname,'\\.','/','g')
-setlocal indentexpr=GetPythonIndent(v:lnum)
-setlocal indentkeys=0{,0},:,!^F,o,O,e,<:>,=elif,=except
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
+setlocal iskeyword=@,48-57,_,192-255,.
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
@@ -308,7 +310,132 @@ setlocal nrformats=octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=pythoncomplete#Complete
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!pyeval('powerline.statusline(6)')
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'snippets'
+setlocal syntax=snippets
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+set nowrap
+setlocal nowrap
+setlocal wrapmargin=0
+let s:l = 10 - ((9 * winheight(0) + 25) / 50)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+10
+normal! 012|
+wincmd w
+argglobal
+edit ~\.vim\vimscripts\functions.vim
+vnoremap <buffer> <silent> [" :exe "normal! gv"|call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
+nnoremap <buffer> <silent> [" :call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
+vnoremap <buffer> <silent> [] m':exe "normal! gv"|call search('^\s*endf*\%[unction]\>', "bW")
+nnoremap <buffer> <silent> [] m':call search('^\s*endf*\%[unction]\>', "bW")
+vnoremap <buffer> <silent> [[ m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "bW")
+nnoremap <buffer> <silent> [[ m':call search('^\s*fu\%[nction]\>', "bW")
+vnoremap <buffer> <silent> ]" :exe "normal! gv"|call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
+nnoremap <buffer> <silent> ]" :call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
+vnoremap <buffer> <silent> ][ m':exe "normal! gv"|call search('^\s*endf*\%[unction]\>', "W")
+nnoremap <buffer> <silent> ][ m':call search('^\s*endf*\%[unction]\>', "W")
+vnoremap <buffer> <silent> ]] m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "W")
+nnoremap <buffer> <silent> ]] m':call search('^\s*fu\%[nction]\>', "W")
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",:\"
+setlocal commentstring=\"%s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'vim'
+setlocal filetype=vim
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=GetVimIndent()
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,=end,=else,=cat,=fina,=END,0\\
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,#
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal list
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -326,16 +453,16 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!pyeval('powerline.statusline(2)')
-setlocal suffixesadd=.py
+setlocal statusline=%!pyeval('powerline.statusline(7)')
+setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'python'
-setlocal syntax=python
+if &syntax != 'vim'
+setlocal syntax=vim
 endif
 setlocal tabstop=4
 setlocal tags=
-setlocal textwidth=0
+setlocal textwidth=78
 setlocal thesaurus=
 setlocal noundofile
 setlocal nowinfixheight
@@ -343,16 +470,18 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 11 - ((10 * winheight(0) + 25) / 50)
+silent! normal! zE
+let s:l = 31 - ((9 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-11
-normal! 06|
+31
+normal! 011|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 117 + 117) / 235)
-exe 'vert 2resize ' . ((&columns * 117 + 117) / 235)
+3wincmd w
+exe 'vert 1resize ' . ((&columns * 78 + 117) / 235)
+exe 'vert 2resize ' . ((&columns * 78 + 117) / 235)
+exe 'vert 3resize ' . ((&columns * 77 + 117) / 235)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

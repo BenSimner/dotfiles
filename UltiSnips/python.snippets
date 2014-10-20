@@ -1,10 +1,19 @@
+snippet header
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 
+# file: `!v bufname("%")`
+# Author: Ben Simner 
+# Date: `!v strftime("%a, %d %b %Y")`
+#
+# ${0:Description}
+endsnippet
+
 snippet test
 def test_$1():
     $0
 endsnippet
 
 snippet def
-def ${1:FunctionName}(${2:`indent('.')?'self':''`}):
+def ${1:FunctionName}(`!v indent('.')?'self':''`${2:,}):
 	"""
 	${3:DocString for $1}
 	"""
@@ -24,5 +33,10 @@ class ${1:ClassName}(${2:object}):
 endsnippet
 
 snippet s
-self.$1 = $0
+self._$0
+endsnippet
+
+snippet main
+(__name__ == "__main__"):
+    $0
 endsnippet

@@ -127,6 +127,8 @@ augroup vimrc_autocmds
 augroup END
 
 " Creation files
+so ~/.vim/plugins/betterdigraphs.vim
+
 so ~/.vim/vimscripts/mappings.vim
 so ~/.vim/vimscripts/functions.vim
 so ~/.vim/vimscripts/sessions.vim
@@ -134,21 +136,23 @@ so ~/.vim/vimscripts/swapfile_management.vim
 so ~/.vim/vimscripts/testing.vim
 
 function! Vim_Leave()
-	if (winnr('$') > 1)
-		NERDTreeClose
-	endif
-	
-	call Sessions_ExitVim()
+    if (winnr('$') > 1)
+        NERDTreeClose
+    endif
+    
+    call Sessions_ExitVim()
 endfunction
 
 function! Vim_Enter()
-	call Sessions_EnterVim()
-	NERDTree
+    call Sessions_EnterVim()
+    NERDTree
 endfunction
 
 augroup nerdtree_start
     autocmd!
 
     autocmd VimLeave * call Vim_Leave()
-    autocmd VimEnter * call Vim_Enter()
+    " autocmd VimEnter * call Vim_Enter()
 augroup END
+
+let g:netrw_liststyle=3

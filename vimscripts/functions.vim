@@ -13,10 +13,10 @@ augroup write_read_files
     autocmd!
     
     " Insert Boilerplate code into a new file
-    autocmd BufNewFile * :call InsertBoilerplate()
+    "autocmd BufNewFile * :call InsertBoilerplate()
     
     " After saving, re-indent entire file
-    " autocmd BufWritePre * normal magg=G`a
+    "autocmd BufWritePre * normal magg=G`a
 augroup END
 
 function! CreateNewFile()
@@ -53,26 +53,27 @@ function! InsertBoilerplate_Python()
     \# Date: " . strftime("%a, %d %b %Y") . "\r#\r#\r\r\r\r\r#for testing\rif (__name__ == \"__main__\"):\r pass\r"
     execute "normal! \<ESC>a" . text
     execute "normal! 8Go"
-	
-	" Determine if the file is a generated test_ file.
-	if (g:created_new_test == 1)
-		" Insert our import statement
-		let l:fname = expand('%:t:r')[5:]
-		let l:importStmt = 'from .. import ' . l:fname
-		
-		execute 'normal! 8Ga' . l:importStmt
-		execute "normal! 9Go"
-		let g:created_new_test = 0
-	endif
-	
-	" Finally, check to see if we need to create a package out of this file
-	" i.e. if __init__.py exists in its directory or not.
-	if (!filereadable('__init__.py'))
-		silent exe '!type NUL > __init__.py'
-	endif
-	
-	
+    
     startinsert!
+endfunction
+
+function! CreatePythonProject()
+    " Determine if the file is a generated test_ file.
+    if (g:created_new_test == 1)
+        " Insert our import statement
+        let l:fname = expand('%:t:r')[5:]
+        let l:importStmt = 'from .. import ' . l:fname
+        
+        execute 'normal! 8Ga' . l:importStmt
+        execute "normal! 9Go"
+        let g:created_new_test = 0
+    endif
+    
+    " Finally, check to see if we need to create a package out of this file
+    " i.e. if __init__.py exists in its directory or not.
+    if (!filereadable('__init__.py'))
+        silent exe '!type NUL > __init__.py'
+    endif
 endfunction
 
 function! InsertBoilerplate_Java()

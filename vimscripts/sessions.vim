@@ -15,15 +15,12 @@ function! Sessions_EnterVim()
 endfunction
 
 function! Sessions_ExitVim()
+	" Always save previous session on exit
+	SaveSession! previous
+	
+	" Handle Global Session
 	if (g:loaded_global == 1)
 		SaveSession! Global
-	else
-		echom 'Overwrite Global Session? (Y/n)'
-		let l:confirm = getchar()
-		
-		if (nr2char(l:confirm) ==? 'y')
-			SaveSession! Global
-		endif
 	endif
 endfunction
 

@@ -35,17 +35,17 @@ nmap gx <Plug>NetrwBrowseX
 noremap m Gzz
 vnoremap v 
 nnoremap v 
-nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cfile>"),0)
 snoremap <silent> <Del> c
 snoremap <silent> <BS> c
 snoremap <silent> <C-Tab> :call UltiSnips#ListSnippets()
 noremap <F4> :call CreateNewFile()
 noremap <F3> :call CompileAndRun()
-vnoremap <Down> xp`[V`]
-vnoremap <Up> xkP`[V`]
-nnoremap <Down> ddp
-nnoremap <Up> ddkP
-noremap <F2> :NERDTreeToggle
+nnoremap <Down> :resize +5
+nnoremap <Up> :resize -5
+nnoremap <Right> :vertical resize +5
+nnoremap <Left> :vertical resize -5
+noremap <F2> :e.
 vmap <C-Del> "*d
 vmap <S-Del> "*d
 vmap <C-Insert> "*y
@@ -73,7 +73,7 @@ set laststatus=2
 set listchars=tab:»»,trail:·,nbsp:~
 set matchtime=2
 set ruler
-set runtimepath=~/vimfiles,~\\.vim\\bundle\\Vundle.vim,~\\.vim\\bundle\\powerline\\powerline\\bindings\\vim,~\\.vim\\bundle\\nerdtree,~\\.vim\\bundle\\tabular,~\\.vim\\bundle\\vim-markdown,~\\.vim\\bundle\\gundo.vim,~\\.vim\\bundle\\vim-repeat,~\\.vim\\bundle\\ultisnips,~\\.vim\\bundle\\vim-snippets,C:\\Program\ Files\ (x86)\\Vim/vimfiles,C:\\Program\ Files\ (x86)\\Vim\\vim74,C:\\Program\ Files\ (x86)\\Vim/vimfiles/after,~/vimfiles/after,~/.vim/bundle/Vundle.vim/,~\\.vim\\bundle\\Vundle.vim/after,~\\.vim\\bundle\\powerline\\powerline\\bindings\\vim/after,~\\.vim\\bundle\\nerdtree/after,~\\.vim\\bundle\\tabular/after,~\\.vim\\bundle\\vim-markdown/after,~\\.vim\\bundle\\gundo.vim/after,~\\.vim\\bundle\\vim-repeat/after,~\\.vim\\bundle\\ultisnips/after,~\\.vim\\bundle\\vim-snippets/after
+set runtimepath=~/vimfiles,~\\.vim\\bundle\\Vundle.vim,~\\.vim\\bundle\\powerline\\powerline\\bindings\\vim,~\\.vim\\bundle\\tabular,~\\.vim\\bundle\\vim-markdown,~\\.vim\\bundle\\gundo.vim,~\\.vim\\bundle\\vim-repeat,~\\.vim\\bundle\\ultisnips,~\\.vim\\bundle\\vim-snippets,C:\\Program\ Files\ (x86)\\Vim/vimfiles,C:\\Program\ Files\ (x86)\\Vim\\vim74,C:\\Program\ Files\ (x86)\\Vim/vimfiles/after,~/vimfiles/after,~/.vim/bundle/Vundle.vim/,~\\.vim\\bundle\\Vundle.vim/after,~\\.vim\\bundle\\powerline\\powerline\\bindings\\vim/after,~\\.vim\\bundle\\tabular/after,~\\.vim\\bundle\\vim-markdown/after,~\\.vim\\bundle\\gundo.vim/after,~\\.vim\\bundle\\vim-repeat/after,~\\.vim\\bundle\\ultisnips/after,~\\.vim\\bundle\\vim-snippets/after
 set showmatch
 set smartindent
 set splitbelow
@@ -89,6 +89,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+argglobal
 silent! argdel *
 set splitbelow splitright
 wincmd t
@@ -100,6 +101,8 @@ setlocal noarabic
 setlocal autoindent
 setlocal balloonexpr=
 setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
 setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
@@ -154,6 +157,7 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
+setlocal lispwords=
 set list
 setlocal list
 setlocal makeprg=
@@ -194,6 +198,7 @@ setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
+setlocal undolevels=-123456
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap

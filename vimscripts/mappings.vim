@@ -27,14 +27,19 @@ nnoremap Q :normal n.<CR>
 " good for Python usage where strict indents are required.
 noremap 0 ^
 
-" Remap arrow keys
-nnoremap <Up> ddkP
-nnoremap <Down> ddp
-
-" Visual mode mappings to move visually selected text up/down
-" from 
-vnoremap <Up> xkP`[V`]
-vnoremap <Down> xp`[V`]
+" Map Arrow Keys to resizing splits
+nnoremap <Left> :vertical resize -5<CR>
+nnoremap <Right> :vertical resize +5<CR>
+nnoremap <Up> :resize -5<CR>
+nnoremap <Down> :resize +5<CR>
+"" Remap arrow keys
+""noremap <Up> ddkP
+""noremap <Down> ddp
+""
+"" Visual mode mappings to move visually selected text up/down
+"" from 
+""noremap <Up> xkP`[V`]
+""noremap <Down> xp`[V`]
 
 " Remap jump to line
 " i.e. 50g will jump to line 50

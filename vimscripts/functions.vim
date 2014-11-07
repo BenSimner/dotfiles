@@ -90,6 +90,8 @@ function! CompileAndRun()
     if (ftType == 'python')
         let b:filename = expand("%:p")
         execute '!python "' . b:filename . '"'
+    elseif (ftType == 'dosbatch')
+        execute '!%'
     endif
 endfunction
 

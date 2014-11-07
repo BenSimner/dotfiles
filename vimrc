@@ -29,7 +29,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Other installed bundles
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
-Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'sjl/gundo.vim'
@@ -41,7 +41,8 @@ Plugin 'honza/vim-snippets'
 call vundle#end()
 filetype plugin indent on
 
-noremap <F2> :NERDTreeToggle<CR>
+" noremap <F2> :NERDTreeToggle<CR>
+noremap <F2> :e.<CR>
 let g:NERDTreeChDirMode = 2
 
 " Config for UltiSnips

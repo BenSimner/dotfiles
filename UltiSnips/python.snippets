@@ -1,8 +1,8 @@
 snippet header
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 
 # file: `!v bufname("%")`
-# Author: Ben Simner 
-# Date: `!v strftime("%a, %d %b %Y")`
+# author: Ben Simner 
+# date: `!v strftime("%a, %d %b %Y")`
 #
 # ${0:Description}
 endsnippet
@@ -13,12 +13,16 @@ def test_$1():
 endsnippet
 
 snippet def
-def ${1:FunctionName}(`!v indent('.')?'self':''`${2:,}):
+def ${1:function_name}(`!v indent('.')?'self':''`${2:,}):
 	"""
 	${3:DocString for $1}
 	"""
 
     $0
+endsnippet
+
+snippet from
+from ${1:ModuleName} import ${0:ObjectName}
 endsnippet
 
 snippet class

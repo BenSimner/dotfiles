@@ -12,6 +12,7 @@ if (!has('python'))
     finish
 endif
 
+" ensure we are in correct directory.
 exe 'cd ' . expand('~')
 
 " dark background
@@ -29,7 +30,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " Other installed bundles
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
-" Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'sjl/gundo.vim'
@@ -41,10 +41,6 @@ Plugin 'honza/vim-snippets'
 call vundle#end()
 filetype plugin indent on
 
-" noremap <F2> :NERDTreeToggle<CR>
-noremap <F2> :e.<CR>
-let g:NERDTreeChDirMode = 2
-
 " Config for UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -53,17 +49,13 @@ let g:UltiSnipsEditSplit="vertical"
 
 " for powerline
 set laststatus=2
-
-" Fullscreen auto
-au! GUIEnter * simalt ~x
-filetype indent plugin on
-
-set splitbelow
-set splitright
-
 """"""""""""""""""""""""""
 " GENERAL
 """"""""""""""""""""""""""
+filetype indent plugin on
+set splitbelow
+set splitright
+
 set backspace=2 " ensure backspace works as it does in all other programs
 set autoread
 
@@ -137,23 +129,17 @@ so ~/.vim/vimscripts/swapfile_management.vim
 so ~/.vim/vimscripts/testing.vim
 
 function! Vim_Leave()
-    if (winnr('$') > 1)
-        NERDTreeClose
-    endif
-    
     call Sessions_ExitVim()
 endfunction
 
 function! Vim_Enter()
     call Sessions_EnterVim()
-    NERDTree
 endfunction
 
 augroup nerdtree_start
     autocmd!
 
     autocmd VimLeave * call Vim_Leave()
-    " autocmd VimEnter * call Vim_Enter()
 augroup END
 
 let g:netrw_liststyle=3

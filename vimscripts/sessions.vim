@@ -5,23 +5,18 @@
 let g:loaded_global = 0
 
 function! Sessions_EnterVim()
-	echom 'Load Global Session? (Y/n)'
+	echom 'Load previous session? (Y/n)'
 	let l:confirm = getchar()
 	
 	if (nr2char(l:confirm) ==? 'y')
 		let g:loaded_global = 1
-		LoadSession Global
+		LoadSession previous
 	endif
 endfunction
 
 function! Sessions_ExitVim()
 	" Always save previous session on exit
 	SaveSession! previous
-	
-	" Handle Global Session
-	if (g:loaded_global == 1)
-		SaveSession! Global
-	endif
 endfunction
 
 function! Sessions_CreateSessionDir()
@@ -52,7 +47,6 @@ function! Sessions_LoadSession(SessionName)
 	if l:fn ==# 'NULL'
 		echom 'Cannot load session ' . a:SessionName
 	else
-		NERDTreeClose
 		execute 'source ' . l:fn
 	endif
 endfunction

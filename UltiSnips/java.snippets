@@ -1,0 +1,36 @@
+snippet header
+/**
+** vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4 
+** file: `!v bufname("%")`
+** Author: Ben Simner 
+** Date: `!v strftime("%a, %d %b %Y")`
+**
+** ${0:Description}
+**/
+
+public class `!v bufname("%:r")` {
+
+}
+endsnippet
+
+snippet class
+class ${1:ClassName} {
+    ${0:...}
+}
+endsnippet
+
+snippet pub
+public 
+endsnippet
+
+snippet void
+void ${1:FunctionName}(${2:...}) {
+    ${0:...}
+}
+endsnippet 
+
+snippet main
+public static void main(String[] args) {
+	${0:...}
+}
+endsnippet

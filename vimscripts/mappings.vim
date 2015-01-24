@@ -6,16 +6,20 @@
 "" this file only contains standard vim mappings, it deos not
 "" contain any plugin-specific mappings
 
-" set <leader> to be the comma key
-let mapleader=","
-let g:mapleader=","
+" set <leader> to be the my preferred key
+let mapleader=" "
+let g:mapleader=" "
 
 """"""""""""""""""""""""""""""
 "" File Navigation
 ""
 
-" maps f to search
+" maps f to search and Ctrl-F to backwards search
 nnoremap f /
+nnoremap <C-f> ?
+
+" Control-R replaces current search string
+nnoremap <C-r> :%s///g<Left><Left>
 
 " Maps Shift-Q to jump to next and re-do
 " using :normal <stuff><CR> allows a count
@@ -32,36 +36,34 @@ nnoremap <Left> :vertical resize -5<CR>
 nnoremap <Right> :vertical resize +5<CR>
 nnoremap <Up> :resize -5<CR>
 nnoremap <Down> :resize +5<CR>
-"" Remap arrow keys
-""noremap <Up> ddkP
-""noremap <Down> ddp
-""
-"" Visual mode mappings to move visually selected text up/down
-"" from 
-""noremap <Up> xkP`[V`]
-""noremap <Down> xp`[V`]
 
 " Remap jump to line
-" i.e. 50g will jump to line 50
+" i.e. 50' will jump to line 50
 " and centre on that line
-noremap m Gzz
-
-
+noremap ' Gzz
 """"""""""""""""""""""""""""""
 "" Split and Tab Navigation
-""
+"" See: http://blog.chrisbe.st/articles/coding/two-years-of-vim
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-b> :tabprevious<CR>
+nnoremap <C-n> :tabnext<CR>
+inoremap <C-t> <Esc>:tabnew<CR>
+inoremap <C-b> <Esc>:tabprevious<CR>i
+inoremap <C-n> <Esc>:tabnext<CR>i
 
-" Better split navigation
-" use cj and ck to move to other buffers
-noremap <C-J> <C-W><C-W>
-noremap <C-K> <C-W><C-P>
+" Map C-hjkl to moving around splits
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 """"""""""""""""""""""""""""""
 "" Buffer Operations
 ""
 
-" make C-W-V create a new buffer in a vsplit
-nnoremap <C-W><C-V> :vnew<CR>
+" make new buffer in vsplit
+nnoremap <C-v> :vnew<CR>
+nnoremap <C-q> :q<CR>
 
 """"""""""""""""""""""""""""""
 "" File Operations
@@ -69,11 +71,13 @@ nnoremap <C-W><C-V> :vnew<CR>
 
 " Map Control-S to saving the file
 " as in every other program
-nnoremap <c-s> <ESC>:w<CR>
+nnoremap <c-s> <ESC>:wa<CR>
 
+" leader sv sources the .vimrc file
 noremap <leader>sv :source $MYVIMRC<CR>
 
 " Maps leader " to wrap current word in quotations
+" (test)
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
@@ -81,35 +85,28 @@ nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 "" Leader Mappings
 ""
 
+" Swap semi-colon and colon characters around
+" since : is used far more than ;
+" (what does ; even do?)
 nnoremap ; :
 nnoremap : ;
-
-" Swap visual and block visual mode mappings about.
-nnoremap    v   <C-V>
-nnoremap <C-V>     v
-
-vnoremap    v   <C-V>
-vnoremap <C-V>     v
 
 " Tabularise
 nnoremap <leader>tt :Tab /
 nnoremap <leader>te :Tab /=<CR>
 nnoremap <leader>tv :Tab /¦<CR>
+nnoremap <leader>tp :Tab /\|<CR>
 nnoremap <leader>tc :Tab /,<CR>
 
-nnoremap <leader>ev :vspl ~/.vim/vimrc<CR>
+" shortcut to exit myvimrc
+nnoremap <leader>ev :vspl $MYVIMRC<CR>
 
-nnoremap <leader>ll :LoadSession previous<CR>
+" Map leader ll and ss to load and save __global__ session
+nnoremap <leader>ll :LoadSession __global__<CR>
+nnoremap <leader>ss :SaveSession __global__<CR>
 
-" Show syntax highlighting groups for word under cursor
-" from http://vimcasts.org/episodes/creating-colorschemes-for-vim/
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+" Map leader lp to load the previous vim state
+nnoremap <leader>lp :LoadSession previous<CR>
 
 inoremap <expr>  <C-K>   BDG_GetDigraph()
 

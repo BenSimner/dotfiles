@@ -4,55 +4,65 @@ let s:cpo_save=&cpo
 set cpo&vim
 inoremap <silent> <C-Tab> =UltiSnips#ListSnippets()
 map! <S-Insert> *
+nnoremap  :tabprevious
+nnoremap  ?
 snoremap <silent>  c
+nnoremap  
 xnoremap <silent> 	 :call UltiSnips#SaveLastVisualSelection()gvs
 snoremap <silent> 	 :call UltiSnips#ExpandSnippet()
-noremap <NL> 
-noremap  
-nnoremap  :w
-vnoremap  v
-nnoremap  v
-nnoremap  :vnew
+nnoremap <NL> <NL>
+nnoremap  
+nnoremap  
+nnoremap  :tabnext
+nnoremap  :q
+nnoremap  :%s///g<Left><Left>
+nnoremap  :wa
+nnoremap  :tabnew
+nnoremap  :vnew
 vmap  "*d
-noremap   :call JumpToNextFunction()
-noremap ,rt :RunTests
-noremap ,ot :OpenTests
-nnoremap ,ll :LoadSession previous
-nnoremap ,ev :vspl ~/.vim/vimrc
-nnoremap ,tc :Tab /,
-nnoremap ,tv :Tab /¦
-nnoremap ,te :Tab /=
-nnoremap ,tt :Tab /
-nnoremap ,' viwa'hbi'lel
-nnoremap ," viwa"hbi"lel
-noremap ,sv :source $MYVIMRC
+noremap  rt :RunTests
+noremap  ot :OpenTests
+noremap   :call JumpToNextFunction("/")
+nnoremap  lp :LoadSession previous
+nnoremap  ss :SaveSession __global__
+nnoremap  ll :LoadSession __global__
+nnoremap  ev :vspl $MYVIMRC
+nnoremap  tc :Tab /,
+nnoremap  tp :Tab /|
+nnoremap  tv :Tab /¦
+nnoremap  te :Tab /=
+nnoremap  tt :Tab /
+nnoremap  ' viwa'hbi'lel
+nnoremap  " viwa"hbi"lel
+noremap  sv :source $MYVIMRC
+noremap ' Gzz
 noremap 0 ^
 nnoremap : ;
 nnoremap ; :
 nnoremap Q :normal n.
 nnoremap f /
 nmap gx <Plug>NetrwBrowseX
-noremap m Gzz
-vnoremap v 
-nnoremap v 
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cfile>"),0)
 snoremap <silent> <Del> c
 snoremap <silent> <BS> c
 snoremap <silent> <C-Tab> :call UltiSnips#ListSnippets()
 noremap <F4> :call CreateNewFile()
+noremap <C-Space> :call JumpToNextFunction("?")
 noremap <F3> :call CompileAndRun()
 nnoremap <Down> :resize +5
 nnoremap <Up> :resize -5
 nnoremap <Right> :vertical resize +5
 nnoremap <Left> :vertical resize -5
-noremap <F2> :e.
 vmap <C-Del> "*d
 vmap <S-Del> "*d
 vmap <C-Insert> "*y
 vmap <S-Insert> "-d"*P
 nmap <S-Insert> "*P
+inoremap  :tabpreviousi
 inoremap <silent> 	 =UltiSnips#ExpandSnippet()
 inoremap <expr>  BDG_GetDigraph()
+inoremap  :tabnexti
+inoremap  :tabnew
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set autochdir
@@ -80,22 +90,23 @@ set splitbelow
 set splitright
 set statusline=%!pyeval('powerline.new_window()')
 set tabline=%!pyeval('powerline.tabline()')
-set window=51
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/
+cd ~\Desktop
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +1 ~\Desktop\test.txt
+badd +1 ~\Desktop
 argglobal
 silent! argdel *
+edit ~\Desktop\test.txt
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
 argglobal
-enew
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -203,6 +214,13 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 2 - ((1 * winheight(0) + 11) / 23)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+2
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

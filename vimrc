@@ -4,7 +4,7 @@
 "" Install Location: ~/.vim/
 "" Author: Ben Simner
 
-" Vim without +python cannot run
+" Vim setup without +python cannot run
 " so just exit with warning
 " allowing default vim config.
 if (!has('python'))
@@ -29,12 +29,11 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Other installed bundles
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'sjl/gundo.vim'
-Plugin 'tpope/vim-repeat'
 
+Plugin 'tpope/vim-repeat'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
@@ -47,8 +46,6 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
-" for powerline
-set laststatus=2
 """"""""""""""""""""""""""
 " GENERAL
 """"""""""""""""""""""""""
@@ -91,7 +88,6 @@ if has("gui_running")
     set guioptions-=T
     set guioptions+=e
     set guifont=Consolas:h11
-    set t_Co=256
     set guitablabel=%M\ %t
 endif
 
@@ -101,8 +97,9 @@ endif
 syntax on
 set showcmd
 
+set t_Co=256
 set encoding=utf8
-set ffs=unix,dos,mac
+set ffs=unix,dos
 
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
@@ -110,36 +107,33 @@ set list
 """"""""""""""""""""""""""
 " DEFAULT
 """"""""""""""""""""""""""
-
-augroup vimrc_autocmds
+augroup vim_autos
     autocmd!
 
     " Automatically source any viml files when saved
-    autocmd bufwritepost *.vim source %
-    autocmd BufReadPre * syntax on
+    autocmd BufWritePost *.vim source %
 augroup END
 
-" Creation files
-so ~/.vim/plugins/betterdigraphs.vim
+" Automatically source anything from /plugins/
 
-so ~/.vim/vimscripts/mappings.vim
-so ~/.vim/vimscripts/functions.vim
-so ~/.vim/vimscripts/sessions.vim
-so ~/.vim/vimscripts/swapfile_management.vim
-so ~/.vim/vimscripts/testing.vim
+" so ~/.vim/plugins/betterdigraphs.vim
+" so ~/.vim/vimscripts/mappings.vim
+" so ~/.vim/vimscripts/functions.vim
+" so ~/.vim/vimscripts/sessions.vim
+" so ~/.vim/vimscripts/swapfile_management.vim
+" so ~/.vim/vimscripts/testing.vim
 
 function! Vim_Leave()
     call Sessions_ExitVim()
 endfunction
 
 function! Vim_Enter()
-    call Sessions_EnterVim()
+    " Nothing to do on entry ...
 endfunction
 
-augroup nerdtree_start
+augroup vim_exit_commands
     autocmd!
 
+	autocmd VimEnter * call Vim_Enter()
     autocmd VimLeave * call Vim_Leave()
 augroup END
-
-let g:netrw_liststyle=3

@@ -3,7 +3,6 @@ vim-settings
 
 My personal **.vim** folder.
 
-To install, simply clone this repo into **.vim**.
+To install, simply clone this repo into **.vim**, and source the vimrc from .vimrc or ~/vimfiles/vimrc
+depending on your O/S.
 
-If on a windows machine, create the file **vimfiles/vimrc** and add the line:
-> so ~/.vim/vimrc

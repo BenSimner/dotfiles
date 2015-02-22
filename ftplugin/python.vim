@@ -1,8 +1,6 @@
 """"""""""""
 " PYTHON
 """"""""""""
-echo "Python!"
-
 " For files which do not have modeline,
 " ensure we stick to 4spaces for indent
 " as python insists on this.

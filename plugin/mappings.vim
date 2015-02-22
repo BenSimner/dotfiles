@@ -1,31 +1,31 @@
-""""""""""""""""""""""""""""""
-"" Mappings File
-""""""""""""""""""""""""""""""
+" mappings.vim - Custom remappings
+" Author:    Ben Simner
+" Version:   1.0
+
+if exists("g:loaded_mapping")
+    finish
+else
+    let g:loaded_mapping = 1
+endif
 
 "" this file contains all mappings for my vim configuration
-"" this file only contains standard vim mappings, it deos not
+"" this file only contains standard vim mappings, it does not
 "" contain any plugin-specific mappings
 
-" set <leader> to be the my preferred key
-let mapleader=" "
-let g:mapleader=" "
+" set <leader> to be my preferred key
+let mapleader=","
+let g:mapleader=","
 
 """"""""""""""""""""""""""""""
 "" File Navigation
 ""
 
-" maps f to search and Ctrl-F to backwards search
+" maps f to search and Ctrl-f to backwards search
 nnoremap f /
 nnoremap <C-f> ?
 
 " Control-R replaces current search string
 nnoremap <C-r> :%s///g<Left><Left>
-
-" Maps Shift-Q to jump to next and re-do
-" using :normal <stuff><CR> allows a count
-" to be used with the mapping
-" see: http://vimcasts.org/episodes/creating-mappings-that-accept-a-count/
-nnoremap Q :normal n.<CR>
 
 " Maps go-to-line-beginning to go to the first non-whitespace character
 " good for Python usage where strict indents are required.
@@ -63,7 +63,6 @@ nnoremap <C-H> <C-W><C-H>
 
 " make new buffer in vsplit
 nnoremap <C-v> :vnew<CR>
-nnoremap <C-q> :q<CR>
 
 """"""""""""""""""""""""""""""
 "" File Operations
@@ -71,13 +70,12 @@ nnoremap <C-q> :q<CR>
 
 " Map Control-S to saving the file
 " as in every other program
-nnoremap <c-s> <ESC>:wa<CR>
+nnoremap <c-s> <ESC>:w<CR>
 
 " leader sv sources the .vimrc file
 noremap <leader>sv :source $MYVIMRC<CR>
 
 " Maps leader " to wrap current word in quotations
-" (test)
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
@@ -87,7 +85,6 @@ nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
 " Swap semi-colon and colon characters around
 " since : is used far more than ;
-" (what does ; even do?)
 nnoremap ; :
 nnoremap : ;
 
@@ -98,7 +95,7 @@ nnoremap <leader>tv :Tab /¦<CR>
 nnoremap <leader>tp :Tab /\|<CR>
 nnoremap <leader>tc :Tab /,<CR>
 
-" shortcut to exit myvimrc
+" shortcut to edit myvimrc
 nnoremap <leader>ev :vspl $MYVIMRC<CR>
 
 " Map leader ll and ss to load and save __global__ session
@@ -106,10 +103,13 @@ nnoremap <leader>ll :LoadSession __global__<CR>
 nnoremap <leader>ss :SaveSession __global__<CR>
 
 " Map leader lp to load the previous vim state
-nnoremap <leader>lp :LoadSession previous<CR>
+nnoremap <leader>lp :LoadSession __previous__<CR>
 
-inoremap <expr>  <C-K>   BDG_GetDigraph()
+" Map ot and rt to open and run tests respectively.
+nnoremap <leader>ot :call testing#open_current_test_file()<CR>
+nnoremap <leader>rt :call testing#run_current_test_file()<CR>
 
+nnoremap <leader>kk call some#none()
 
 
 

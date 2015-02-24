@@ -8,13 +8,21 @@ else
     let g:loaded_functions = 1
 endif
 
-" F3 runs the current file
+" F3 runs the current file, Ctrl-F3 does an advanced run
+" (advanced will run the current java project)
 noremap <F3> :call functions#compile_and_run()<CR>
 noremap <C-F3> :call functions#compile_and_run_java()<CR>
 
 " F4 will create a new file with a given name
 noremap <F4> :call functions#create_new_file()<CR>
-noremap <F5> :call functions#create_java_project()<CR>
+
+" F5 followed by language prefix will create a new project for that language
+" in the current directory
+" prefixes:
+"	j - Java
+"	p - Python
+noremap <F5>j :call functions#create_java_project()<CR>
+noremap <F5>p :call functions#create_python_project()<CR>
 
 " Pressing space jumps to next code block
 " wrapping around if at end of file
@@ -25,7 +33,13 @@ function functions#create_java_project()
     " Creates a new java project in the current directory with a name /dir/
     " does this by creating a /src/ folder for source files
     " and creates /dir/src/Main.java which holds the entrypoint
-	let l:name = input("Project FolderName: ")
+	let l:name = input("Project Name (Java): ")
+	
+	" Exit function if user escapes out of input
+	if (l:name == "")
+		return
+	endif
+	
 	let l:current_dir = expand("%:p:h")
 	let l:dir = l:current_dir . '\' . l:name . '\'
 	
@@ -35,16 +49,54 @@ function functions#create_java_project()
 	
 	" Make our Main.java + main method
 	" By copying .vim\Main.java
-	let l:file_contents = readfile($HOME . '\.vim\plugin\Main.java')
+	let l:file_contents = readfile($HOME . '\.vim\plugin\files\Main.java')
 	call writefile(l:file_contents, l:dir . '\src\Main.java')
 	
 	" Do same with our .manifest file
-	let l:file_contents = readfile($HOME . '\.vim\plugin\.manifest')
+	let l:file_contents = readfile($HOME . '\.vim\plugin\files\.manifest')
 	call writefile(l:file_contents, l:dir . '\.manifest')
 	
 	" Finally make our .javaproject file to tell Vim this directory is a javaproject
 	call writefile([l:name, l:dir], l:dir . '\.javaproject')
 endfunction
+
+function functions#create_python_project()
+    " Creates a new Python project
+	" Python projects are essentially just directories
+	" hence, the setup is very simple.
+	let l:name = input("Project Name (Python): ")
+	
+	" Exit function if user escapes out of input
+	if (l:name == "")
+		return
+	endif
+	
+	let l:current_dir = expand("%:p:h")
+	let l:dir = l:current_dir . '\' . l:name . '\'
+	
+	let l:src_dir = l:dir . '\' . l:name
+	let l:test_dir = l:dir . '\tests'
+	
+	" Create our two folders
+	call mkdir(l:dir)
+    call mkdir(l:src_dir)
+	call mkdir(l:test_dir)
+	
+	let l:setup_file_contents = readfile($HOME . '\.vim\plugin\files\setup.py')
+	
+	let i = 0
+	let n = len(l:setup_file_contents)
+	while i < n
+		let l:s = l:setup_file_contents[i]
+		let l:setup_file_contents[i] = substitute(l:s, '_VIM_PROJECTNAME_', l:name, 'g')
+		let i += 1
+	endwhile
+	
+	call writefile(l:setup_file_contents, l:dir . '\setup.py')
+	
+	call writefile([], l:src_dir . '\__init__.py')
+	call writefile([], l:test_dir . '\__init__.py')
+endfunction	
 
 function functions#create_new_file()
     let fname = input("Filename: ")

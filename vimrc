@@ -97,7 +97,12 @@ endif
 syntax on
 set showcmd
 
+" Allow xterm-256 colors
+set term=xterm
 set t_Co=256
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
+
 set encoding=utf8
 set ffs=unix,dos
 
@@ -114,17 +119,8 @@ augroup vim_autos
     autocmd BufWritePost *.vim source %
 augroup END
 
-" Automatically source anything from /plugins/
-
-" so ~/.vim/plugins/betterdigraphs.vim
-" so ~/.vim/vimscripts/mappings.vim
-" so ~/.vim/vimscripts/functions.vim
-" so ~/.vim/vimscripts/sessions.vim
-" so ~/.vim/vimscripts/swapfile_management.vim
-" so ~/.vim/vimscripts/testing.vim
-
 function! Vim_Leave()
-    call Sessions_ExitVim()
+    call sessions#ExitVim()
 endfunction
 
 function! Vim_Enter()

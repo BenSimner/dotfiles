@@ -1,2 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='C:/Users/Ben/vimfiles/plugin'
+let g:netrw_dirhist_2='C:\Users\Ben'
+let g:netrw_dirhist_3='C:/Users/Ben/.vim'
+let g:netrw_dirhist_4='C:/Users/Ben/.vim/plugin'
+let g:netrw_dirhist_5='C:\Users\Ben\vimfiles'
+let g:netrw_dirhist_6='C:/Users/Ben/vimfiles/plugin'

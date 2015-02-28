@@ -19,8 +19,8 @@ noremap <F4> :call functions#create_new_file()<CR>
 " F5 followed by language prefix will create a new project for that language
 " in the current directory
 " prefixes:
-"	j - Java
-"	p - Python
+"   j - Java
+"   p - Python
 noremap <F5>j :call functions#create_java_project()<CR>
 noremap <F5>p :call functions#create_python_project()<CR>
 
@@ -33,70 +33,70 @@ function functions#create_java_project()
     " Creates a new java project in the current directory with a name /dir/
     " does this by creating a /src/ folder for source files
     " and creates /dir/src/Main.java which holds the entrypoint
-	let l:name = input("Project Name (Java): ")
-	
-	" Exit function if user escapes out of input
-	if (l:name == "")
-		return
-	endif
-	
-	let l:current_dir = expand("%:p:h")
-	let l:dir = l:current_dir . '\' . l:name . '\'
-	
-	" Create our two folders
-	call mkdir(l:dir)
+    let l:name = input("Project Name (Java): ")
+    
+    " Exit function if user escapes out of input
+    if (l:name == "")
+        return
+    endif
+    
+    let l:current_dir = expand("%:p:h")
+    let l:dir = l:current_dir . '\' . l:name . '\'
+    
+    " Create our two folders
+    call mkdir(l:dir)
     call mkdir(l:dir . "/src/")
-	
-	" Make our Main.java + main method
-	" By copying .vim\Main.java
-	let l:file_contents = readfile($HOME . '\.vim\plugin\files\Main.java')
-	call writefile(l:file_contents, l:dir . '\src\Main.java')
-	
-	" Do same with our .manifest file
-	let l:file_contents = readfile($HOME . '\.vim\plugin\files\.manifest')
-	call writefile(l:file_contents, l:dir . '\.manifest')
-	
-	" Finally make our .javaproject file to tell Vim this directory is a javaproject
-	call writefile([l:name, l:dir], l:dir . '\.javaproject')
+    
+    " Make our Main.java + main method
+    " By copying .vim\Main.java
+    let l:file_contents = readfile($HOME . '\.vim\plugin\files\Main.java')
+    call writefile(l:file_contents, l:dir . '\src\Main.java')
+    
+    " Do same with our .manifest file
+    let l:file_contents = readfile($HOME . '\.vim\plugin\files\.manifest')
+    call writefile(l:file_contents, l:dir . '\.manifest')
+    
+    " Finally make our .javaproject file to tell Vim this directory is a javaproject
+    call writefile([l:name, l:dir], l:dir . '\.javaproject')
 endfunction
 
 function functions#create_python_project()
     " Creates a new Python project
-	" Python projects are essentially just directories
-	" hence, the setup is very simple.
-	let l:name = input("Project Name (Python): ")
-	
-	" Exit function if user escapes out of input
-	if (l:name == "")
-		return
-	endif
-	
-	let l:current_dir = expand("%:p:h")
-	let l:dir = l:current_dir . '\' . l:name . '\'
-	
-	let l:src_dir = l:dir . '\' . l:name
-	let l:test_dir = l:dir . '\tests'
-	
-	" Create our two folders
-	call mkdir(l:dir)
+    " Python projects are essentially just directories
+    " hence, the setup is very simple.
+    let l:name = input("Project Name (Python): ")
+    
+    " Exit function if user escapes out of input
+    if (l:name == "")
+        return
+    endif
+    
+    let l:current_dir = expand("%:p:h")
+    let l:dir = l:current_dir . '\' . l:name . '\'
+    
+    let l:src_dir = l:dir . '\' . l:name
+    let l:test_dir = l:dir . '\tests'
+    
+    " Create our two folders
+    call mkdir(l:dir)
     call mkdir(l:src_dir)
-	call mkdir(l:test_dir)
-	
-	let l:setup_file_contents = readfile($HOME . '\.vim\plugin\files\setup.py')
-	
-	let i = 0
-	let n = len(l:setup_file_contents)
-	while i < n
-		let l:s = l:setup_file_contents[i]
-		let l:setup_file_contents[i] = substitute(l:s, '_VIM_PROJECTNAME_', l:name, 'g')
-		let i += 1
-	endwhile
-	
-	call writefile(l:setup_file_contents, l:dir . '\setup.py')
-	
-	call writefile([], l:src_dir . '\__init__.py')
-	call writefile([], l:test_dir . '\__init__.py')
-endfunction	
+    call mkdir(l:test_dir)
+    
+    let l:setup_file_contents = readfile($HOME . '\.vim\plugin\files\setup.py')
+    
+    let i = 0
+    let n = len(l:setup_file_contents)
+    while i < n
+        let l:s = l:setup_file_contents[i]
+        let l:setup_file_contents[i] = substitute(l:s, '_VIM_PROJECTNAME_', l:name, 'g')
+        let i += 1
+    endwhile
+    
+    call writefile(l:setup_file_contents, l:dir . '\setup.py')
+    
+    call writefile([], l:src_dir . '\__init__.py')
+    call writefile([], l:test_dir . '\__init__.py')
+endfunction 
 
 function functions#create_new_file()
     let fname = input("Filename: ")
@@ -104,42 +104,42 @@ function functions#create_new_file()
 endfunction
 
 function functions#compile_and_run_java()
-	" Search for our .javaproject file
-	let l:path = functions#get_javaproject_path(expand("%:p:h"))
-	
-	if (l:path == "NULL")
-		return 0
-	endif
-	
-	let l:fs = readfile(l:path)
-	let l:dir = l:fs[1]
-	let l:name = l:fs[0]
-	
-	" Compile all java files
-	" Generate our list file (for win)
-	exe 'silent !dir ' . l:dir . '\*.java /S /b /A > ' . l:dir . '\.classlist'
-	" Compile .class files from our list file
-	call mkdir(l:dir . '\bin')
-	exe 'silent !javac @' . l:dir . '\.classlist -d ' . l:dir . '\bin'
-	" Create our jar file
-	exe 'silent !jar cfm0 ' . l:dir . '\' . l:name . '.jar ' . l:dir . '\.manifest -C  ' . l:dir . '\bin .'
-	" Run the jar file
-	exe '!java -jar ' . l:dir . '\' . l:name . '.jar'
+    " Search for our .javaproject file
+    let l:path = functions#get_javaproject_path(expand("%:p:h"))
+    
+    if (l:path == "NULL")
+        return 0
+    endif
+    
+    let l:fs = readfile(l:path)
+    let l:dir = l:fs[1]
+    let l:name = l:fs[0]
+    
+    " Compile all java files
+    " Generate our list file (for win)
+    exe 'silent !dir ' . l:dir . '\*.java /S /b /A > ' . l:dir . '\.classlist'
+    " Compile .class files from our list file
+    call mkdir(l:dir . '\bin')
+    exe 'silent !javac @' . l:dir . '\.classlist -d ' . l:dir . '\bin'
+    " Create our jar file
+    exe 'silent !jar cfm0 ' . l:dir . '\' . l:name . '.jar ' . l:dir . '\.manifest -C  ' . l:dir . '\bin .'
+    " Run the jar file
+    exe '!java -jar ' . l:dir . '\' . l:name . '.jar'
 endfunction
 
 function functions#get_javaproject_path(dir)
-	" Check if .javaproject exists in dir
-	" If it does, return the path to it
-	if (fnamemodify(a:dir, ":h") == fnamemodify(a:dir, ":h:h"))
-		return "NULL"
-	endif
-	
-	let l:jp_name = a:dir . "/.javaproject"
-	if filereadable(l:jp_name)
-		return l:jp_name
-	else
-		return functions#get_javaproject_path(fnamemodify(a:dir, ":h"))
-	endif
+    " Check if .javaproject exists in dir
+    " If it does, return the path to it
+    if (fnamemodify(a:dir, ":h") == fnamemodify(a:dir, ":h:h"))
+        return "NULL"
+    endif
+    
+    let l:jp_name = a:dir . "/.javaproject"
+    if filereadable(l:jp_name)
+        return l:jp_name
+    else
+        return functions#get_javaproject_path(fnamemodify(a:dir, ":h"))
+    endif
 endfunction
 
 function functions#compile_and_run()
@@ -170,7 +170,7 @@ endfunction
 
 " Jumps to next function in a vimscript file
 function s:jump_to_next_function_vim(searcher)
-    execute "normal " . a:searcher . "function\CR>zz"
+    execute "normal! " . a:searcher . "function \<CR>zz"
 endfunction
 
 " PYTHON function definition

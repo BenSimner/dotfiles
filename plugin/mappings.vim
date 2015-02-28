@@ -27,9 +27,10 @@ nnoremap <C-f> ?
 " Control-R replaces current search string
 nnoremap <C-r> :%s///g<Left><Left>
 
-" Maps go-to-line-beginning to go to the first non-whitespace character
-" good for Python usage where strict indents are required.
-noremap 0 ^
+" Remaps Shift b and e to go to beginning and end
+" of the current line
+nnoremap B ^
+nnoremap E $
 
 " Map Arrow Keys to resizing splits
 nnoremap <Left> :vertical resize -5<CR>
@@ -37,10 +38,8 @@ nnoremap <Right> :vertical resize +5<CR>
 nnoremap <Up> :resize -5<CR>
 nnoremap <Down> :resize +5<CR>
 
-" Remap jump to line
-" i.e. 50' will jump to line 50
-" and centre on that line
-noremap ' Gzz
+" Jump-to-line
+noremap gl Gzz
 """"""""""""""""""""""""""""""
 "" Split and Tab Navigation
 "" See: http://blog.chrisbe.st/articles/coding/two-years-of-vim

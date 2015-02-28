@@ -1,4 +1,5 @@
 " functions.vim - Plugin containing a bunch of helpful file functions
+
 " Author:    Ben Simner
 " Version:   1.0
 
@@ -170,7 +171,7 @@ endfunction
 
 " Jumps to next function in a vimscript file
 function s:jump_to_next_function_vim(searcher)
-    execute "normal! " . a:searcher . "function \<CR>zz"
+    execute "normal! " . a:searcher . "function \\p*(\\p*)\<CR>zz"
 endfunction
 
 " PYTHON function definition

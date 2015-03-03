@@ -1,0 +1,44 @@
+snippet header
+# `!v bufname("%")` - ${1:ShortDescription}
+# author: Ben Simner 
+# date: `!v strftime("%a, %d %b %Y")`
+#
+# ${0:DocString}
+endsnippet
+
+snippet test
+def test_$1():
+    $0
+endsnippet
+
+snippet def
+def ${1:function_name}(`!indent('.')>0?'self, ':''`${2:*args}):
+	"""
+	${3:DocString for $1}
+	"""
+    $0
+endsnippet
+
+snippet from
+from ${1:ModuleName} import ${0:ObjectName}
+endsnippet
+
+snippet class
+class ${1:ClassName}(${2:object}):
+	"""
+	${3:DocString for $1}
+	"""
+
+	def __init__(self${4:, *args}):
+		$2.__init__(self, $5)
+		${0:...}
+endsnippet
+
+snippet s
+self._$0
+endsnippet
+
+snippet main
+(__name__ == "__main__"):
+    $0
+endsnippet

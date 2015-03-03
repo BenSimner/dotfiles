@@ -1,0 +1,25 @@
+snippet header
+" `!v bufname("%")` - ${0:Description}
+" Author:    Ben Simner
+" Version:   1.0
+endsnippet
+
+snippet plugin
+" `!v bufname("%")` - ${1:Description}
+" Author:    Ben Simner
+" Version:   1.0
+
+if exists("g:loaded_`!v expand("%:r")`")
+    finish
+else
+	let g:loaded_`!v expand("%:r")` = 1
+endif
+
+${0}
+endsnippet
+
+snippet function
+function s:${1:function_name}(${2:arg0})
+	${0}
+endfunction
+endsnippet

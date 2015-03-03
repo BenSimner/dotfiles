@@ -1,0 +1,1 @@
+execute 'mksession! ' . (expand('~') . '\.vim\.vimsession')

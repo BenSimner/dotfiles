@@ -1,13 +1,3 @@
-# vim swap files
-~.swp
-
-# Ignore .netrw stuff
-.netrwhist
-.NetrwTreeListing~
-
-# Ignore the sessions directory.
-sessions/
-
-# Ignore (my) temporary vimsessions
-.vimsession
-.vimsession2
+# Whitelist
+!haskell-level-0/
+*

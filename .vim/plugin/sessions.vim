@@ -46,13 +46,14 @@ function! sessions#SaveSession(SessionName, Bang)
         endif
     endif
     
-	let l:vimsession = (expand('~') . '\.vim\.vimsession')
+	let l:vimsession = (expand('~') . '\.vim\.vimsession_startup')
+	let l:vimdefault = (expand('~') . '\.vim\.vimsession_default')
 	let l:test_name = (expand('~') . '\.vim\.vimsession2')
-	let l:py_diff = expand('~') . '\.vim\scripts\diff.py'
+	let l:py_diff = expand('~') . '\.vim\scripts\sessions.py'
 
     execute 'mksession! ' . l:test_name
 	" Call python diff on this
-	execute 'silent !python ' . l:py_diff . ' ' . l:test_name . ' ' . l:vimsession . ' ' . l:filename
+	execute 'silent !python ' . l:py_diff . ' ' . l:vimdefault . ' ' .l:vimsession . ' ' . l:test_name . ' ' . l:filename
     echom 'Created Session ' . a:SessionName
 endfunction
 

@@ -6,5 +6,6 @@
 sessions/
 
 # Ignore temporary vimsessions
-.vimsession
+.vimsession_default
+.vimsession_startup
 .vimsession2

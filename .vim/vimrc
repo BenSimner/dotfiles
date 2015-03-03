@@ -4,6 +4,8 @@
 "" Install Location: ~/.vim/
 "" Author: Ben Simner
 
+execute 'mksession! ' . (expand('~') . '\.vim\.vimsession_default')
+
 " Vim setup without +python cannot run
 " so just exit with warning
 " allowing default vim config.

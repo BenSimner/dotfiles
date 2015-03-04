@@ -1,6 +1,5 @@
 # Ignore .netrw stuff
 .netrwhist
-.NetrwTreeListing~
 
 # Ignore the sessions directory.
 sessions/

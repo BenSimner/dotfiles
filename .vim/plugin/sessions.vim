@@ -13,13 +13,8 @@ endif
 let g:loaded_global = 0
 
 function! sessions#EnterVim()
-    echom 'Load previous session? (Y/n)'
-    let l:confirm = getchar()
-    
-    if (nr2char(l:confirm) ==? 'y')
-        let g:loaded_global = 1
-        LoadSession __previous__
-    endif
+    let g:loaded_global = 1
+    LoadSession __previous__
 endfunction
 
 function! sessions#ExitVim()

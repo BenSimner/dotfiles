@@ -118,12 +118,12 @@ function functions#compile_and_run_java()
     
     " Compile all java files
     " Generate our list file (for win)
-    exe 'silent !dir ' . l:dir . '\*.java /S /b /A > ' . l:dir . '\.classlist'
+    exe '!dir ' . l:dir . '\*.java /S /b /A > ' . l:dir . '\.classlist'
     " Compile .class files from our list file
     call mkdir(l:dir . '\bin')
-    exe 'silent !javac @' . l:dir . '\.classlist -d ' . l:dir . '\bin'
+    exe '!javac @' . l:dir . '\.classlist -d ' . l:dir . '\bin'
     " Create our jar file
-    exe 'silent !jar cfm0 ' . l:dir . '\' . l:name . '.jar ' . l:dir . '\.manifest -C  ' . l:dir . '\bin .'
+    exe '!jar cfm0 ' . l:dir . '\' . l:name . '.jar ' . l:dir . '\.manifest -C  ' . l:dir . '\bin .'
     " Run the jar file
     exe '!java -jar ' . l:dir . '\' . l:name . '.jar'
 endfunction

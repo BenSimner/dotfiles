@@ -18,8 +18,10 @@ class ${1:ClassName} {
 }
 endsnippet
 
-snippet pub
-public 
+snippet c
+public ${1:ClassName}($2) {
+    ${0:...}
+}
 endsnippet
 
 snippet void
@@ -30,6 +32,6 @@ endsnippet
 
 snippet main
 public static void main(String[] args) {
-	${0:...}
+    ${0:...}
 }
 endsnippet

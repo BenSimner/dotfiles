@@ -126,12 +126,12 @@ function! Vim_Leave()
 endfunction
 
 function! Vim_Enter()
-    " Nothing to do on entry ...
+    call sessions#EnterVim()
 endfunction
 
 augroup vim_exit_commands
     autocmd!
 
-	autocmd VimEnter * call Vim_Enter()
+    autocmd VimEnter * call Vim_Enter()
     autocmd VimLeave * call Vim_Leave()
 augroup END

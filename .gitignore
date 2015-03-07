@@ -1,5 +1,6 @@
 # Whitelist my dotfiles
 /*
+!.vimrc
 !.vim/
 !README.md
 !LICENSE

@@ -13,8 +13,10 @@ endif
 let g:loaded_global = 0
 
 function! sessions#EnterVim()
-    let g:loaded_global = 1
-    LoadSession __previous__
+	if (exists("g:sessions_load_on_startup"))
+		let g:loaded_global = 1
+		LoadSession __previous__
+	endif
 endfunction
 
 function! sessions#ExitVim()

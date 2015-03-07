@@ -25,7 +25,7 @@ function! sessions#ExitVim()
 endfunction
 
 function! sessions#CreateSessionDir()
-    let l:dir = expand('~') . '\.vim\sessions\'
+    let l:dir = expand('~') . '/.vim/sessions/'
     if !isdirectory(l:dir)
         call mkdir(l:dir)
     endif
@@ -43,10 +43,10 @@ function! sessions#SaveSession(SessionName, Bang)
         endif
     endif
     
-	let l:vimsession = (expand('~') . '\.vim\.vimsession_startup')
-	let l:vimdefault = (expand('~') . '\.vim\.vimsession_default')
-	let l:test_name = (expand('~') . '\.vim\.vimsession2')
-	let l:py_diff = expand('~') . '\.vim\scripts\sessions.py'
+	let l:vimsession = (expand('~') . '/.vim/.vimsession_startup')
+	let l:vimdefault = (expand('~') . '/.vim/.vimsession_default')
+	let l:test_name = (expand('~') . '/.vim/.vimsession2')
+	let l:py_diff = expand('~') . '/.vim/scripts/sessions.py'
 
     execute 'mksession! ' . l:test_name
 	" Call python diff on this
@@ -73,7 +73,7 @@ function! sessions#SessionExists(SessionName)
 endfunction
 
 function! sessions#GetSessionFile(SessionName)
-    return expand('~') . '\.vim\sessions\' . a:SessionName . '.vimsession'
+    return expand('~') . '/.vim/sessions/' . a:SessionName . '.vimsession'
 endfunction
 
 command! -nargs=1 -bang SaveSession call sessions#SaveSession('<args>', '<bang>')

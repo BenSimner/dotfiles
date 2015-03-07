@@ -1,10 +1,11 @@
 """"""""""""""""""""""""""
 "" VIMRC CONFIG FILE
 """"""""""""""""""""""""""
-"" Install Location: ~/.vim/
+"" Install Location: ~/.vimrc
+"" Ensure vim is compiled with +python
 "" Author: Ben Simner
 
-execute 'mksession! ' . (expand('~') . '\.vim\.vimsession_default')
+execute 'mksession! ' . (expand('~') . '/.vim/.vimsession_default')
 
 " Vim setup without +python cannot run
 " so just exit with warning

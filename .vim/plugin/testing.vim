@@ -9,7 +9,7 @@ else
 endif
 
 function s:is_test_file(file_name)
-    if (a:file_name =~? '\v.+_test\.py')
+    if (a:file_name =~? '/v.+_test/.py')
         return 1
     endif
 

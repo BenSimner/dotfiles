@@ -170,7 +170,7 @@ function functions#compile_and_run()
         execute '!%'
     elseif (ftType == 'haskell')
         let b:filename = expand("%:p")
-        execute '!start ghci ' . b:filename
+        execute '!start ghci ' . b:filename . ' -Wall'
     endif
 endfunction
 

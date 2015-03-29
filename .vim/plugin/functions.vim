@@ -104,8 +104,11 @@ function functions#create_python_project()
 endfunction 
 
 function functions#create_new_file()
-    let fname = input("Filename: ")
-    execute 'vnew ' . fname
+    let l:fname = input("Filename: ")
+
+    if (l:fname != "")
+        execute 'vnew ' . l:fname
+    endif
 endfunction
 
 function functions#compile_and_run_java()

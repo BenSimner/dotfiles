@@ -1,4 +1,7 @@
 " functions.vim - Plugin containing a bunch of helpful file functions
+" mainly tailored towards Windows usage, which requires
+" more aid than Linux when deploying/running code
+" via the 'terminal'
 
 " Author:    Ben Simner
 " Version:   1.0
@@ -8,6 +11,9 @@ if exists("g:loaded_functions")
 else
     let g:loaded_functions = 1
 endif
+
+" Python executable
+let g:python_exe = 'python'
 
 " F3 runs the current file, Ctrl-F3 does an advanced run
 " (advanced will run the current java project)
@@ -161,11 +167,26 @@ function functions#get_javaproject_path(dir)
     endif
 endfunction
 
+function functions#update_python_exe()
+    " reads the first 5 lines 
+    " if a shebang header for python is detected
+    " update windows python version with correct exe
+    let l:header = getline(0, 4)
+    let l:r = matchstr(l:header, "python3")
+
+    if l:r != ""
+        let g:python_exe = "python3"
+    else
+        let g:python_exe = "python"
+    endif
+endfunction
+
 function functions#compile_and_run()
     let ftType = &ft
     if (ftType == 'python')
         let b:filename = expand("%:p")
-        execute '!python "' . b:filename . '"'
+        call functions#update_python_exe()
+        execute '!' . g:python_exe . ' "' . b:filename . '"'
     elseif (ftType == 'dosbatch' || ftType == 'sh' )
         execute '!%'
     elseif (ftType == 'haskell')

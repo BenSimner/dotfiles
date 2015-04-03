@@ -141,7 +141,7 @@ function functions#compile_and_run_java()
     if (filewritable(l:dir . '\bin') == 0)
         call mkdir(l:dir . '\bin')
     endif
-    exe 'silent !javac @' . l:dir . '\.classlist -d ' . l:dir . '\bin'
+    exe '!javac @' . l:dir . '\.classlist -d ' . l:dir . '\bin'
     
     " Create our jar file
     " Including all directories 
@@ -192,6 +192,9 @@ function functions#compile_and_run()
     elseif (ftType == 'haskell')
         let b:filename = expand("%:p")
         execute '!start ghci ' . b:filename . ' -Wall'
+    else
+        " default to trying to run current java project
+        call functions#compile_and_run_java()
     endif
 endfunction
 

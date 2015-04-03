@@ -37,10 +37,10 @@ noremap <space> :call functions#jump_to_next_function("/")<CR>
 noremap <C-space> :call functions#jump_to_next_function("?")<CR>
 
 function functions#create_java_project()
-	""
-	"" TODO: Move temporary java compilation method to Apache Ant.
-	""
-	
+    ""
+    "" TODO: Move temporary java compilation method to Apache Ant.
+    ""
+    
     " Creates a new java project in the current directory with a name /dir/
     " does this by creating a /src/ folder for source files
     " and creates /dir/src/Main.java which holds the entrypoint
@@ -118,10 +118,10 @@ function functions#create_new_file()
 endfunction
 
 function functions#compile_and_run_java()
-	""
-	"" TODO: Move temporary java compilation method to Apache Ant.
-	""
-	
+    ""
+    "" TODO: Move temporary java compilation method to Apache Ant.
+    ""
+    
     " Search for our .javaproject file
     let l:path = functions#get_javaproject_path(expand("%:p:h"))
     
@@ -137,15 +137,15 @@ function functions#compile_and_run_java()
     " Generate our list file (for win)
     exe 'silent !dir ' . l:dir . '\*.java /S /b /A > ' . l:dir . '\.classlist'
     
-	" Create /bin/ directory if it does not exist.
-	if (filewritable(l:dir . '\bin') == 0)
-		call mkdir(l:dir . '\bin')
-	endif
+    " Create /bin/ directory if it does not exist.
+    if (filewritable(l:dir . '\bin') == 0)
+        call mkdir(l:dir . '\bin')
+    endif
     exe 'silent !javac @' . l:dir . '\.classlist -d ' . l:dir . '\bin'
-	
+    
     " Create our jar file
-	" Including all directories 
-	let l:args = 'include/'
+    " Including all directories 
+    let l:args = 'include/'
     exe 'silent !cd ' . l:dir . ' && jar cfm0 ' . l:name . '.jar ' . '.manifest -C include/ . -C bin/ .' 
    
     " Run the jar file

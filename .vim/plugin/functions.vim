@@ -14,11 +14,13 @@ endif
 
 " Python executable
 let g:python_exe = 'python'
+let g:haskell_extensions = '-Wall'
+let g:python_extensions = ''
 
 " F3 runs the current file, Ctrl-F3 does an advanced run
 " (advanced will run the current java project)
 noremap <F3> :call functions#compile_and_run()<CR>
-noremap <C-F3> :call functions#compile_and_run_java()<CR>
+noremap <C-F3> :call functions#compile_and_run_alt()<CR>
 
 " F4 will create a new file with a given name
 noremap <F4> :call functions#create_new_file()<CR>
@@ -167,35 +169,32 @@ function functions#get_javaproject_path(dir)
     endif
 endfunction
 
-function functions#update_python_exe()
-    " reads the first 5 lines 
-    " if a shebang header for python is detected
-    " update windows python version with correct exe
-    let l:header = getline(0, 4)
-    let l:r = matchstr(l:header, "python3")
-
-    if l:r != ""
-        let g:python_exe = "python3"
-    else
-        let g:python_exe = "python"
-    endif
-endfunction
-
 function functions#compile_and_run()
     let ftType = &ft
     if (ftType == 'python')
         let b:filename = expand("%:p")
-        call functions#update_python_exe()
-        execute '!' . g:python_exe . ' "' . b:filename . '"'
+        execute '!python "' . b:filename . '"'
     elseif (ftType == 'dosbatch' || ftType == 'sh' )
         execute '!%'
     elseif (ftType == 'haskell')
         let b:filename = expand("%:p")
-        execute '!start ghci ' . b:filename . ' -Wall'
+        execute '!runhaskell ' . b:filename
     else
         " default to trying to run current java project
         call functions#compile_and_run_java()
     endif
+endfunction
+
+function functions#compile_and_run_alt()
+    let ftType = &ft
+    if (ftType == 'python')
+        let b:filename = expand("%:p")
+        execute '!python "' . b:filename . '" ' . g:python_extensions
+    elseif (ftType == 'dosbatch' || ftType == 'sh' )
+        execute '!%'
+    elseif (ftType == 'haskell')
+        let b:filename = expand("%:p")
+        execute '!start ghci ' . b:filename . ' ' . g:haskell_extensions
 endfunction
 
 " Jumps to the next function definition

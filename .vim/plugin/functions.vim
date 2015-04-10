@@ -33,6 +33,7 @@ noremap <F4> :call functions#create_new_file()<CR>
 noremap <F5>j :call functions#create_java_project()<CR>
 noremap <F5>p :call functions#create_python_project()<CR>
 
+
 " Pressing space jumps to next code block
 " wrapping around if at end of file
 noremap <space> :call functions#jump_to_next_function("/")<CR>
@@ -195,6 +196,7 @@ function functions#compile_and_run_alt()
     elseif (ftType == 'haskell')
         let b:filename = expand("%:p")
         execute '!start ghci ' . b:filename . ' ' . g:haskell_extensions
+    endif
 endfunction
 
 " Jumps to the next function definition

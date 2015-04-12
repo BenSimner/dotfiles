@@ -55,6 +55,7 @@ let g:UltiSnipsEditSplit="vertical"
 filetype indent plugin on
 set splitbelow
 set splitright
+set wildmenu
 
 set backspace=2 " ensure backspace works as it does in all other programs
 set autoread

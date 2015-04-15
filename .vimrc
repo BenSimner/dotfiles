@@ -116,6 +116,13 @@ set list
 """"""""""""""""""""""""""
 " DEFAULT
 """"""""""""""""""""""""""
+function! SavedInput(prompt)
+    call inputsave()
+    let text = inputdialog(a:prompt)
+    call inputrestore()
+    return text
+endfunction
+
 augroup vim_autos
     autocmd!
 

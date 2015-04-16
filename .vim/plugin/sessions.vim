@@ -11,6 +11,7 @@ else
 endif
 
 let g:loaded_global = 0
+let s:sessions_dir = expand('~') . '/.vimsessions/'
 
 function! sessions#EnterVim()
 	if (exists("g:sessions_load_on_startup"))
@@ -25,9 +26,12 @@ function! sessions#ExitVim()
 endfunction
 
 function! sessions#CreateSessionDir()
-    let l:dir = expand('~') . '/.vim/sessions/'
-    if !isdirectory(l:dir)
-        call mkdir(l:dir)
+    if !isdirectory(s:sessions_dir)
+        call mkdir(s:sessions_dir)
+		
+		if !isdirectory(s:sessions_dir . 'saved/') 
+			call mkdir(s:sessions_dir . 'saved/')
+		endif
     endif
 endfunction
 
@@ -43,9 +47,9 @@ function! sessions#SaveSession(SessionName, Bang)
         endif
     endif
     
-	let l:vimsession = (expand('~') . '/.vim/.vimsession_startup')
-	let l:vimdefault = (expand('~') . '/.vim/.vimsession_default')
-	let l:test_name = (expand('~') . '/.vim/.vimsession2')
+	let l:vimsession = (s:sessions_dir . '.vimsession_startup')
+	let l:vimdefault = (s:sessions_dir . '.vimsession_default')
+	let l:test_name = (s:sessions_dir . '.vimsession2')
 	let l:py_diff = expand('~') . '/.vim/scripts/sessions.py'
 
     execute 'mksession! ' . l:test_name
@@ -73,7 +77,7 @@ function! sessions#SessionExists(SessionName)
 endfunction
 
 function! sessions#GetSessionFile(SessionName)
-    return expand('~') . '/.vim/sessions/' . a:SessionName . '.vimsession'
+    return s:sessions_dir . 'saved/' . a:SessionName . '.vimsession'
 endfunction
 
 command! -nargs=1 -bang SaveSession call sessions#SaveSession('<args>', '<bang>')

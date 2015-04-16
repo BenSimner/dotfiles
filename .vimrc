@@ -23,6 +23,8 @@ exe 'cd ' . expand('~')
 colorscheme luna
 
 " setup vundle
+
+" Disable Vi-compatability
 set nocompatible
 filetype off
 
@@ -57,6 +59,10 @@ set splitbelow
 set splitright
 set wildmenu
 
+" Hide buffer when editing another
+" instead of abandoning
+set hidden
+
 set backspace=2 " ensure backspace works as it does in all other programs
 set autoread
 
@@ -69,7 +75,11 @@ set incsearch
 set hlsearch
 set mat=2
 set showmatch
+
 set cursorline
+
+" show command in status bar
+set showcmd
 
 " automatically change window's cwd to file's dir
 set autochdir
@@ -99,7 +109,6 @@ endif
 " COLOURS
 """"""""""""""""""""""""""
 syntax on
-set showcmd
 
 " Allow xterm-256 colors
 set term=xterm

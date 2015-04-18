@@ -125,9 +125,11 @@ set list
 """"""""""""""""""""""""""
 " DEFAULT
 """"""""""""""""""""""""""
-function! SavedInput(prompt)
+function! SafePrompt(reg, prompt)
+	"""Safely prompts the user for text and places that text into register a:reg"""
     call inputsave()
     let text = inputdialog(a:prompt)
+	exe "let @" . a:reg . ' = "' . text . '"'
     call inputrestore()
     return text
 endfunction

@@ -46,9 +46,11 @@ noremap gl Gzz
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-b> :tabprevious<CR>
 nnoremap <C-n> :tabnext<CR>
+nnoremap <C-w> :tabclose<CR>
 inoremap <C-t> <Esc>:tabnew<CR>
 inoremap <C-b> <Esc>:tabprevious<CR>i
 inoremap <C-n> <Esc>:tabnext<CR>i
+inoremap <C-w> <Esc>:tabclose<CR>i
 
 " Map C-hjkl to moving around splits
 nnoremap <C-J> <C-W><C-J>

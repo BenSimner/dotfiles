@@ -172,6 +172,7 @@ endfunction
 
 function functions#compile_and_run()
     let ftType = &ft
+    execute 'silent !clear'
     if (ftType == 'python')
         let b:filename = expand("%:p")
         execute '!python "' . b:filename . '"'

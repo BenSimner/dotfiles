@@ -112,6 +112,12 @@ syntax on
 
 " Allow xterm-256 colors
 set term=xterm
+
+" Fix colorscheme on a tmux terminal
+if exists('$TMUX')
+  set term=screen-256color
+endif
+
 set t_Co=256
 let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"

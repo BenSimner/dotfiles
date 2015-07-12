@@ -96,6 +96,11 @@ set si
 set wrap
 
 set modeline
+
+" Show tabs and nonbreakingspaces
+exec 'set listchars=nbsp:~,tab:•\ '
+set list
+
 """"""""""""""""""""""""""
 " GUI
 """"""""""""""""""""""""""
@@ -111,7 +116,7 @@ endif
 """"""""""""""""""""""""""
 syntax on
 
-" Allow xterm-256 colors
+" Allow xterm-256 colorsset term=xterm
 set term=xterm
 
 " Fix colorscheme on a tmux terminal
@@ -125,9 +130,6 @@ let &t_AF="\e[38;5;%dm"
 
 set encoding=utf8
 set ffs=unix,dos
-
-exec "set listchars=nbsp:~"
-set list
 
 """"""""""""""""""""""""""
 " DEFAULT

@@ -41,6 +41,7 @@ Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-repeat'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'dag/vim2hs'
 
 call vundle#end()
 filetype plugin indent on

@@ -71,6 +71,7 @@ let s:grey35       = ['grey35', '240']
 let s:grey40       = ['grey40', '7']
 let s:grey50       = ['grey50', '3']
 let s:khaki        = ['khaki', '106']
+let s:brightred    = ['#ff0000', '1']
 
 "" }}}
 """"""""""""""""""""""""""""""
@@ -86,12 +87,13 @@ call s:set_hi('CursorLine'      , []            , s:grey27)
 call s:set_hi('CursorColumn'    , []            , s:grey27)
 call s:set_hi('CursorLineNr'    , s:white       , s:darkgray)
 call s:set_hi('String'          , s:palered     , [])
+call s:set_hi('Identifier'      , s:gravel      , [])
+call s:set_hi('Function'        , s:mediumgold  , [])
 call s:set_hi('vimString'       , s:palered     , [])
 call s:set_hi('Statement'       , s:lightblue   , [])
 call s:set_hi('Define'          , s:heavygravel , [])
-call s:set_hi('Function'        , s:mediumgold  , [])
 call s:set_hi('Include'         , s:lightpurple , [])
-call s:set_hi('Error'           , s:lightpurple , [])
+call s:set_hi('Error'           , s:white       , s:brightred)
 call s:set_hi('BuiltInFunction' , s:lightpurple , [])
 call s:set_hi('Ignore'          , s:grey40      , s:grey40)
 call s:set_hi('NonText'         , s:white       , s:darkgravel)

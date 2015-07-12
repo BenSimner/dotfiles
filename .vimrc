@@ -126,7 +126,7 @@ let &t_AF="\e[38;5;%dm"
 set encoding=utf8
 set ffs=unix,dos
 
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+exec "set listchars=nbsp:~"
 set list
 
 """"""""""""""""""""""""""

@@ -1,7 +1,23 @@
 # Whitelist my dotfiles
 /*
-!.vimrc
+
+# global gitignore
+!.gitignore_global
+
+# allow loading of git submodules
 !.gitmodules
+
+# allow vim
+!.vimrc
 !.vim/
+
+# allow bashrc & aliases
+!.bashrc
+!.bash_aliases
+
+# allow tmux.conf
+!.tmux.conf
+
+# git repo details
 !README.md
 !LICENSE

@@ -13,7 +13,7 @@ else
 endif
 
 " Python executable
-let g:python_exe = 'python'
+let g:python_bin = 'python'
 let g:haskell_extensions = '-Wall'
 let g:python_extensions = ''
 
@@ -23,21 +23,21 @@ noremap <F3> :call functions#compile_and_run()<CR>
 noremap <C-F3> :call functions#compile_and_run_alt()<CR>
 
 " F4 will create a new file with a given name
+" and open it in new vsplit
 noremap <F4> :call functions#create_new_file()<CR>
 
 " F5 followed by language prefix will create a new project for that language
 " in the current directory
 " prefixes:
-"   j - Java
-"   p - Python
-noremap <F5>j :call functions#create_java_project()<CR>
+"   p - Python (with setup.py and tests/ folder for nose)
 noremap <F5>p :call functions#create_python_project()<CR>
 
 
-" Pressing space jumps to next code block
+" Pressing <Space>-n jumps to next code block
 " wrapping around if at end of file
-noremap <space> :call functions#jump_to_next_function("/")<CR>
-noremap <C-space> :call functions#jump_to_next_function("?")<CR>
+" Pressing <Space>-p jumps to previous code block
+noremap <Space>n :call functions#jump_to_next_block("/")<CR>
+noremap <Space>p :call functions#jump_to_next_block("?")<CR>
 
 function functions#create_java_project()
     ""
@@ -120,110 +120,62 @@ function functions#create_new_file()
     endif
 endfunction
 
-function functions#compile_and_run_java()
-    ""
-    "" TODO: Move temporary java compilation method to Apache Ant.
-    ""
-    
-    " Search for our .javaproject file
-    let l:path = functions#get_javaproject_path(expand("%:p:h"))
-    
-    if (l:path == "NULL")
-        return 0
-    endif
-    
-    let l:fs = readfile(l:path)
-    let l:dir = l:fs[1]
-    let l:name = l:fs[0]
-    
-    " Compile all java files
-    " Generate our list file (for win)
-    exe 'silent !dir ' . l:dir . '\*.java /S /b /A > ' . l:dir . '\.classlist'
-    
-    " Create /bin/ directory if it does not exist.
-    if (filewritable(l:dir . '\bin') == 0)
-        call mkdir(l:dir . '\bin')
-    endif
-    exe '!javac @' . l:dir . '\.classlist -d ' . l:dir . '\bin'
-    
-    " Create our jar file
-    " Including all directories 
-    let l:args = 'include/'
-    exe 'silent !cd ' . l:dir . ' && jar cfm0 ' . l:name . '.jar ' . '.manifest -C include/ . -C bin/ .' 
-   
-    " Run the jar file
-    exe '!cd ' . l:dir . ' && java -jar ' . l:dir . '\' . l:name . '.jar'
-endfunction
 
-function functions#get_javaproject_path(dir)
-    " Check if .javaproject exists in dir
-    " If it does, return the path to it
-    if (fnamemodify(a:dir, ":h") == fnamemodify(a:dir, ":h:h"))
-        return "NULL"
-    endif
-    
-    let l:jp_name = a:dir . "/.javaproject"
-    if filereadable(l:jp_name)
-        return l:jp_name
-    else
-        return functions#get_javaproject_path(fnamemodify(a:dir, ":h"))
-    endif
-endfunction
-
+" Try run this program direct
+" Through its own interpreter
 function functions#compile_and_run()
     let ftType = &ft
+
+    " Clear screen
     execute 'silent !clear'
+
     if (ftType == 'python')
         let b:filename = expand("%:p")
-        execute '!python "' . b:filename . '"'
+        execute '!' . g:python_bin . "' . b:filename . '" ' . g:python_extensions
     elseif (ftType == 'dosbatch' || ftType == 'sh' )
         execute '!%'
     elseif (ftType == 'haskell')
         let b:filename = expand("%:p")
-        execute '!runhaskell ' . b:filename
+        execute '!start ghci ' . b:filename . ' ' . g:haskell_extensions
     else
         " default to trying to run current java project
         call functions#compile_and_run_java()
     endif
 endfunction
 
+
+" Alternate compile and run tries to run the current buffer
+" direct in shell
+" by calling !%
 function functions#compile_and_run_alt()
-    let ftType = &ft
-    if (ftType == 'python')
-        let b:filename = expand("%:p")
-        execute '!python "' . b:filename . '" ' . g:python_extensions
-    elseif (ftType == 'dosbatch' || ftType == 'sh' )
-        execute '!%'
-    elseif (ftType == 'haskell')
-        let b:filename = expand("%:p")
-        execute '!start ghci ' . b:filename . ' ' . g:haskell_extensions
-    endif
+    execute 'silent !clear'
+    execute '!%'
 endfunction
 
 " Jumps to the next function definition
-function functions#jump_to_next_function(searcher)
+function functions#jump_to_next_block(searcher)
     let ftType = &ft
     if (ftType == 'python')
-        call s:jump_to_next_function_py(a:searcher)
+        call s:jump_to_next_block_py(a:searcher)
     elseif (ftType == 'java')
-        call s:jump_to_next_function_java(a:searcher)
+        call s:jump_to_next_block_java(a:searcher)
     elseif (ftType == 'vim')
-        call s:jump_to_next_function_vim(a:searcher)
+        call s:jump_to_next_block_vim(a:searcher)
     endif
 endfunction
 
 
 " Jumps to next function in a vimscript file
-function s:jump_to_next_function_vim(searcher)
+function s:jump_to_next_block_vim(searcher)
     execute "normal! " . a:searcher . "function \\p*(\\p*)\<CR>zz"
 endfunction
 
 " PYTHON function definition
-function s:jump_to_next_function_py(searcher)
+function s:jump_to_next_block_py(searcher)
     execute 'normal! ' . a:searcher . 'def ' . "\<CR>zz"
 endfunction
 
 " JAVA function definition
-function s:jump_to_next_function_java(searcher)
+function s:jump_to_next_block_java(searcher)
     execute "normal! " . a:searcher . '{' . "\<CR>zz"
 endfunction

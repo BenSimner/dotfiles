@@ -67,7 +67,15 @@ set hidden
 set backspace=2 " ensure backspace works as it does in all other programs
 set autoread
 
-let python_highlight_builtin_funcs = 1
+" Vim will interpret tabs as having 4 spaces
+set tabstop=4
+" Ensure indents are also 4 spaces
+set shiftwidth=4
+set softtabstop=4
+" Make TABs spaces.
+set expandtab
+
+let g:python_highlight_builtin_funcs = 1
 """"""""""""""""""""""""""
 " UI
 """"""""""""""""""""""""""
@@ -98,7 +106,7 @@ set wrap
 set modeline
 
 " Show tabs and nonbreakingspaces
-exec 'set listchars=nbsp:~,tab:•\ '
+exec 'set listchars=nbsp:~,tab:▸\ '
 set list
 
 """"""""""""""""""""""""""

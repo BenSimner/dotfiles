@@ -131,15 +131,12 @@ function functions#compile_and_run()
 
     if (ftType == 'python')
         let b:filename = expand("%:p")
-        execute '!' . g:python_bin . "' . b:filename . '" ' . g:python_extensions
+        execute '!' . g:python_bin . ' ' . b:filename . ' ' . g:python_extensions
     elseif (ftType == 'dosbatch' || ftType == 'sh' )
         execute '!%'
     elseif (ftType == 'haskell')
         let b:filename = expand("%:p")
         execute '!start ghci ' . b:filename . ' ' . g:haskell_extensions
-    else
-        " default to trying to run current java project
-        call functions#compile_and_run_java()
     endif
 endfunction
 

@@ -22,25 +22,31 @@ let colors_name = "luna"
 """"""""""""""""""""""""""""""
 "" Assorted functions {{{
 ""
-function! s:set_hi(groupName, guifg, guibg)
-    let guifg = 'guifg='
-    if a:guifg == []
-        let guifg = guifg . 'NONE'
-    else
-        let guifg = guifg . a:guifg[0] . ' ctermfg=' . a:guifg[1]
-    endif
 
-    let guibg = 'guibg='
+if !exists('g:set_hi_func')
+    let g:set_hi_func = 0
 
-    if a:guibg == []
-        let guibg = guibg . 'NONE'
-    else
-        let guibg = guibg . a:guibg[0] . ' ctermbg=' . a:guibg[1]
-    endif
+    function s:set_hi(groupName, guifg, guibg)
+        let guifg = 'guifg='
+        if a:guifg == []
+            let guifg = guifg . 'NONE'
+        else
+            let guifg = guifg . a:guifg[0] . ' ctermfg=' . a:guifg[1]
+        endif
 
-    let high_string = 'hi ' . a:groupName . ' ' . guifg . ' ' . guibg
-    execute high_string
-endfunction
+        let guibg = 'guibg='
+
+        if a:guibg == []
+            let guibg = guibg . 'NONE'
+        else
+            let guibg = guibg . a:guibg[0] . ' ctermbg=' . a:guibg[1]
+        endif
+
+        let high_string = 'hi ' . a:groupName . ' ' . guifg . ' ' . guibg
+        execute high_string
+    endfunction
+endif
+
 "" }}}
 """"""""""""""""""""""""""""""
 "" Color palette {{{
@@ -64,7 +70,7 @@ let s:mediumblue   = ['#00AAEE', '32']
 let s:lightblue    = ['#8FBFDF', '74']
 let s:mediumgold   = ['#dcdc4b', '178']
 let s:mediumpurple = ['#bc55aa', '57']
-let s:lightpurple  = ['#c969b9', '164']
+let s:lightpurple  = ['#c969b9', '165']
 let s:grey15       = ['grey15', '235']
 let s:grey27       = ['grey27', '238']
 let s:grey35       = ['grey35', '240']
@@ -88,10 +94,11 @@ call s:set_hi('CursorColumn'    , []            , s:grey27)
 call s:set_hi('CursorLineNr'    , s:white       , s:darkgray)
 call s:set_hi('String'          , s:palered     , [])
 call s:set_hi('Identifier'      , s:gravel      , [])
-call s:set_hi('Function'        , s:mediumgold  , [])
 call s:set_hi('vimString'       , s:palered     , [])
 call s:set_hi('Statement'       , s:lightblue   , [])
-call s:set_hi('Define'          , s:heavygravel , [])
+call s:set_hi('Function'        , s:mediumgold  , [])
+call s:set_hi('Operator'        , s:lightblue   , [])
+call s:set_hi('Define'          , s:lightpurple , [])
 call s:set_hi('Include'         , s:lightpurple , [])
 call s:set_hi('Error'           , s:white       , s:brightred)
 call s:set_hi('BuiltInFunction' , s:lightpurple , [])

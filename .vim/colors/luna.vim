@@ -2,7 +2,6 @@
 " Luna Colourscheme by Ben Simner
 "
 "
-
 """"""""""""""""""""""""""""""
 "" Preamble {{{
 ""

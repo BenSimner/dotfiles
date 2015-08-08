@@ -11,9 +11,9 @@
 !.vimrc
 !.vim/
 
-# allow bashrc & aliases
+# allow bash
 !.bashrc
-!.bash_aliases
+!.bash/
 
 # allow tmux.conf
 !.tmux.conf

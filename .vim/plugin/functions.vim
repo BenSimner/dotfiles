@@ -33,46 +33,13 @@ noremap <F4> :call functions#create_new_file()<CR>
 noremap <F5>p :call functions#create_python_project()<CR>
 
 
-" Pressing <Space>-n jumps to next code block
+" Pressing <Space> jumps to next code block
 " wrapping around if at end of file
-" Pressing <Space>-p jumps to previous code block
-noremap <Space>n :call functions#jump_to_next_block("/")<CR>
-noremap <Space>p :call functions#jump_to_next_block("?")<CR>
-
-function functions#create_java_project()
-    ""
-    "" TODO: Move temporary java compilation method to Apache Ant.
-    ""
-    
-    " Creates a new java project in the current directory with a name /dir/
-    " does this by creating a /src/ folder for source files
-    " and creates /dir/src/Main.java which holds the entrypoint
-    let l:name = input("Project Name (Java): ")
-    
-    " Exit function if user escapes out of input
-    if (l:name == "")
-        return
-    endif
-    
-    let l:current_dir = expand("%:p:h")
-    let l:dir = l:current_dir . '\' . l:name . '\'
-    
-    " Create our two folders
-    call mkdir(l:dir)
-    call mkdir(l:dir . "/src/")
-    
-    " Make our Main.java + main method
-    " By copying .vim\Main.java
-    let l:file_contents = readfile($HOME . '\.vim\plugin\files\Main.java')
-    call writefile(l:file_contents, l:dir . '\src\Main.java')
-    
-    " Do same with our .manifest file
-    let l:file_contents = readfile($HOME . '\.vim\plugin\files\.manifest')
-    call writefile(l:file_contents, l:dir . '\.manifest')
-    
-    " Finally make our .javaproject file to tell Vim this directory is a javaproject
-    call writefile([l:name, l:dir], l:dir . '\.javaproject')
-endfunction
+" Pressing <C-Space> jumps to previous code block
+noremap <Space> :call functions#jump_to_next_block("/")<CR>
+" | for non-gui versions of vim, <C-Space> (also <A-Space> etc) map to the
+" null character
+noremap <NUL> :call functions#jump_to_next_block("?")<CR> 
 
 function functions#create_python_project()
     " Creates a new Python project
@@ -86,30 +53,31 @@ function functions#create_python_project()
     endif
     
     let l:current_dir = expand("%:p:h")
-    let l:dir = l:current_dir . '\' . l:name . '\'
+    let l:dir = l:current_dir . '/' . l:name . '/'
     
-    let l:src_dir = l:dir . '\' . l:name
-    let l:test_dir = l:dir . '\tests'
+    let l:src_dir = l:dir . '/' . l:name
+    let l:test_dir = l:dir . '/tests'
     
     " Create our two folders
     call mkdir(l:dir)
     call mkdir(l:src_dir)
     call mkdir(l:test_dir)
     
-    let l:setup_file_contents = readfile($HOME . '\.vim\plugin\files\setup.py')
+    let l:setup_file_contents = readfile($HOME . '/.vim/plugin/files/setup.py')
     
     let i = 0
     let n = len(l:setup_file_contents)
     while i < n
         let l:s = l:setup_file_contents[i]
+        " Perform variable substitutions
         let l:setup_file_contents[i] = substitute(l:s, '_VIM_PROJECTNAME_', l:name, 'g')
         let i += 1
     endwhile
     
-    call writefile(l:setup_file_contents, l:dir . '\setup.py')
+    call writefile(l:setup_file_contents, l:dir . '/setup.py')
     
-    call writefile([], l:src_dir . '\__init__.py')
-    call writefile([], l:test_dir . '\__init__.py')
+    call writefile([], l:src_dir . '/__init__.py')
+    call writefile([], l:test_dir . '/__init__.py')
 endfunction 
 
 function functions#create_new_file()
@@ -133,7 +101,7 @@ function functions#compile_and_run()
         let b:filename = expand("%:p")
         execute '!' . g:python_bin . ' ' . b:filename . ' ' . g:python_extensions
     elseif (ftType == 'dosbatch' || ftType == 'sh' )
-        execute '!%'
+        execute '!./%'
     elseif (ftType == 'haskell')
         let b:filename = expand("%:p")
         execute '!start ghci ' . b:filename . ' ' . g:haskell_extensions
@@ -146,7 +114,7 @@ endfunction
 " by calling !%
 function functions#compile_and_run_alt()
     execute 'silent !clear'
-    execute '!%'
+    execute '!./%'
 endfunction
 
 " Jumps to the next function definition

@@ -156,6 +156,9 @@ augroup vim_autos
 
     " Automatically source any viml files when saved
     autocmd BufWritePost *.vim source %
+
+    " Auto set *bash_* files to sh ft
+    autocmd BufRead,BufNewFile *bash_* setf sh
 augroup END
 
 function! Vim_Leave()

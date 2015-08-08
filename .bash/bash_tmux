@@ -1,0 +1,25 @@
+#!/bin/bash 
+
+# attach a tmux session
+# with tab completion
+tattach()
+{
+    local session_name="$1"
+    printf "attaching to irc\n"
+    tmux attach-session -t "$session_name"
+}
+
+_tattach() 
+{
+    COMPRELY=()
+
+    # get sessionlist with no stderr output
+    sessions="$( tmux list-sessions 2>/dev/null | gawk -F: '{ print $1 }')"
+
+    # allow only 1 argument
+    if [ "$3" = tattach ]; then
+        COMPREPLY=( $(compgen -W "$sessions" -- "$2") )
+    fi
+}
+
+complete -F _tattach tattach

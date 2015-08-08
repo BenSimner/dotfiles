@@ -1,0 +1,8 @@
+# tmux aliases
+alias tnew='tmux new -s'
+
+# aliases for common ls
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+

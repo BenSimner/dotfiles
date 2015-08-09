@@ -70,7 +70,8 @@ let s:lightblue    = ['#8FBFDF', '74']
 let s:mediumgold   = ['#dcdc4b', '178']
 let s:mediumpurple = ['#bc55aa', '57']
 let s:lightpurple  = ['#c969b9', '165']
-let s:grey15       = ['grey15', '235']
+let s:darkgrey     = ['grey15', '235']
+let s:pastalgrey   = ['grey16', '236']
 let s:grey27       = ['grey27', '238']
 let s:grey35       = ['grey35', '240']
 let s:grey40       = ['grey40', '7']
@@ -84,7 +85,7 @@ let s:brightred    = ['#ff0000', '1']
 "" some inspiration taken from slate and some from molokai
 ""
 
-call s:set_hi('Normal'          , s:gravel      , s:grey15)
+call s:set_hi('Normal'          , s:gravel      , s:darkgrey)
 call s:set_hi('Cursor'          , s:khaki       , s:grey50)
 call s:set_hi('Comment'         , s:darkgreen   , [])
 call s:set_hi('LineNr'          , s:lightgray   , s:grey27)
@@ -101,6 +102,7 @@ call s:set_hi('Define'          , s:lightpurple , [])
 call s:set_hi('Include'         , s:lightpurple , [])
 call s:set_hi('Error'           , s:white       , s:brightred)
 call s:set_hi('BuiltInFunction' , s:lightpurple , [])
-call s:set_hi('Ignore'          , s:grey40      , s:grey40)
 call s:set_hi('NonText'         , s:white       , s:darkgravel)
+call s:set_hi('Ignore'          , s:grey40      , s:grey40)
+call s:set_hi('TODO'            , s:white       , s:darkgrey)
 "" }}}

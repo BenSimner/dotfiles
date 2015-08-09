@@ -1,0 +1,7 @@
+# this will list all ambiguous completions
+# or just auto-insert if unambiguous
+set show-all-if-ambiguous on
+TAB: complete
+
+# menu-complete loops through each possible completion on each press
+#TAB: menu-complete

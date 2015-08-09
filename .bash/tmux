@@ -1,5 +1,12 @@
 #!/bin/bash 
 
+# kill a tmux session
+# with tab completetion
+tkill()
+{
+    tmux kill-session -t "$1"
+}
+
 # attach a tmux session
 # with tab completion
 tattach()
@@ -9,7 +16,7 @@ tattach()
     tmux attach-session -t "$session_name"
 }
 
-_tattach() 
+_tmux_sessionlist_complete() 
 {
     COMPRELY=()
 
@@ -17,9 +24,10 @@ _tattach()
     sessions="$( tmux list-sessions 2>/dev/null | gawk -F: '{ print $1 }')"
 
     # allow only 1 argument
-    if [ "$3" = tattach ]; then
+    if [ "$3" = "$1" ]; then
         COMPREPLY=( $(compgen -W "$sessions" -- "$2") )
     fi
 }
 
-complete -F _tattach tattach
+complete -F _tmux_sessionlist_complete tattach
+complete -F _tmux_sessionlist_complete tkill

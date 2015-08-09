@@ -98,8 +98,8 @@ if [ -f ~/.bash/bash_aliases ]; then
     . ~/.bash/bash_aliases
 fi
 
-# Source all .bash_ files
-for f in ~/.bash/bash_*;
+# Source all files in the ~/.bash/ directory
+for f in ~/.bash/*;
 do
     . $f
 done

@@ -60,6 +60,10 @@ set splitbelow
 set splitright
 set wildmenu
 
+" set <leader> to be my preferred key
+let mapleader=","
+let g:mapleader=","
+
 " Hide buffer when editing another
 " instead of abandoning
 set hidden

@@ -12,9 +12,6 @@ endif
 "" this file only contains standard vim mappings, it does not
 "" contain any plugin-specific mappings
 
-" set <leader> to be my preferred key
-let mapleader=","
-let g:mapleader=","
 
 """"""""""""""""""""""""""""""
 "" File Navigation

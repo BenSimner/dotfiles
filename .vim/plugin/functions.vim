@@ -17,19 +17,19 @@ let g:python_bin = 'python'
 let g:haskell_extensions = '-Wall'
 let g:python_extensions = ''
 
-" F3 runs the current file, Ctrl-F3 does an advanced run
+" <leader>r runs the current file, <leader>R does an advanced run
 " (advanced will run the current java project)
-noremap <F3> :call functions#compile_and_run()<CR>
-noremap <C-F3> :call functions#compile_and_run_alt()<CR>
+noremap <leader>r :call functions#compile_and_run()<CR>
+noremap <leader>R :call functions#compile_and_run_alt()<CR>
 
 " F4 will create a new file with a given name
 " and open it in new vsplit
 noremap <F4> :call functions#create_new_file()<CR>
 
-" F5 followed by language prefix will create a new project for that language
+" <F5> followed by language prefix will create a new project for that language
 " in the current directory
 " prefixes:
-"   p - Python (with setup.py and tests/ folder for nose)
+"   p - Python (with setup.py and tests/ folder for nosetests)
 noremap <F5>p :call functions#create_python_project()<CR>
 
 

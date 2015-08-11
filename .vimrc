@@ -20,7 +20,8 @@ exe 'cd ' . expand('~')
 
 " dark background
 " colorscheme koehler
-colorscheme luna
+"colorscheme luna
+colorscheme sirius
 
 " setup vundle
 

@@ -17,6 +17,7 @@
 !.bash/
 
 # allow tmux.conf
+!.tmux/plugins
 !.tmux.conf
 
 # git repo details

@@ -62,9 +62,9 @@ let s:blackgravel  = ['#1c1b1a', '232']
 let s:limegreen    = ['#00ff00', '46']
 let s:darkgreen    = ['#00ba00', '34']
 let s:deepgreen    = ['#00ba00', '22']
-let s:darkgray     = ['#3e3d32', '236']
-let s:lightgray    = ['#bcbcbc', '247']
-let s:mediumgray   = ['#9b9b9b', '241']
+let s:darkgrey     = ['#3e3d32', '236']
+let s:lightgrey    = ['#bcbcbc', '247']
+let s:mediumgrey   = ['#9b9b9b', '241']
 let s:darkred      = ['#8D0303', '52']
 let s:palered      = ['#A85656', '167']
 let s:heavygravel  = ['#857f78', '239']
@@ -91,10 +91,10 @@ let s:brightred    = ['#ff0000', '1']
 call s:set_hi('Normal'          , s:darkgrey     , s:white)
 call s:set_hi('Cursor'          , s:khaki        , s:grey50)
 call s:set_hi('Comment'         , s:deepgreen    , [])
-call s:set_hi('LineNr'          , s:white        , s:lightgray)
+call s:set_hi('LineNr'          , s:white        , s:lightgrey)
 call s:set_hi('CursorLine'      , []             , s:palewhite)
 call s:set_hi('CursorColumn'    , []             , s:palewhite)
-call s:set_hi('CursorLineNr'    , s:white        , s:darkgray)
+call s:set_hi('CursorLineNr'    , s:white        , s:darkgrey)
 call s:set_hi('String'          , s:brightred    , [])
 call s:set_hi('Identifier'      , s:darkgrey     , [])
 call s:set_hi('vimString'       , s:brightred    , [])
@@ -109,5 +109,7 @@ call s:set_hi('NonText'         , s:white        , s:palewhite)
 call s:set_hi('Ignore'          , s:white        , s:white)
 call s:set_hi('TODO'            , s:darkgrey     , s:white)
 call s:set_hi('StatusLine'      , s:white        , s:white)
-call s:set_hi('TabLineFill'     , s:white        , s:black)
+call s:set_hi('TabLineFill'     , s:palewhite    , s:black)
+call s:set_hi('IncSearch'       , s:lightgrey    , s:black)
+call s:set_hi('VertSplit'       , s:white        , s:black)
 "" }}}

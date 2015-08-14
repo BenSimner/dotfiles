@@ -144,3 +144,17 @@ endfunction
 function s:jump_to_next_block_java(searcher)
     execute "normal! " . a:searcher . '{' . "\<CR>zz"
 endfunction
+
+function! functions#rewrite_current_file(new_file_name)
+    " No Change, just write current file and proceed
+    if expand(a:new_file_name) == expand("%:p")
+        write
+        return
+    endif
+
+    " Write new file, move to it, and delete old
+    let l:old_file_name = expand('%:p')
+    execute "write " . a:new_file_name
+    execute "edit! " . a:new_file_name
+    call delete(l:old_file_name)
+endfunction

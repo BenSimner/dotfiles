@@ -35,8 +35,6 @@ nnoremap <Right> :vertical resize +5<CR>
 nnoremap <Up> :resize -5<CR>
 nnoremap <Down> :resize +5<CR>
 
-" Jump-to-line
-noremap gl Gzz
 """"""""""""""""""""""""""""""
 "" Split and Tab Navigation
 "" See: http://blog.chrisbe.st/articles/coding/two-years-of-vim

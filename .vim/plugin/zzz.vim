@@ -1,1 +1,0 @@
-execute 'mksession! ' . (expand('~') . '/.vimsessions/.vimsession_startup')

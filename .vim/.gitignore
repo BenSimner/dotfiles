@@ -1,10 +1,2 @@
 # Ignore .netrw stuff
 .netrwhist
-
-# Ignore the sessions directory.
-sessions/
-
-# Ignore temporary vimsessions
-.vimsession_default
-.vimsession_startup
-.vimsession2

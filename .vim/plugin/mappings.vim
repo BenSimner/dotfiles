@@ -96,13 +96,6 @@ nnoremap <leader>tc :Tab /,<CR>
 " shortcut to edit myvimrc
 nnoremap <leader>ev :vspl $MYVIMRC<CR>
 
-" Map leader ll and ss to load and save __global__ session
-nnoremap <leader>ll :LoadSession __global__<CR>
-nnoremap <leader>ss :SaveSession __global__<CR>
-
-" Map leader lp to load the previous vim state
-nnoremap <leader>lp :LoadSession __previous__<CR>
-
 " Map ot and rt to open and run tests respectively.
 nnoremap <leader>ot :call testing#open_current_test_file()<CR>
 nnoremap <leader>rt :call testing#run_current_test_file()<CR>

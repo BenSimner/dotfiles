@@ -5,8 +5,6 @@
 "" Ensure vim is compiled with +python
 "" Author: Ben Simner
 
-execute 'mksession! ' . (expand('~') . '/.vimsessions/.vimsession_default')
-
 " Vim setup without +python cannot run
 " so just exit with warning
 " allowing default vim config.
@@ -167,11 +165,9 @@ augroup vim_autos
 augroup END
 
 function! Vim_Leave()
-    call sessions#ExitVim()
 endfunction
 
 function! Vim_Enter()
-    call sessions#EnterVim()
 endfunction
 
 augroup vim_exit_commands

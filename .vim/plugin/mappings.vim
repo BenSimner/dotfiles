@@ -94,4 +94,4 @@ nnoremap <leader>tp :Tab /\|<CR>
 nnoremap <leader>tc :Tab /,<CR>
 
 " shortcut to edit myvimrc
-nnoremap <leader>ev :vspl $MYVIMRC<CR>
+nnoremap <leader>ev :tabnew $MYVIMRC<CR>

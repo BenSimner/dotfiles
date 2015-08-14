@@ -95,7 +95,3 @@ nnoremap <leader>tc :Tab /,<CR>
 
 " shortcut to edit myvimrc
 nnoremap <leader>ev :vspl $MYVIMRC<CR>
-
-" Map ot and rt to open and run tests respectively.
-nnoremap <leader>ot :call testing#open_current_test_file()<CR>
-nnoremap <leader>rt :call testing#run_current_test_file()<CR>

@@ -33,12 +33,8 @@ noremap <F4> :call functions#create_new_file()<CR>
 noremap <F5>p :call functions#create_python_project()<CR>
 
 
-" Pressing <Space> jumps to next code block
-" wrapping around if at end of file
-" Pressing <C-Space> jumps to previous code block
+" Pressing <Space> jumps to next empty line
 noremap <Space> :call functions#jump_to_next_block("/")<CR>
-" | for non-gui versions of vim, <C-Space> (also <A-Space> etc) map to the
-" null character
 noremap <NUL> :call functions#jump_to_next_block("?")<CR> 
 
 function functions#create_python_project()
@@ -108,7 +104,6 @@ function functions#compile_and_run()
     endif
 endfunction
 
-
 " Alternate compile and run tries to run the current buffer
 " direct in shell
 " by calling !%
@@ -119,30 +114,7 @@ endfunction
 
 " Jumps to the next function definition
 function functions#jump_to_next_block(searcher)
-    let ftType = &ft
-    if (ftType == 'python')
-        call s:jump_to_next_block_py(a:searcher)
-    elseif (ftType == 'java')
-        call s:jump_to_next_block_java(a:searcher)
-    elseif (ftType == 'vim')
-        call s:jump_to_next_block_vim(a:searcher)
-    endif
-endfunction
-
-
-" Jumps to next function in a vimscript file
-function s:jump_to_next_block_vim(searcher)
-    execute "normal! " . a:searcher . "function \\p*(\\p*)\<CR>zz"
-endfunction
-
-" PYTHON function definition
-function s:jump_to_next_block_py(searcher)
-    execute 'normal! ' . a:searcher . 'def ' . "\<CR>zz"
-endfunction
-
-" JAVA function definition
-function s:jump_to_next_block_java(searcher)
-    execute "normal! " . a:searcher . '{' . "\<CR>zz"
+    execute "normal! \<ESC>" . a:searcher . "^\s*$"
 endfunction
 
 function! functions#rewrite_current_file(new_file_name)

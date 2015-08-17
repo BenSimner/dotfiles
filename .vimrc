@@ -96,8 +96,15 @@ set showcmd
 " automatically change window's cwd to file's dir
 set autochdir
 
+set number relativenumber
+
 " Show line numbers
-set nu
+augroup vim_numbers
+    autocmd!
+
+    autocmd InsertEnter, FocusLost * set number norelativenumber
+    autocmd InsertLeave, FocusGained * set relativenumber number
+augroup END
 
 " auto indent
 set ai

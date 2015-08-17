@@ -65,7 +65,7 @@ nnoremap <C-v> :vnew<CR>
 ""
 
 " maps <leader>w to save file
-nnoremap <expr> <leader>w ":Save " . expand('%:p')
+nnoremap <expr> <leader>w ":Save " . substitute(expand('%:p'), '/home/\w\+/', '~/', '')
 command -nargs=1 Save call functions#rewrite_current_file("<args>")
 
 " leader sv sources the .vimrc file

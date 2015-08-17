@@ -155,6 +155,6 @@ function! functions#rewrite_current_file(new_file_name)
     " Write new file, move to it, and delete old
     let l:old_file_name = expand('%:p')
     execute "write " . a:new_file_name
-    execute "edit! " . a:new_file_name
+    execute "edit " . a:new_file_name
     call delete(l:old_file_name)
 endfunction

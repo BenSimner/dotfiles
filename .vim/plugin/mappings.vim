@@ -17,10 +17,6 @@ endif
 "" File Navigation
 ""
 
-" maps f to search and Ctrl-f to backwards search
-nnoremap f /
-nnoremap <C-f> ?
-
 " Control-R replaces current search string
 nnoremap <C-r> :%s///g<Left><Left>
 

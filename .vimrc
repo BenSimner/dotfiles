@@ -176,6 +176,10 @@ augroup vim_autos
 
     " Auto set *bash_* files to sh ft
     autocmd BufRead,BufNewFile *bash_* setf sh
+
+    " Auto set htmldjango filetype on html files
+    autocmd BufRead,BufNewFile *.html set ft=htmldjango
+
 augroup END
 
 function! Vim_Leave()

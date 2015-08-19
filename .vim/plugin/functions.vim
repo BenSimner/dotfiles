@@ -34,8 +34,8 @@ noremap <F5>p :call functions#create_python_project()<CR>
 
 
 " Pressing <Space> jumps to next empty line
-noremap <Space> :call functions#jump_to_next_block("/")<CR>
-noremap <NUL> :call functions#jump_to_next_block("?")<CR> 
+noremap <Space> :call functions#jump_to_next_block()<CR>
+noremap <NUL> :call functions#jump_to_last_block()<CR> 
 
 function functions#create_python_project()
     " Creates a new Python project
@@ -112,9 +112,13 @@ function functions#compile_and_run_alt()
     execute '!./%'
 endfunction
 
-" Jumps to the next function definition
-function functions#jump_to_next_block(searcher)
-    execute 'normal! ' . a:searcher . "^\\s*$\<CR>"
+" Jumps to the next blank line
+function functions#jump_to_next_block()
+    execute "normal! /^\\s*$\<CR>j0"
+endfunction
+
+function functions#jump_to_last_block()
+    execute "normal! ?^\\s*$\<CR>k0"
 endfunction
 
 function! functions#rewrite_current_file(new_file_name)

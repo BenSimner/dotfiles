@@ -1,3 +1,27 @@
 # Global gitignore
+
+# Vim swapfiles
 *.sw*
+
+# Generic backups
 *.~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+env/
+venv/
+build/
+dist/
+lib/
+*.egg-info/
+*.egg
+# nose output
+nosetests.xml
+coverage.xml
+# logs (django etc)
+*.log
+# sphinx build
+docs/_build/

@@ -114,7 +114,7 @@ endfunction
 
 " Jumps to the next function definition
 function functions#jump_to_next_block(searcher)
-    execute "normal! \<ESC>" . a:searcher . "^\s*$"
+    execute 'normal! ' . a:searcher . "^\\s*$\<CR>"
 endfunction
 
 function! functions#rewrite_current_file(new_file_name)

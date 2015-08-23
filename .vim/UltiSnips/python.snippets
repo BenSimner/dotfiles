@@ -31,8 +31,8 @@ snippet class
 class ${1:ClassName}(${2:object}):
     '''${3:DocString for $1}'''
 
-    def __init__(self${4:, *args}):
-        $2.__init__(self, $5)
+    def __init__(self${4:, *args, **kwargs}):
+        super().__init__($5)
         ${0:...}
 endsnippet
 

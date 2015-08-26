@@ -58,6 +58,9 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
+"vim2hs no lig
+let g:haskell_conceal = 0
+
 """"""""""""""""""""""""""
 " GENERAL
 """"""""""""""""""""""""""

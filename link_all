@@ -1,18 +1,17 @@
 #!/bin/bash
-git submodule init
-git submodule update
+git submodule update --init --recursive
 
-ln -s ./config/.vimrc ~/.vimrc
-ln -s ./config/.vim/ ~/.vim
+config="$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)/config"
 
-ln -s ./config/.bashrc ~/.bashrc
-ln -s ./config/.inputrc ~/.inputrc
-ln -s ./config/.bash/ ~/.bash
+ln -sf $config/.vimrc ~/.vimrc
+ln -sf $config/.vim/ ~/.vim
 
-ln -s ./config/.tmux.conf ~/.tmux.conf
+ln -sf $config/.bashrc ~/.bashrc
+ln -sf $config/.inputrc ~/.inputrc
+ln -sf $config/.bash/ ~/.bash
+
+ln -sf $config/.tmux.conf ~/.tmux.conf
 mkdir ~/.tmux/
-ln -s ./config/.tmux/plugins/ ~/.tmux/plugins
+ln -sf $config/.tmux/plugins/ ~/.tmux/plugins
 
-ln -s ./config/.gitignore_global ~/.gitignore_global
-
-
+ln -sf $config/.gitignore_global ~/.gitignore_global

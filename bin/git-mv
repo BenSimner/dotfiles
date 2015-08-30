@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+# git-mv.py
+# author: Ben Simner 
+'''Since git-mv does not recursively add subdirectories
+this script will run a git-mv recursively on directories attempting to run git-mv
+on submodules when it finds them
+
+Usage:
+    git-mv SOURCE_DIR TARGET_DIR
+'''
+
+import os
+import sys
+import subprocess
+
+def main(argv):
+    git_mv_recursive(argv[1], argv[2], n=False)
+    print('Moved')
+
+def git_mv_recursive(s, d, n=False):
+    print('mkdir %s' % d)
+    if not n:
+        os.mkdir(d)
+
+    try:
+        for f in os.listdir(s):
+            fs = os.path.join(s, f)
+            new = os.path.join(d, f)
+
+            git = False
+            if os.path.exists(os.path.join(fs, '.git')):
+                print('%s is git submodule' % fs)
+                git = True
+
+            if os.path.isdir(fs) and not git:
+                git_mv_recursive(fs, new, n=n)
+            else:
+                try:
+                    print('git mv %s %s' % (fs, new))
+                    if not n:
+                        p = subprocess.Popen(['git', 'mv', fs, new], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                        p.wait()
+                except:
+                    print('Could not perform git mv on %s' % fs)
+    except PermissionError:
+        pass
+
+
+if __name__ == '__main__':
+    main(sys.argv)

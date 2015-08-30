@@ -1,36 +1,36 @@
 [submodule "config/.vim/bundle/Vundle.vim"]
-	path = config/.vim/bundle/Vundle.vim
+	path = config/vim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
 [submodule "config/.vim/bundle/gundo.vim"]
-	path = config/.vim/bundle/gundo.vim
+	path = config/vim/bundle/gundo.vim
 	url = https://github.com/sjl/gundo.vim.git
 [submodule "config/.vim/bundle/tabular"]
-	path = config/.vim/bundle/tabular
+	path = config/vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
 [submodule "config/.vim/bundle/vim-markdown"]
-	path = config/.vim/bundle/vim-markdown
+	path = config/vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "config/.vim/bundle/ultisnips"]
-	path = config/.vim/bundle/ultisnips
+	path = config/vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
 [submodule "config/.vim/bundle/vim-repeat"]
-	path = config/.vim/bundle/vim-repeat
+	path = config/vim/bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
 [submodule "config/.vim/bundle/vim-snippets"]
-	path = config/.vim/bundle/vim-snippets
+	path = config/vim/bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
 [submodule "config/.vim/bundle/vim2hs"]
-	path = config/.vim/bundle/vim2hs
+	path = config/vim/bundle/vim2hs
 	url = https://github.com/dag/vim2hs.git
 [submodule "config/.vim/bundle/YouCompleteMe"]
-	path = config/.vim/bundle/YouCompleteMe
+	path = config/vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
 [submodule "config/.vim/bundle/supertab"]
-	path = config/.vim/bundle/supertab
+	path = config/vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
 [submodule "config/.tmux/plugins/tpm"]
-	path = config/.tmux/plugins/tpm
+	path = config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 [submodule "config/.tmux/plugins/tmux-resurrect"]
-	path = config/.tmux/plugins/tmux-resurrect
+	path = config/tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect

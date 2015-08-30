@@ -3,15 +3,15 @@ git submodule update --init --recursive
 
 config="$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)/config"
 
-ln -sf $config/.vimrc ~/.vimrc
-ln -sf $config/.vim/ ~/.vim
+ln -sf $config/vimrc ~/.vimrc
+ln -sf $config/vim/ ~/.vim
 
-ln -sf $config/.bashrc ~/.bashrc
-ln -sf $config/.inputrc ~/.inputrc
-ln -sf $config/.bash/ ~/.bash
+ln -sf $config/bashrc ~/.bashrc
+ln -sf $config/inputrc ~/.inputrc
+ln -sf $config/bash/ ~/.bash
 
-ln -sf $config/.tmux.conf ~/.tmux.conf
+ln -sf $config/tmux.conf ~/.tmux.conf
 mkdir ~/.tmux/
-ln -sf $config/.tmux/plugins/ ~/.tmux/plugins
+ln -sf $config/tmux/plugins/ ~/.tmux/plugins
 
-ln -sf $config/.gitignore_global ~/.gitignore_global
+ln -sf $config/gitignore_global ~/.gitignore_global

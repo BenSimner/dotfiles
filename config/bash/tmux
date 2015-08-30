@@ -12,7 +12,7 @@ tkill()
 tattach()
 {
     local session_name="$1"
-    printf "attaching to irc\n"
+    printf "attaching to %s\n" $session_name
     tmux attach-session -t "$session_name"
 }
 

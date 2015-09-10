@@ -12,10 +12,7 @@ endif
 "" this file only contains standard vim mappings, it does not
 "" contain any plugin-specific mappings
 
-
-""""""""""""""""""""""""""""""
-"" File Navigation
-""
+"""""""""""""""""""""""""""""" "" File Navigation ""
 
 " Control-R replaces current search string
 nnoremap <C-r> :%s///g<Left><Left>
@@ -62,7 +59,9 @@ nnoremap <C-v> :vnew<CR>
 
 " maps <leader>w to save file
 nnoremap <expr> <leader>w ":Save " . substitute(expand('%:p'), '/home/\w\+/', '~/', '')
-command -nargs=1 Save call functions#rewrite_current_file("<args>")
+nnoremap <expr> <leader>r ":Move " . substitute(expand('%:p'), '/home/\w\+/', '~/', '')
+command -nargs=1 Move call functions#rewrite_current_file("<args>")
+command -nargs=1 Save execute "sav <args>"
 
 " leader sv sources the .vimrc file
 noremap <leader>sv :source $MYVIMRC<CR>

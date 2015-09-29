@@ -2,8 +2,7 @@
 " Luna Colourscheme by Ben Simner
 "
 "
-""""""""""""""""""""""""""""""
-"" Preamble {{{
+"""""""""""""""""""""""""""""" "" Preamble {{{
 ""
 
 set background=dark
@@ -87,14 +86,14 @@ let s:brightred    = ['#ff0000', '1']
 ""
 
 call s:set_hi('Normal'          , s:gravel      , s:darkgrey)
+call s:set_hi('Ignore'          , s:gravel      , s:darkgrey)
+call s:set_hi('NonText'         , s:white       , s:darkgrey)
 call s:set_hi('Cursor'          , s:khaki       , s:grey50)
 call s:set_hi('Comment'         , s:darkgreen   , [])
 call s:set_hi('LineNr'          , s:lightgray   , s:grey27)
 call s:set_hi('CursorLine'      , []            , s:grey27)
 call s:set_hi('CursorColumn'    , []            , s:grey27)
 call s:set_hi('CursorLineNr'    , s:white       , s:darkgray)
-call s:set_hi('NonText'         , s:white       , s:darkgravel)
-call s:set_hi('Ignore'          , s:grey40      , s:grey40)
 call s:set_hi('TODO'            , s:white       , s:darkgrey)
 call s:set_hi('String'          , s:palered     , [])
 call s:set_hi('Identifier'      , s:gravel      , [])

@@ -1,2 +1,2 @@
+xscreensaver -no-splash&
 exec herbstluftwm --locked
-exec xscreensaver -no-splash

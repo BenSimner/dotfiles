@@ -34,3 +34,6 @@
 [submodule "config/.tmux/plugins/tmux-resurrect"]
 	path = config/tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule "config/vim/bundle/neocomplete.vim"]
+	path = config/vim/bundle/neocomplete.vim
+	url = https://github.com/Shougo/neocomplete.vim

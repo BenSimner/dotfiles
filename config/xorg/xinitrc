@@ -1,2 +1,4 @@
-xscreensaver -no-splash&
+setxkbmap -option compose:ralt
+setxkbmap -option terminate:ctrl_alt_bksp
+xscreensaver -no-splash
 exec i3

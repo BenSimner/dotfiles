@@ -1,0 +1,3 @@
+include "%L"
+
+include "/home/bjs/.XCompose.d/greek"

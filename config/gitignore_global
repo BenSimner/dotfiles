@@ -13,6 +13,8 @@ __pycache__/
 *.so
 env/
 venv/
+.virtualenv/
+virtualenv/
 build/
 dist/
 lib/
@@ -25,3 +27,10 @@ coverage.xml
 *.log
 # sphinx build
 docs/_build/
+
+# tex
+*.aux
+*.bst
+*.bbl
+*.blg
+*.dvi

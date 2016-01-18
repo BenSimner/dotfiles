@@ -8,7 +8,12 @@
 highlight Excess ctermbg=DarkGrey guibg=Black
 match Excess /\%120v.*/
 
-set nowrap
+setlocal expandtab
+setlocal softtabstop:4
+setlocal tabstop:4
+setlocal nowrap
+setlocal shiftwidth:4
+
 " Determine fold levels by increasing level for each class
 function! PythonFold()
     let thisline = getline(v:lnum)

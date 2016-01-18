@@ -33,14 +33,12 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Other installed bundles
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'sjl/gundo.vim'
-
-Plugin 'tpope/vim-repeat'
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'Shougo/neocomplete.vim'
+"Plugin 'Shougo/unite.vim'
+"Plugin 'Shougo/neocomplete.vim'
 Plugin 'dag/vim2hs'
 
 call vundle#end()
@@ -48,6 +46,8 @@ filetype plugin indent on
 
 " neocomplete
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+set completeopt-=preview
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -57,7 +57,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 "vim2hs no lig
 let g:haskell_conceal = 0
-
 """"""""""""""""""""""""""
 " GENERAL
 """"""""""""""""""""""""""

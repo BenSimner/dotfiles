@@ -14,8 +14,7 @@
 
 " - python.vim issue tracker: https://github.com/hdima/python-syntax/issues
 " - Email: Dmitry Vasiliev (dima at hlabs.org)
-" - Send a message or follow me for updates on Twitter: `@hdima
-"   <https://twitter.com/hdima>`__
+" - Send a message or follow me for updates on Twitter: `@hdima "   <https://twitter.com/hdima>`__
 "
 " Contributors
 " ============
@@ -151,6 +150,7 @@ syn keyword pythonStatement     pass raise
 syn keyword pythonStatement     global assert
 syn keyword pythonStatement     lambda
 syn keyword pythonStatement     with
+syn keyword pythonStatement     await async
 syn keyword pythonStatement     def class nextgroup=pythonFunction skipwhite
 syn keyword pythonRepeat        for while
 syn keyword pythonConditional   if elif else

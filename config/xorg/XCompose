@@ -1,3 +1,5 @@
 include "%L"
 
+<Multi_key> <t> <m> : "™"   U122
+<Multi_key> <r> <m> : "®"   U24C7
 include "/home/bjs/.XCompose.d/greek"

@@ -14,6 +14,12 @@ endif
 
 """""""""""""""""""""""""""""" "" File Navigation ""
 
+
+" inserting newlines above and below current line
+nnoremap <C-u> maO<Esc>`a
+nnoremap <C-o> mao<Esc>`a
+
+
 " Control-R replaces current search string
 nnoremap <C-r> :%s///g<Left><Left>
 

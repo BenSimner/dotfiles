@@ -37,3 +37,6 @@
 [submodule "config/vim/bundle/neocomplete.vim"]
 	path = config/vim/bundle/neocomplete.vim
 	url = https://github.com/Shougo/neocomplete.vim
+[submodule "config/vim/bundle/unite.vim"]
+	path = config/vim/bundle/unite.vim
+	url = git@github.com:Shougo/unite.vim.git

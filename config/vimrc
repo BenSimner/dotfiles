@@ -37,8 +37,8 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'plasticboy/vim-markdown'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-"Plugin 'Shougo/unite.vim'
-"Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'dag/vim2hs'
 
 call vundle#end()

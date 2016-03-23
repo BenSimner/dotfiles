@@ -13,7 +13,7 @@ endif
 "" contain any plugin-specific mappings
 
 """""""""""""""""""""""""""""" "" File Navigation ""
-
+cabbrev E Explore
 
 " inserting newlines above and below current line
 nnoremap <C-u> maO<Esc>`a

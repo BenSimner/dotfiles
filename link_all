@@ -9,9 +9,10 @@ ln -sf $config/vim/ ~/.vim
 ln -sf $config/bashrc ~/.bashrc
 ln -sf $config/inputrc ~/.inputrc
 ln -sf $config/bash/ ~/.bash
+ln -sf $config/i3/ ~/.i3/
 
 ln -sf $config/tmux.conf ~/.tmux.conf
-mkdir ~/.tmux/
+mkdir -p ~/.tmux/
 ln -sf $config/tmux/plugins/ ~/.tmux/plugins
 
 ln -sf $config/gitignore_global ~/.gitignore_global

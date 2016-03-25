@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $manager ~/.i3/workspace_manager.py
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -72,19 +73,8 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # default workspaces
-set $WS1        1
-set $WS2        2 - Internet
-set $WS3        3
-set $WS4        4
-set $WS5        5 - IRC
-set $WS6        6 - Games
-set $WS7        7
-set $WS8        8
-set $WS9        9
-set $WS10       10 - Options
-
-assign [class="chrome"] $WS2
-assign [class="Steam"] $WS6
+assign [class="chrome"] 2
+assign [class="Steam"] 6
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$" title="^Friends$"] floating enable
@@ -99,47 +89,50 @@ for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Require
 for_window [title="^Steam Keyboard$"] floating enableeturn xs == list(sorted(xs))
 
 for_window [class="URxvt"] floating enable
+for_window [class="Nautilus"] floating enable
 for_window [class="chrome"] floating enable
 for_window [window_role="messages"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
+bindsym $mod+p exec "nautilus"
+
 # switch to workspace
-bindsym $mod+1 workspace $WS1
-bindsym $mod+2 workspace $WS2
-bindsym $mod+3 workspace $WS3
-bindsym $mod+4 workspace $WS4
-bindsym $mod+5 workspace $WS5
-bindsym $mod+6 workspace $WS6
-bindsym $mod+7 workspace $WS7
-bindsym $mod+8 workspace $WS8
-bindsym $mod+9 workspace $WS9
-bindsym $mod+0 workspace $WS10
-bindsym $mod+Left workspace prev
-bindsym $mod+Right workspace next
+bindsym $mod+1 exec $manager --goto-number 1
+bindsym $mod+2 exec $manager --goto-number 2
+bindsym $mod+3 exec $manager --goto-number 3
+bindsym $mod+4 exec $manager --goto-number 4
+bindsym $mod+5 exec $manager --goto-number 5
+bindsym $mod+6 exec $manager --goto-number 6
+bindsym $mod+7 exec $manager --goto-number 7
+bindsym $mod+8 exec $manager --goto-number 8
+bindsym $mod+9 exec $manager --goto-number 9
+bindsym $mod+0 exec $manager --goto-number 10
+
+bindsym $mod+Left exec $manager --go-left
+bindsym $mod+Right exec $manager --go-right
+bindsym $mod+Up exec $manager --go-up
+bindsym $mod+Down exec $manager --go-down
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $WS1; workspace $WS1
-bindsym $mod+Shift+2 move container to workspace $WS2; workspace $WS2
-bindsym $mod+Shift+3 move container to workspace $WS3; workspace $WS3
-bindsym $mod+Shift+4 move container to workspace $WS4; workspace $WS4
-bindsym $mod+Shift+5 move container to workspace $WS5; workspace $WS5
-bindsym $mod+Shift+6 move container to workspace $WS6; workspace $WS6
-bindsym $mod+Shift+7 move container to workspace $WS7; workspace $WS7
-bindsym $mod+Shift+8 move container to workspace $WS8; workspace $WS8
-bindsym $mod+Shift+9 move container to workspace $WS9; workspace $WS9
-bindsym $mod+Shift+0 move container to workspace $WS10; workspace $WS10
-bindsym $mod+Shift+Left move container to workspace prev; workspace prev
-bindsym $mod+Shift+Right move container to workspace next; workspace next
-
-# user-defined workspaces 
-bindsym $mod+n exec i3-input -F 'workspace %s' -P 'Workspace Name: ' 
-bindsym $mod+Shift+n exec "i3-input -F 'move container to workspace %s; workspace %s' -P 'Move to workspace: '"
+bindsym $mod+Shift+1 exec $manager --move-to 1
+bindsym $mod+Shift+2 exec $manager --move-to 2
+bindsym $mod+Shift+3 exec $manager --move-to 3
+bindsym $mod+Shift+4 exec $manager --move-to 4
+bindsym $mod+Shift+5 exec $manager --move-to 5
+bindsym $mod+Shift+6 exec $manager --move-to 6
+bindsym $mod+Shift+7 exec $manager --move-to 7
+bindsym $mod+Shift+8 exec $manager --move-to 8
+bindsym $mod+Shift+9 exec $manager --move-to 9
+bindsym $mod+Shift+0 exec $manager --move-to 10
+bindsym $mod+Shift+Left exec $manger --move-left
+bindsym $mod+Shift+Right exec $manger --move-right
 
 # Renaming workspaces
-bindsym $mod+m exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: ' 
-bindsym $mod+Shift+c reload
+bindsym $mod+m exec i3-input -F 'exec $manager --rename "%s"' -P 'New name for this workspace: ' 
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"

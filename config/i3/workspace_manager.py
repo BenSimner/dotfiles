@@ -2,7 +2,6 @@
 import json
 import argparse
 import subprocess
-import collections
 
 # Workspaces are separated into groups of 10
 # and navigation happens around those groups
@@ -39,7 +38,7 @@ def initialise_workspaces():
         WORKSPACES[w['num']] = w['name']
 
     cur = json_get_current_workspace()
-    WORKSPACE_GROUP = cur['num'] // 10
+    WORKSPACE_GROUP = (cur['num'] - 1) // 10
 
 def get_parser():
     parser = argparse.ArgumentParser(description='i3-wm workspace manager')
@@ -94,8 +93,10 @@ def i3_go_left():
     global WORKSPACE_GROUP
     cur = json_get_current_workspace()
     n = cur['num'] - 1
+
     if n < WORKSPACE_GROUP*10:
         WORKSPACE_GROUP -= 1 
+
     if n > 0:
         i3_goto_workspace_number(n)
 
@@ -103,8 +104,10 @@ def i3_go_right():
     global WORKSPACE_GROUP
     cur = json_get_current_workspace()
     n = cur['num'] + 1
-    if n >= WORKSPACE_GROUP*10:
-        WORKSPACE_GROUP += 1 
+
+    if n > WORKSPACE_GROUP*10:
+        WORKSPACE_GROUP += 1
+
     i3_goto_workspace_number(n)
 
 def i3_go_up():

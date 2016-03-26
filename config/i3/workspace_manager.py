@@ -7,6 +7,9 @@ import subprocess
 # and navigation happens around those groups
 WORKSPACE_GROUP = 0
 WORKSPACES = {}
+ASSIGNS = {
+    6: 'Steam',
+}
 
 def main():
     parser = get_parser()
@@ -32,14 +35,6 @@ def main():
     elif args.rename:
         i3_rename_current_workspace(args.rename)
 
-def initialise_workspaces():
-    global WORKSPACES, WORKSPACE_GROUP
-    for w in json_get_workspaces():
-        WORKSPACES[w['num']] = w['name']
-
-    cur = json_get_current_workspace()
-    WORKSPACE_GROUP = (cur['num'] - 1) // 10
-
 def get_parser():
     parser = argparse.ArgumentParser(description='i3-wm workspace manager')
     parser.add_argument('--goto-number', type=int, help='Goto Workspace #N')
@@ -53,6 +48,22 @@ def get_parser():
     parser.add_argument('--move-left', type=str, help='Move container left')
     parser.add_argument('--move-right', type=str, help='Move container right')
     return parser
+
+def initialise_workspaces():
+    global WORKSPACES, WORKSPACE_GROUP
+    for w in json_get_workspaces():
+        n = w['num']
+        name = w['name']
+        WORKSPACES[n] = name
+
+        if n in ASSIGNS:
+            assign(ASSIGNS[n], name)
+
+    cur = json_get_current_workspace()
+    WORKSPACE_GROUP = (cur['num'] - 1) // 10
+
+def assign(c, workspace):
+    i3_cmd(['exec assign [class="{}"] workspace {}'.format(c, workspace)])
 
 def json_get_workspaces():
     return i3_cmd(['-t', 'get_workspaces'])
@@ -130,12 +141,19 @@ def i3_go_down():
     i3_goto_workspace_number(n - 10)
 
 def i3_rename_current_workspace(name):
+    global WORKSPACES
     cur = json_get_current_workspace()
     n = cur['num']
+
     if name.strip() == '':
-        i3_cmd(['rename workspace to "{}"'.format(n)])
+        name = '{}'.format(n)
     else:
-        i3_cmd(['rename workspace to "{} - {}"'.format(n, name)])
+        name = '{} - {}'.format(n, name)
+
+    WORKSPACES[n] = name 
+    i3_cmd(['rename workspace to "{}"'.format(name)])
+    if n in ASSIGNS:
+        assign(ASSIGNS[n], name)
 
 def i3_goto_workspace(workspace):
     '''Goto a named i3 workspace

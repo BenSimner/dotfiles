@@ -11,6 +11,7 @@
 
 set $mod Mod4
 set $manager ~/.i3/workspace_manager.py
+exec $manager
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -71,10 +72,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# default workspaces
-assign [class="chrome"] 2
-assign [class="Steam"] 6
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$" title="^Friends$"] floating enable

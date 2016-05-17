@@ -2,3 +2,4 @@ URxvt*font: 9x15
 URxvt*background: black
 URxvt*foreground: white
 URxvt.scrollBar: false
+URxvt*urgentOnBell: true 

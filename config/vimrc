@@ -128,6 +128,8 @@ set wrap
 
 set modeline
 
+set noeb vb t_vb=
+
 " Show tabs and nonbreakingspaces
 exec 'set listchars=nbsp:~,tab:▸\ '
 set list

@@ -13,6 +13,8 @@ endif
 "" contain any plugin-specific mappings
 
 """""""""""""""""""""""""""""" "" File Navigation ""
+" http://stackoverflow.com/questions/14367440/map-e-to-explore-in-command-mode
+command! E Explore
 cabbrev E Explore
 
 " inserting newlines above and below current line

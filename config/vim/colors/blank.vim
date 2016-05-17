@@ -109,7 +109,7 @@ call s:set_hi('Operator'        , s:darkgrey, s:white)
 call s:set_hi('Define'          , s:darkgrey, s:white)
 call s:set_hi('Include'         , s:darkgrey, s:white)
 call s:set_hi('Error'           , s:darkred, s:white)
-call s:set_hi('ErrorMsg'          , s:darkred, s:white)
+call s:set_hi('ErrorMsg'        , s:darkred, s:white)
 call s:set_hi('BuiltInFunction' , s:darkgrey, s:white)
 call s:set_hi('NonText'         , s:darkgrey, s:white)
 call s:set_hi('Ignore'          , s:darkgrey, s:white)
@@ -119,4 +119,11 @@ call s:set_hi('StatusLine'      , s:darkgrey, s:white)
 call s:set_hi('TabLineFill'     , s:darkgrey, s:white)
 call s:set_hi('IncSearch'       , s:darkgrey, s:white)
 call s:set_hi('VertSplit'       , s:darkgrey, s:white)
+
+" Special formatting
+hi Statement cterm=bold
+hi Include cterm=bold
+hi Special cterm=bold
+hi Operator cterm=bold
+hi Error cterm=italic
 "" }}}

@@ -98,6 +98,10 @@ if [ -f ~/.bash/bash_aliases ]; then
     . ~/.bash/bash_aliases
 fi
 
+if [ -f ~/.pwds ]; then
+    . ~/.pwds
+fi
+
 # Source all files in the ~/.bash/ directory
 for f in ~/.bash/*;
 do

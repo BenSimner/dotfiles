@@ -110,7 +110,7 @@ call s:set_hi('Define'          , s:darkgrey, s:white)
 call s:set_hi('Include'         , s:darkgrey, s:white)
 call s:set_hi('Error'           , s:darkred, s:white)
 call s:set_hi('ErrorMsg'        , s:darkred, s:white)
-call s:set_hi('BuiltInFunction' , s:darkgrey, s:white)
+call s:set_hi('BuiltInFunction' , s:lightgrey, s:white)
 call s:set_hi('NonText'         , s:darkgrey, s:white)
 call s:set_hi('Ignore'          , s:darkgrey, s:white)
 call s:set_hi('TODO'            , s:darkgrey, s:white)
@@ -126,4 +126,5 @@ hi Include cterm=bold
 hi Special cterm=bold
 hi Operator cterm=bold
 hi Error cterm=italic
+hi Constant cterm=bold
 "" }}}

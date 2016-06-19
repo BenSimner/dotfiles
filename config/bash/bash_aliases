@@ -11,6 +11,9 @@ alias lt='\lt -F --color=auto'
 alias lta='\lt -AF --color=auto'
 alias lg='\lt -AFg --color=auto'
 
+# add coloured less
+export LESS='-R'
+
 # open a file
 open_file() {
     zathura $1 &

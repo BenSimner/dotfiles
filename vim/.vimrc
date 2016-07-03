@@ -23,38 +23,90 @@ exe 'cd ' . expand('~')
 "colorscheme luna
 colorscheme sirius
 
-" setup vundle
+"dein Scripts-----------------------------
+if &compatible
+    set nocompatible               " Be iMproved
+endif
 
-" Disable Vi-compatability
-set nocompatible
-filetype off
+" Required:
+set runtimepath^=.vim/dein.vim/repos/github.com/Shougo/dein.vim
+" Required:
+call dein#begin(expand('.vim/dein.vim'))
 
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
 
-Plugin 'gmarik/Vundle.vim'
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
+"call dein#add('honza/vim-snippets')
 
-" Other installed bundles
-"Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'dag/vim2hs'
-Plugin 'scrooloose/syntastic'
-Plugin 'fsharp/vim-fsharp'
+"call dein#add('godlygeek/tabular')
+"call dein#add('plasticboy/vim-markdown')
+"call dein#add('dag/vim2hs')
+"call dein#add('scrooloose/syntastic')
+"call dein#add('fsharp/vim-fsharp')
 
-call vundle#end()
+" Required:
+call dein#end()
+
+"set runtimepath^=.vim/dein.vim/repos/github.com/Shougo/neocomplete.vim
+
+" Required:
 filetype plugin indent on
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+    call dein#install()
+endif
+"End dein Scripts-------------------------
 
 " neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 set completeopt-=preview
 
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" Neosnippet
+" Plugin key-mappings.
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 " Syntastic
 let g:syntastic_python_python_exec = g:python_path
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args='--ignore=E302,E501'
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -71,6 +123,7 @@ filetype indent plugin on
 set splitbelow
 set splitright
 set wildmenu
+set autochdir
 
 " set <leader> to be my preferred key
 let mapleader=","
@@ -181,6 +234,7 @@ augroup vim_autos
 
     " Automatically source any viml files when saved
     autocmd BufWritePost *.vim source %
+    "autocmd BufWritePost *.py Complexity
 
     " Auto set *bash_* files to sh ft
     autocmd BufRead,BufNewFile *bash_* setf sh

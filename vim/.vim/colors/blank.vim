@@ -15,7 +15,7 @@ if exists("syntax_on")
     syntax reset
 endif
 
-let colors_name = "sirius"
+let colors_name = "blank"
 
 "" }}}
 
@@ -94,7 +94,7 @@ call s:set_hi('Type'            , s:black        , s:white)
 call s:set_hi('Special'         , s:black        , s:white)
 call s:set_hi('Number'          , s:darkgrey     , s:white)
 call s:set_hi('Cursor'          , s:darkgrey     , s:white)
-call s:set_hi('Comment'         , s:darkgrey, s:white)
+call s:set_hi('Comment'         , s:lightgrey     , s:white)
 call s:set_hi('LineNr'          , s:white        , s:lightgrey)
 call s:set_hi('CursorLine'      , []             , s:gravel)
 call s:set_hi('CursorLine'      , []             , s:gravel)
@@ -116,7 +116,7 @@ call s:set_hi('Ignore'          , s:darkgrey, s:white)
 call s:set_hi('TODO'            , s:darkgrey, s:white)
 call s:set_hi('StatusLineNC'    , s:darkgrey, s:white)
 call s:set_hi('StatusLine'      , s:darkgrey, s:white)
-call s:set_hi('TabLineFill'     , s:darkgrey, s:white)
+call s:set_hi('TabLineFill'     , s:palewhite, s:white)
 call s:set_hi('IncSearch'       , s:darkgrey, s:white)
 call s:set_hi('VertSplit'       , s:darkgrey, s:white)
 

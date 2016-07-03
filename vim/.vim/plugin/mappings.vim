@@ -8,9 +8,12 @@ else
     let g:loaded_mapping = 1
 endif
 
-"" this file contains all mappings for my vim configuration
-"" this file only contains standard vim mappings, it does not
-"" contain any plugin-specific mappings
+" Swap semi-colon and colon characters around
+" since : is used far more than ;
+nnoremap ; :
+nnoremap : ;
+
+let mapleader = ","
 
 """""""""""""""""""""""""""""" "" File Navigation ""
 " http://stackoverflow.com/questions/14367440/map-e-to-explore-in-command-mode
@@ -21,14 +24,13 @@ cabbrev E Explore
 nnoremap <C-u> maO<Esc>`a
 nnoremap <C-o> mao<Esc>`a
 
-
 " Control-R replaces current search string
 nnoremap <C-r> :%s///g<Left><Left>
 
 " Remaps Shift b and e to go to beginning and end
 " of the current line
-nnoremap B ^
-nnoremap E $
+noremap B ^
+noremap E $
 
 " Map Arrow Keys to resizing splits
 nnoremap <Left> :vertical resize -5<CR>
@@ -54,6 +56,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap <C-f> <Esc>:tabnew .<CR>
+
 """"""""""""""""""""""""""""""
 "" Buffer Operations
 ""
@@ -71,9 +75,6 @@ nnoremap <expr> <leader>r ":Move " . substitute(expand('%:p'), '/home/\w\+/', '~
 command -nargs=1 Move call functions#rewrite_current_file("<args>")
 command -nargs=1 Save execute "sav <args>"
 
-" leader sv sources the .vimrc file
-noremap <leader>sv :source $MYVIMRC<CR>
-
 " Maps leader " to wrap current word in quotations
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
@@ -82,11 +83,6 @@ nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 "" Leader Mappings
 ""
 
-" Swap semi-colon and colon characters around
-" since : is used far more than ;
-nnoremap ; :
-nnoremap : ;
-
 " Tabularise
 nnoremap <leader>tt :Tab /
 nnoremap <leader>te :Tab /=<CR>
@@ -94,5 +90,6 @@ nnoremap <leader>tv :Tab /¦<CR>
 nnoremap <leader>tp :Tab /\|<CR>
 nnoremap <leader>tc :Tab /,<CR>
 
-" shortcut to edit myvimrc
-nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+" shortcut to edit and source myvimrc
+nnoremap <leader>rc :tabnew $MYVIMRC<CR>
+noremap <leader>sv <ESC>:source $MYVIMRC<CR>

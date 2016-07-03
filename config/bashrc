@@ -108,7 +108,7 @@ do
     . $f
 done
 
-PATH=$PATH:/home/bjs/.cabal/bin/:/home/bjs/dotfiles/bin/
+PATH=$PATH:/home/bjs/.cabal/bin/:/home/bjs/dotfiles/bin/:/home/bjs/.local/bin
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

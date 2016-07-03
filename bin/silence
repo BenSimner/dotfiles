@@ -1,0 +1,4 @@
+# silence and run the command
+# usage: silence ./some_executable_file
+$("$*") > /dev/null 2>&1 &
+echo Running $* silently...

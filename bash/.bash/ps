@@ -1,2 +1,67 @@
-#!/bin/bash
-export PS1="\u@\h:\w\$(__git_ps1)$ "
+#!/usr/bin/env bash
+function __ec_ps1() {
+    local EC=$?
+
+    local USE_COLOR="$1"
+    local col_ok="92"
+    local col_bad="91"
+
+    local attrs_col
+    local attrs_clear
+    local attr
+    local col
+
+    if [[ $EC -eq 0 ]]; then
+        attr="✓"
+        col=$col_ok
+    else
+        attr="×"
+        col=$col_bad
+    fi
+
+    if [[ $USE_COLOR -eq 1 ]]; then
+        attrs_col="\e[${col}m"
+        attrs_clear="\e[0m"
+    else
+        attrs_col=""    
+        attrs_clear=""
+    fi
+
+    printf "[${attrs_col}${attr}${attrs_clear}]"
+}
+
+# Stolen from 
+# https://github.com/alanbriolat/dotfiles/
+function pretty_prompt {
+    local USE_COLOR=1;
+    local HOST_COLOR="36"
+    local PATH_COLOR="33"
+    local BRANCH_COLOR="35"
+
+    # invert colors if root
+    if [[ $UID -eq 0 ]]; then
+        HOST_COLOR="$HOST_COLOR;7"
+    fi
+
+    local host_attrs
+    local path_attrs
+    local branch_attrs
+    local clear_attrs
+
+    if [[ $USE_COLOR -eq 1 ]]; then
+        host_attrs="\[\e[${HOST_COLOR}m\]"
+        path_attrs="\[\e[${PATH_COLOR}m\]"
+        branch_attrs="\[\e[${BRANCH_COLOR}m\]"
+        clear_attrs="\[\e[0m\]"
+    else
+        host_attrs=""
+        path_attrs=""
+        branch_attrs=""
+        clear_attrs=""
+    fi
+
+    PS1="\$(__ec_ps1 $USE_COLOR) ${host_attrs}\u@\h${clear_attrs}:${path_attrs}\w${clear_attrs}${branch_attrs}\$(__git_ps1)${clear_attrs}\n$ "
+    PS2="> "
+}
+
+pretty_prompt

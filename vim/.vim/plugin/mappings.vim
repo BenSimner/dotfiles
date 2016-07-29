@@ -24,6 +24,9 @@ cabbrev E Explore
 nnoremap <C-u> maO<Esc>`a
 nnoremap <C-o> mao<Esc>`a
 
+"nnoremap <C-f> <ESC>:call fzf#run({'dir': expand("%:h")})<CR>
+nnoremap <C-f> <ESC>:execute 'FZF ' . expand("%:h")<CR>
+
 " Control-R replaces current search string
 nnoremap <C-r> :%s///g<Left><Left>
 
@@ -55,8 +58,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-nnoremap <C-f> <Esc>:tabnew .<CR>
 
 """"""""""""""""""""""""""""""
 "" Buffer Operations

@@ -23,45 +23,15 @@ exe 'cd ' . expand('~')
 "colorscheme luna
 colorscheme sirius
 
-"dein Scripts-----------------------------
 if &compatible
     set nocompatible               " Be iMproved
 endif
 
-" Required:
-set runtimepath^=.vim/dein.vim/repos/github.com/Shougo/dein.vim
-" Required:
-call dein#begin(expand('.vim/dein.vim'))
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
-
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/neocomplete.vim')
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-"call dein#add('honza/vim-snippets')
-
-"call dein#add('godlygeek/tabular')
-"call dein#add('plasticboy/vim-markdown')
-"call dein#add('dag/vim2hs')
-"call dein#add('scrooloose/syntastic')
-"call dein#add('fsharp/vim-fsharp')
-
-" Required:
-call dein#end()
-
-"set runtimepath^=.vim/dein.vim/repos/github.com/Shougo/neocomplete.vim
-
-" Required:
+execute pathogen#infect()
 filetype plugin indent on
 
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-    call dein#install()
-endif
-"End dein Scripts-------------------------
+" Use fzf
+set rtp+=~/software/fzf
 
 " neocomplete
 let g:neocomplete#enable_at_startup = 1
@@ -94,7 +64,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-
+"
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
 " \ pumvisible() ? "\<C-n>" :
@@ -120,10 +90,25 @@ let g:haskell_conceal = 0
 " GENERAL
 """"""""""""""""""""""""""
 filetype indent plugin on
+
+" split to right and below
 set splitbelow
 set splitright
+
 set wildmenu
 set autochdir
+
+set lazyredraw
+set ttyfast
+
+set mouse=a
+set virtualedit=onemore
+
+set synmaxcol=300
+
+" Open all folds initially
+set foldmethod=indent
+set foldlevelstart=99
 
 " set <leader> to be my preferred key
 let mapleader=","
@@ -156,6 +141,12 @@ set showmatch
 
 set cursorline
 
+" Solid line for vsplit separator
+set fcs=vert:│
+
+" Don't show the intro
+set shortmess+=I
+
 " show command in status bar
 set showcmd
 
@@ -172,19 +163,19 @@ augroup vim_numbers
     autocmd InsertLeave, FocusGained * set relativenumber number
 augroup END
 
-" auto indent
-set ai
-" smart indent
-set si
+set autoindent
+set smartindent
+set smartcase
 " wrap lines
 set wrap
 
 set modeline
 
+" turn off sound/bells
 set noeb vb t_vb=
 
 " Show tabs and nonbreakingspaces
-exec 'set listchars=nbsp:~,tab:▸\ '
+exec 'set listchars=nbsp:~,tab:▸\ ,trail:·'
 set list
 
 """"""""""""""""""""""""""

@@ -8,6 +8,7 @@ import subprocess
 WORKSPACE_GROUP = 0
 WORKSPACES = {}
 NEXTS = [[] for _ in range(10)]
+TREE = None
 ASSIGNS = {
     6: 'Steam',
 }
@@ -31,6 +32,14 @@ def main():
         i3_move_left()
     elif args.move_right:
         i3_move_right()
+    elif args.move_up:
+        i3_move_up()
+    elif args.move_down:
+        i3_move_down()
+    elif args.move_output_left:
+        i3_move_output_left()
+    elif args.move_output_right:
+        i3_move_output_right()
     elif args.goto_number:
         i3_goto_workspace_group_number(args.goto_number)
     elif args.rename:
@@ -48,14 +57,19 @@ def get_parser():
     parser.add_argument('--move-to', type=int, help='Move container to workspace group id')
     parser.add_argument('--move-left', action='store_true', help='Move container left')
     parser.add_argument('--move-right', action='store_true', help='Move container right')
+    parser.add_argument('--move-up', action='store_true', help='Move container up')
+    parser.add_argument('--move-down', action='store_true', help='Move container down')
+    parser.add_argument('--move-output-left', action='store_true', help='Move to left output')
+    parser.add_argument('--move-output-right', action='store_true', help='Move to right output')
     return parser
 
 def initialise_workspaces():
-    global WORKSPACES, WORKSPACE_GROUP, NEXTS
+    global WORKSPACES, WORKSPACE_GROUP, NEXTS, TREE
+
     for w in json_get_workspaces():
         n = w['num']
         name = w['name']
-        
+
         grp = (n - 1) // 10
         base = n % 10
         NEXTS[base].append(grp)
@@ -65,6 +79,7 @@ def initialise_workspaces():
         if n in ASSIGNS:
             assign(ASSIGNS[n], name)
 
+    TREE = i3_cmd(['-t', 'get_tree'])
     cur = json_get_current_workspace()
     WORKSPACE_GROUP = (cur['num'] - 1) // 10
 
@@ -80,8 +95,21 @@ def json_get_current_workspace():
             return w
 
 def i3_move_left():
+    i3_move_by(-1)
+
+def i3_move_up():
+    i3_move_by(10)
+
+def i3_move_down():
+    i3_move_by(-10)
+
+def i3_move_right():
+    i3_move_by(1)
+
+def i3_move_by(n):
     cur = json_get_current_workspace()
-    n = cur['num'] - 1
+    n = cur['num'] + n
+
     if n < 1:
         return
 
@@ -91,18 +119,8 @@ def i3_move_left():
     i3_cmd(['move container to workspace {}'.format(n)])
     i3_cmd(['workspace {}'.format(n)])
 
-def i3_move_right():
-    cur = json_get_current_workspace()
-    n = cur['num'] + 1
-
-    if n in WORKSPACES:
-        n = WORKSPACES[n]['name']
-
-    i3_cmd(['move container to workspace {}'.format(n)])
-    i3_cmd(['workspace {}'.format(n)])
-
 def i3_move_to(n):
-    n = 10*WORKSPACE_GROUP + n
+    n = 10 * WORKSPACE_GROUP + n
     i3_cmd(['move container to workspace number {}'.format(n)])
     i3_cmd(['workspace {}'.format(n)])
 
@@ -111,8 +129,8 @@ def i3_go_left():
     cur = json_get_current_workspace()
     n = cur['num'] - 1
 
-    if n < WORKSPACE_GROUP*10:
-        WORKSPACE_GROUP -= 1 
+    if n < WORKSPACE_GROUP * 10:
+        WORKSPACE_GROUP -= 1
 
     if n > 0:
         i3_goto_workspace_number(n)
@@ -122,7 +140,7 @@ def i3_go_right():
     cur = json_get_current_workspace()
     n = cur['num'] + 1
 
-    if n > WORKSPACE_GROUP*10:
+    if n > WORKSPACE_GROUP * 10:
         WORKSPACE_GROUP += 1
 
     i3_goto_workspace_number(n)
@@ -156,7 +174,7 @@ def i3_rename_current_workspace(name):
     else:
         name = '{} - {}'.format(n, name)
 
-    WORKSPACES[n]['name'] = name 
+    WORKSPACES[n]['name'] = name
     i3_cmd(['rename workspace to "{}"'.format(name)])
     if n in ASSIGNS:
         assign(ASSIGNS[n], name)
@@ -166,24 +184,38 @@ def i3_goto_workspace(workspace):
     '''
     return i3_cmd(['workspace {}'.format(workspace)])
 
+def i3_move_output_right():
+    return i3_cmd(['move workspace to output right'])
+
+def i3_move_output_left():
+    return i3_cmd(['move workspace to output left'])
+
 def i3_goto_workspace_group_number(workspace):
     '''Goto a numbered i3 workspace
     '''
     # get current workspace
     cur = json_get_current_workspace()
     n = cur['num']
-    grp = WORKSPACE_GROUP
-    goto = grp*10 + workspace
-    if n == goto:
-        # on each hit go to next one  
-        wk = WORKSPACES[n]
-        wk_base = wk['base']
-        wk_grp = wk['grp']
-        i = NEXTS[wk_base].index(wk_grp)
-        i = (i + 1) % len(NEXTS[wk_base])
-        grp = NEXTS[wk_base][i]
-    
-    return i3_cmd(['workspace number {}'.format(int(grp*10 + workspace))])
+
+    wk = WORKSPACES[n]
+    wk_base = wk['base']
+    wk_grp = wk['grp']
+
+    grp = 0
+
+    # if on workspace 3 and press 3
+    # always go to workspace 13
+    if workspace == n:
+        grp = 1
+    # if on workspace 13 and press 3
+    # go to 23 (or the next numbered)
+    if workspace + wk_grp * 10 == n:
+        nexts = NEXTS[wk_base]
+        i = nexts.index(wk_grp) + 1
+        i %= len(nexts)
+        grp = nexts[i]
+
+    return i3_cmd(['workspace number {}'.format(int(grp * 10 + workspace))])
 
 def i3_goto_workspace_number(workspace):
     '''Goto a numbered i3 workspace
@@ -191,7 +223,7 @@ def i3_goto_workspace_number(workspace):
     return i3_cmd(['workspace number {}'.format(int(workspace))])
 
 def i3_cmd(cmds):
-    pipe = subprocess.Popen(["i3-msg",*cmds], stdout=subprocess.PIPE)
+    pipe = subprocess.Popen(["i3-msg", *cmds], stdout=subprocess.PIPE)
     out, *_ = pipe.communicate()
     data = json.loads(out.decode())
     return data

@@ -123,8 +123,13 @@ bindsym $mod+Shift+7 exec $manager --move-to 7
 bindsym $mod+Shift+8 exec $manager --move-to 8
 bindsym $mod+Shift+9 exec $manager --move-to 9
 bindsym $mod+Shift+0 exec $manager --move-to 10
-bindsym $mod+Shift+Left exec $manger --move-left
-bindsym $mod+Shift+Right exec $manger --move-right
+bindsym $mod+Shift+Left exec $manager --move-left
+bindsym $mod+Shift+Right exec $manager --move-right
+bindsym $mod+Shift+Up exec $manager --move-up
+bindsym $mod+Shift+Down exec $manager --move-down
+
+bindsym $mod+Shift+a exec $manager --move-output-left
+bindsym $mod+Shift+d exec $manager --move-output-right
 
 # Renaming workspaces
 bindsym $mod+m exec i3-input -F 'exec $manager --rename "%s"' -P 'New name for this workspace: ' 

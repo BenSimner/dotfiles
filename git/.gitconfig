@@ -1,0 +1,14 @@
+[user]
+    email = benjsimner@gmail.com
+    name = Ben Simner
+    signingkey = AF3E98B1
+[core]
+    excludesfile = /home/bjs/.gitignore_global
+    editor = vim
+[alias]
+    last = log -1 HEAD
+    graph = log --graph
+    diffs = log -p
+    scommit = commit -S
+    amend = commit --amend
+    samend = commit -S --amend

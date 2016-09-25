@@ -60,7 +60,16 @@ function pretty_prompt {
         clear_attrs=""
     fi
 
-    PS1="\$(__ec_ps1 $USE_COLOR) ${host_attrs}\u@\h${clear_attrs}:${path_attrs}\w${clear_attrs}${branch_attrs}\$(__git_ps1)${clear_attrs}\n$ "
+    # i have no idea how to do this nicely in bash
+    # ... is that an oxymoron?
+    local dashed=""
+    local count=$COLUMNS
+    while [ $count -gt 0 ]; do
+        dashed="-${dashed}"
+        count=$(($count - 1))
+    done
+
+    PS1="\$(__ec_ps1 $USE_COLOR)\n${dashed}\n${host_attrs}\u@\h${clear_attrs}:${path_attrs}\w${clear_attrs}${branch_attrs}\$(__git_ps1)${clear_attrs}\n$ "
     PS2="> "
 }
 

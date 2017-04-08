@@ -121,6 +121,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. /usr/share/git/completion/git-prompt.sh
-
+. ~/.bash/git-prompt.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

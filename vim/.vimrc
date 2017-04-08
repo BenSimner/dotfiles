@@ -5,14 +5,6 @@
 "" Ensure vim is compiled with +python
 "" Author: Ben Simner
 
-" Vim setup without +python cannot run
-" so just exit with warning
-" allowing default vim config.
-if (!has('python'))
-    put! = 'Python Not Detected!'
-    finish
-endif
-
 let g:python_path = system('which python3')
 
 " ensure we are in correct directory.

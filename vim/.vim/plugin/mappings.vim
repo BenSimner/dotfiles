@@ -67,6 +67,7 @@ nnoremap <S-K> ]m
 ""
 
 " make new buffer in vsplit
+nnoremap <S-q> <C-v>
 nnoremap <C-v> :vnew<CR>
 
 """"""""""""""""""""""""""""""

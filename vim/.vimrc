@@ -108,7 +108,7 @@ let g:mapleader=","
 
 " Hide buffer when editing another
 " instead of abandoning
-set hidden
+"set hidden  " this option does not play well with my navigation style with netrw
 
 set backspace=2 " ensure backspace works as it does in all other programs
 set autoread
@@ -120,6 +120,9 @@ set shiftwidth=4
 set softtabstop=4
 " Make TABs spaces.
 set expandtab
+
+" Safe saves
+set wb
 
 let g:python_highlight_builtin_funcs = 1
 """"""""""""""""""""""""""

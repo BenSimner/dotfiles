@@ -41,15 +41,16 @@ nnoremap <Right> :vertical resize +5<CR>
 nnoremap <Up> :resize -5<CR>
 nnoremap <Down> :resize +5<CR>
 
+" Remap visualblock mode to Shift+Q
+nnoremap <S-q> <C-v>
+
 """"""""""""""""""""""""""""""
 "" Split and Tab Navigation
 "" See: http://blog.chrisbe.st/articles/coding/two-years-of-vim
 nnoremap <C-t> :tabnew<CR>
-nnoremap <C-b> :tabprevious<CR>
 nnoremap <C-n> :tabnext<CR>
 nnoremap <C-w> :tabclose<CR>
 inoremap <C-t> <Esc>:tabnew<CR>
-inoremap <C-b> <Esc>:tabprevious<CR>i
 inoremap <C-n> <Esc>:tabnext<CR>i
 inoremap <C-w> <Esc>:tabclose<CR>i
 
@@ -59,6 +60,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Remap jk to g-jk
+nnoremap j gj
+nnoremap k gk
+
 nnoremap <S-J> [m
 nnoremap <S-K> ]m
 
@@ -67,8 +72,7 @@ nnoremap <S-K> ]m
 ""
 
 " make new buffer in vsplit
-nnoremap <S-q> <C-v>
-nnoremap <C-v> :vnew<CR>
+nnoremap <C-v> :vsplit<CR>
 
 """"""""""""""""""""""""""""""
 "" File Operations
@@ -83,6 +87,10 @@ command -nargs=1 Save execute "sav <args>"
 " Maps leader " to wrap current word in quotations
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <C-b> :Buffers<CR>
 
 """"""""""""""""""""""""""""""
 "" Leader Mappings

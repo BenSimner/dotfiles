@@ -34,8 +34,8 @@ let g:neocomplete#enable_smart_case = 1
 set completeopt-=preview
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+inoremap <expr><C-g>     silent! neocomplete#undo_completion()
+inoremap <expr><C-l>     silent! neocomplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -45,11 +45,12 @@ function! s:my_cr_function()
   " For no inserting <CR> key.
   "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
+
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-h> execute("neocomplete#smart_close_popup()", "silent!")."\<C-h>"
+inoremap <expr><BS> execute("neocomplete#smart_close_popup()", "silent!")."\<C-h>"
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
@@ -139,9 +140,6 @@ set showmatch
 
 set cursorline
 
-" Solid line for vsplit separator
-set fcs=vert:│
-
 " Don't show the intro
 set shortmess+=I
 
@@ -172,10 +170,6 @@ set modeline
 " turn off sound/bells
 set noeb vb t_vb=
 
-" Show tabs and nonbreakingspaces
-exec 'set listchars=nbsp:~,tab:▸\ ,trail:·'
-set list
-
 """"""""""""""""""""""""""
 " GUI
 """"""""""""""""""""""""""
@@ -184,8 +178,15 @@ if has("gui_running")
     set guioptions+=e
     set guifont=Consolas:h11
     set guitablabel=%M\ %t
+    exec 'set listchars=nbsp:~,trail:-'
+else
+" Solid line for vsplit separator
+set fcs=vert:│
+" Show tabs and nonbreakingspaces
+exec 'set listchars=nbsp:~,tab:▸\ ,trail:·'
 endif
 
+set list
 """"""""""""""""""""""""""
 " COLOURS
 """"""""""""""""""""""""""

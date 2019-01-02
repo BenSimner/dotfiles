@@ -92,6 +92,7 @@ set splitbelow
 set splitright
 
 set wildmenu
+set noautochdir
 set autochdir
 
 set lazyredraw
@@ -116,6 +117,13 @@ let g:mapleader=","
 
 set backspace=2 " ensure backspace works as it does in all other programs
 set autoread
+
+" cleaner text writing make wrap around 90 chars
+set fo+=tc
+set fo-=l
+set textwidth=90 " fix sensible column width
+set wm=2
+set wrap
 
 " Vim will interpret tabs as having 4 spaces
 set tabstop=4
@@ -162,8 +170,6 @@ augroup END
 set autoindent
 set smartindent
 set smartcase
-" wrap lines
-set wrap
 
 set modeline
 

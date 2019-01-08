@@ -5,6 +5,7 @@
 [core]
     excludesfile = /home/bjs/.gitignore_global
     editor = vim
+    autoclrf = true
 [alias]
     last = log -1 HEAD
     graph = log --graph

@@ -203,6 +203,7 @@ endif
 set t_Co=256
 let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
+set t_ut=
 
 set encoding=utf8
 set ffs=unix,dos

@@ -110,6 +110,9 @@ set foldlevelstart=99
 let mapleader=","
 let g:mapleader=","
 
+nnoremap <silent> <leader>t :MerlinTypeOf<CR>
+nnoremap <silent> <leader>g :MerlinLocate<CR>
+
 " Hide buffer when editing another
 " instead of abandoning
 "set hidden  " this option does not play well with my navigation style with netrw

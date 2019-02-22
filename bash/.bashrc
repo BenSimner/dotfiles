@@ -123,3 +123,4 @@ fi
 
 . ~/.bash/git-prompt.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. ~/.bash_profile

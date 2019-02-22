@@ -3,7 +3,7 @@
     name = Ben Simner
     signingkey = AF3E98B1
 [core]
-    excludesfile = /home/bjs/.gitignore_global
+	excludesfile = /home/bs630/.gitignore_global
     editor = vim
     autoclrf = true
 [alias]
@@ -13,3 +13,5 @@
     scommit = commit -S
     amend = commit --amend
     samend = commit -S --amend
+[credential]
+	helper = cache

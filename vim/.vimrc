@@ -116,6 +116,9 @@ set foldlevelstart=99
 let mapleader=","
 let g:mapleader=","
 
+" turn on spellchecker
+set spell
+
 nnoremap <silent> <leader>t :MerlinTypeOf<CR>
 nnoremap <silent> <leader>g :MerlinLocate<CR>
 

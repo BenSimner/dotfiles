@@ -187,6 +187,10 @@ set modeline
 " turn off sound/bells
 set noeb vb t_vb=
 
+
+" use tree list style for netrw
+let g:netrw_liststyle=3
+
 """"""""""""""""""""""""""
 " GUI
 """"""""""""""""""""""""""
@@ -242,13 +246,18 @@ augroup vim_autos
 
     " Automatically source any viml files when saved
     autocmd BufWritePost *.vim source %
-    "autocmd BufWritePost *.py Complexity
+    autocmd BufWritePost *.py silent! :Black
 
     " Auto set *bash_* files to sh ft
     autocmd BufRead,BufNewFile *bash_* setf sh
 
     " Auto set htmldjango filetype on html files
     autocmd BufRead,BufNewFile *.html set ft=htmldjango
+
+    autocmd BufRead * set bt=
+
+    " auto cd to netrw directory
+    autocmd FileType netrw cd @%
 
 augroup END
 

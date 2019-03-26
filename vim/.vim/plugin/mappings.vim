@@ -49,10 +49,7 @@ nnoremap <S-q> <C-v>
 "" See: http://blog.chrisbe.st/articles/coding/two-years-of-vim
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-n> :tabnext<CR>
-nnoremap <C-w> :tabclose<CR>
 inoremap <C-t> <Esc>:tabnew<CR>
-inoremap <C-n> <Esc>:tabnext<CR>i
-inoremap <C-w> <Esc>:tabclose<CR>i
 
 " Map C-hjkl to moving around splits
 nnoremap <C-J> <C-W><C-J>

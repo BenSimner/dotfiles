@@ -1,0 +1,20 @@
+# tmux aliases
+alias tnew='tmux new -s'
+
+# aliases for common ls
+alias ls='ls -GCF'
+
+# see: https://github.com/BenSimner/list-tree
+alias lt='\lt -F'
+alias lta='\lt -AF'
+alias lg='\lt -AFg'
+
+# add coloured less
+export LESS='-R'
+
+# open a file
+open_file() {
+    zathura $1 &
+}
+
+alias o=open_file

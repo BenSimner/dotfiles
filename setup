@@ -2,6 +2,7 @@
 git submodule update --init --recursive
 
 stow bash
+stow zsh
 stow git
 stow vim
 stow xorg

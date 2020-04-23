@@ -69,7 +69,7 @@ function pretty_prompt {
         count=$(($count - 1))
     done
 
-    PS1="\$(__ec_ps1 $USE_COLOR)\n${dashed}\n${host_attrs}\u@\h${clear_attrs}:${path_attrs}\w${clear_attrs}${branch_attrs}\$(__git_ps1)${clear_attrs}\n$ "
+    PS1="\$(__ec_ps1 $USE_COLOR) ${host_attrs}\u@\h${clear_attrs}:${path_attrs}\w${clear_attrs}${branch_attrs}\$(__git_ps1)${clear_attrs}\n$ "
     PS2="> "
 }
 

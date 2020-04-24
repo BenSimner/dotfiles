@@ -1,0 +1,33 @@
+#!/bin/bash 
+
+# kill a tmux session
+# with tab completetion
+tkill()
+{
+    tmux kill-session -t "$1"
+}
+
+# attach a tmux session
+# with tab completion
+tattach()
+{
+    local session_name="$1"
+    printf "attaching to %s\n" $session_name
+    tmux attach-session -t "$session_name"
+}
+
+_tmux_sessionlist_complete() 
+{
+    COMPRELY=()
+
+    # get sessionlist with no stderr output
+    sessions="$( tmux list-sessions 2>/dev/null | awk -F: '{ print $1 }')"
+
+    # allow only 1 argument
+    if [ "$3" = "$1" ]; then
+        COMPREPLY=( $(compgen -W "$sessions" -- "$2") )
+    fi
+}
+
+complete -F _tmux_sessionlist_complete tattach
+complete -F _tmux_sessionlist_complete tkill

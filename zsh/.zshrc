@@ -98,4 +98,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[ -f ~/.zsh/zsh_aliases ] && source ~/.zsh/zsh_aliases
+# Source all files in the ~/.bash/ directory
+for f in ~/.zsh/*;
+do
+    . $f
+done
